@@ -8,56 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:948068803265:android:4e295c6499c6f64e",
-        "android_client_info": {
-          "package_name": "com.ej.bakeit"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "948068803265-pfn5qi3a3o2kv350rb7hr0ldnrpmosjh.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.ej.bakeit",
-            "certificate_hash": "8061c15a89cff8f7dba26ae3ec7994ee73ede701"
-          }
-        },
-        {
-          "client_id": "948068803265-s4mqoumuc6noiatqpf2rmgt2r81lulc1.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyA5_1_1vrZ0qLdE2XoYHJAoatbrtKIv4Eo"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "948068803265-s4mqoumuc6noiatqpf2rmgt2r81lulc1.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:948068803265:android:e4acffec3557ea2b",
         "android_client_info": {
           "package_name": "eladjarby.bakeit"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "948068803265-a4lun1gv0esggb3g64dm72375gb7lt4v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "eladjarby.bakeit",
+            "certificate_hash": "8061c15a89cff8f7dba26ae3ec7994ee73ede701"
+          }
+        },
         {
           "client_id": "948068803265-1vd0f7iqgeduvaoorh1cbljhbuqkr23u.apps.googleusercontent.com",
           "client_type": 1,

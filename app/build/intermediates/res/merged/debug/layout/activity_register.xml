@@ -1,76 +1,124 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="eladjarby.bakeit.RegisterActivity"
     android:background="#f7f7f7"
-    android:weightSum="2">
+    tools:context="eladjarby.bakeit.RegisterActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.7">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/bakeitlogo" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.3"
-        android:orientation="vertical"
-        android:paddingLeft="35dp"
-        android:paddingRight="35dp">
-
-        <EditText
-            android:id="@+id/register_user"
+        android:weightSum="2"
+        android:orientation="vertical">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:ellipsize="start"
-            android:hint="Username or Email"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/register_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:gravity="left"
-            android:ellipsize="start"
-            android:hint="Password"
-            android:inputType="textPassword" />
+            android:layout_height="match_parent"
+            android:layout_weight="1.7">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bakeitlogo" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:orientation="vertical"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp">
 
-            <TextView
-                android:id="@+id/register_forgetBtn"
+            <ImageView
+                android:id="@+id/register_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher" />
+            <EditText
+                android:id="@+id/register_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
-                android:layout_weight="1"
-                android:text="Forget password?" />
+                android:ems="10"
+                android:ellipsize="start"
+                android:hint="Username or Email"
+                android:inputType="textEmailAddress" />
 
-            <TextView
-                android:id="@+id/register_loginBtn"
+            <EditText
+                android:id="@+id/register_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="3dp"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="Login" />
+                android:ems="10"
+                android:gravity="left"
+                android:ellipsize="start"
+                android:hint="Password"
+                android:inputType="textPassword" />
+
+
+            <EditText
+                android:id="@+id/register_firstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:ems="10"
+                android:ellipsize="start"
+                android:hint="First name"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/register_lastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:ellipsize="start"
+                android:hint="Last name"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/register_town"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:ellipsize="start"
+                android:hint="Town"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/register_street"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:ellipsize="start"
+                android:hint="Street"
+                android:inputType="text" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/register_forgetBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_weight="1"
+                    android:text="Forget password?" />
+
+                <TextView
+                    android:id="@+id/register_loginBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="Login" />
+            </LinearLayout>
+            <Button
+                android:id="@+id/register_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center_horizontal"
+                android:text="       Register      "/>
         </LinearLayout>
-        <Button
-            android:id="@+id/register_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="center_horizontal"
-            android:text="       Register      "/>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
