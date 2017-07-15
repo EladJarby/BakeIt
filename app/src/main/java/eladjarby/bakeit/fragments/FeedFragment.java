@@ -1,14 +1,23 @@
 package eladjarby.bakeit.fragments;
 
 import android.content.Context;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import java.util.List;
+
+import eladjarby.bakeit.Models.Model;
+import eladjarby.bakeit.Models.Recipe.Recipe;
 import eladjarby.bakeit.R;
 
 /**
@@ -20,6 +29,8 @@ import eladjarby.bakeit.R;
  * create an instance of this fragment.
  */
 public class FeedFragment extends Fragment {
+    List<Recipe> recipeList;
+    RecipeListAdapter adapter = new RecipeListAdapter();
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -58,9 +69,22 @@ public class FeedFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         getActivity().setTitle("");
+
+        View contentView = inflater.inflate(R.layout.fragment_feed, container, false);
+        ListView list = (ListView) contentView.findViewById(R.id.recipeList);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mListener.onItemSelected(recipeList.get(position).getID());
+            }
+        });
+
+        recipeList = Model.instance.getRecipeList();
+        list.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
         //((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
-        return inflater.inflate(R.layout.fragment_feed, container, false);
+        return contentView;
     }
 
     @Override
@@ -91,5 +115,56 @@ public class FeedFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
+        void onItemSelected(String recipeId);
+    }
+
+    class RecipeListAdapter extends BaseAdapter {
+        @Override
+        public int getCount() {
+            return recipeList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return recipeList.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if(convertView == null) {
+                convertView = getActivity().getLayoutInflater().inflate(R.layout.feed_list_row,null);
+                TextView likesTv = (TextView) convertView.findViewById(R.id.strow_likes);
+                likesTv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Problem could happend: will raise likes every click
+                        int pos = (int)v.getTag();
+                        Recipe recipe = recipeList.get(pos);
+                        recipe.setRecipeLikes(recipe.getRecipeLikes()+1);
+                    }
+                });
+            }
+            TextView recipeDescription = (TextView) convertView.findViewById(R.id.strow_description);
+            ImageView recipeImage = (ImageView) convertView.findViewById(R.id.strow_image);
+            TextView recipeDate = (TextView) convertView.findViewById(R.id.strow_date);
+            TextView recipeLikes = (TextView) convertView.findViewById(R.id.strow_likes);
+            ImageView recipeAuthorImage = (ImageView) convertView.findViewById(R.id.strow_authorImage);
+            TextView recipeCategory = (TextView) convertView.findViewById(R.id.strow_category);
+            TextView recipeHeader = (TextView) convertView.findViewById(R.id.strow_header);
+            ImageView recipeArrow = (ImageView) convertView.findViewById(R.id.strow_arrow);
+            Recipe recipe = recipeList.get(position);
+            recipeDescription.setText(recipe.getRecipeTitle());
+            recipeCategory.setText(recipe.getRecipeCategory());
+            recipeHeader.setText("Elad posted a reicope on");
+            recipeDate.setText("3hrs");
+            recipeLikes.setText(recipe.getRecipeLikes() + " peoples liked");
+            recipeLikes.setTag(position);
+            return convertView;
+        }
     }
 }

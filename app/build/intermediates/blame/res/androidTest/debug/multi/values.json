@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+        "outputFile": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 96
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\6e07fdf1f51c6ffad3f04b1446b2d7a2fc05c44e\\output\\res\\values\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\d74ee97b106d08a1b53f666d9c75735e8a455182\\output\\res\\values\\values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,

@@ -35,4 +35,8 @@ public class MainActivity extends AppCompatActivity implements FeedFragment.OnFr
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public void onItemSelected(String recipeId) {
+
+    }
 }
