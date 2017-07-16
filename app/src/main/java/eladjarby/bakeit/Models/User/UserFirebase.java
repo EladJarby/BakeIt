@@ -1,9 +1,7 @@
 package eladjarby.bakeit.Models.User;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -15,7 +13,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import eladjarby.bakeit.LoginActivity;
-import eladjarby.bakeit.MainActivity;
 import eladjarby.bakeit.Models.BaseInterface;
 import eladjarby.bakeit.RegisterActivity;
 
@@ -80,5 +77,14 @@ public class UserFirebase {
     }
     public static void addDBUser(User user) {
         myRef.child("" + user.getID()).setValue(user);
+    }
+
+    public static String getCurrentUserId() {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(currentUser != null) {
+            return currentUser.getUid();
+        } else {
+            return null;
+        }
     }
 }

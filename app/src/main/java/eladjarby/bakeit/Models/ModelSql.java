@@ -17,11 +17,11 @@ public class ModelSql extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //RecipeSql.onCreate(db);
+        RecipeSql.onCreate(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //RecipeSql.onUpgrade(db,oldVersion,newVersion);
+        RecipeSql.onUpgrade(db,oldVersion,newVersion);
     }
 }

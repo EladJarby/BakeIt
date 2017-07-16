@@ -6,14 +6,54 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
-        android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:contentInsetLeft="0dp"
+        android:contentInsetStart="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:contentInsetRight="0dp"
+        android:contentInsetEnd="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetEnd="0dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="1">
+            <ImageView
+                android:id="@+id/menu_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:layout_marginLeft="10dp"
+                android:src="@android:drawable/ic_menu_add" />
+
+            <android.support.v7.widget.SearchView
+                android:layout_weight="0.8"
+                android:id="@+id/item_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:actionViewClass="android.support.v7.widget.SearchView"
+                android:showAsAction="always"
+                android:title="Search" />
+
+            <ImageView
+                android:layout_weight="0.1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:src="@android:drawable/ic_menu_add" />
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
     <FrameLayout
         android:id="@+id/main_fragment_container"
         android:layout_width="match_parent"

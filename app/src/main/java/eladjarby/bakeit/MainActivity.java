@@ -5,20 +5,29 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 
+import eladjarby.bakeit.Models.Model;
+import eladjarby.bakeit.Models.ModelFirebase;
+import eladjarby.bakeit.fragments.CreateEditFragment;
 import eladjarby.bakeit.fragments.FeedFragment;
 
-public class MainActivity extends AppCompatActivity implements FeedFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements FeedFragment.OnFragmentInteractionListener
+,CreateEditFragment.OnFragmentInteractionListener{
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        final SearchView searchView = (SearchView) findViewById(R.id.item_search);
+        searchView.setIconifiedByDefault(false);
+        searchView.setQueryHint("Search");
+        searchView.setFocusable(false);
+
 
         FeedFragment feedFragment = FeedFragment.newInstance();
         getFragmentManager().beginTransaction()
@@ -26,17 +35,21 @@ public class MainActivity extends AppCompatActivity implements FeedFragment.OnFr
                 .commit();
     }
 
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.main, menu);
-        MenuItem searchMenuItem = menu.findItem(R.id.item_search);
-        final SearchView searchView = (SearchView) searchMenuItem.getActionView();
-        searchView.setIconifiedByDefault(false);
-        searchView.setQueryHint("Search");
-        return super.onCreateOptionsMenu(menu);
+    @Override
+    public void onItemSelected(String recipeId) {
+        Log.d("tag",recipeId);
     }
 
     @Override
-    public void onItemSelected(String recipeId) {
+    public void addRecipe() {
+        CreateEditFragment createEditFragment = CreateEditFragment.newInstance(Model.instance.getCurrentUserId());
 
+        getFragmentManager().beginTransaction()
+                .add(R.id.main_fragment_container,createEditFragment).addToBackStack(null)
+                .commit();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        return super.onCreateOptionsMenu(menu);
     }
 }

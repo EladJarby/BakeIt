@@ -1,7 +1,7 @@
-#Fri Jul 14 20:38:11 IDT 2017
-base.0=C\:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_85f50b494af6e0c8639cab2c9769b89ea2392b1e
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=C\:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_f0fc90c0cd8c4889e93300d8fe96d4481f0218eb\\classes.dex
-base.1=C\:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_f0fc90c0cd8c4889e93300d8fe96d4481f0218eb
-file.0=C\:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_85f50b494af6e0c8639cab2c9769b89ea2392b1e\\classes.dex
+#Sun Jul 16 17:10:51 IDT 2017
+base.0=C\:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_486d96a7c17c1376750e65541dfaee8ff162cdcd
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=C\:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_61894bfdcc50e9e41a6a2738db4c0ea053aacf4a\\classes.dex
+base.1=C\:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_61894bfdcc50e9e41a6a2738db4c0ea053aacf4a
+file.0=C\:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_486d96a7c17c1376750e65541dfaee8ff162cdcd\\classes.dex

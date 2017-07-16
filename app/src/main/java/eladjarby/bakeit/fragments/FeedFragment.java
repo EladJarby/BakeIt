@@ -1,5 +1,6 @@
 package eladjarby.bakeit.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.media.Image;
 import android.net.Uri;
@@ -13,9 +14,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.LinkedList;
 import java.util.List;
 
+import eladjarby.bakeit.Models.BaseInterface;
 import eladjarby.bakeit.Models.Model;
 import eladjarby.bakeit.Models.Recipe.Recipe;
 import eladjarby.bakeit.R;
@@ -29,12 +37,19 @@ import eladjarby.bakeit.R;
  * create an instance of this fragment.
  */
 public class FeedFragment extends Fragment {
-    List<Recipe> recipeList;
+    List<Recipe> recipeList = new LinkedList<Recipe>();
     RecipeListAdapter adapter = new RecipeListAdapter();
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(Model.RecipeUpdateEvent event) {
+        //Toast.makeText(getActivity(), event.message, Toast.LENGTH_SHORT).show();
+        recipeList.add(event.recipe);
+        adapter.notifyDataSetChanged();
+    }
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -48,20 +63,13 @@ public class FeedFragment extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static FeedFragment newInstance() {
         FeedFragment fragment = new FeedFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        EventBus.getDefault().register(this);
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
     }
 
     @Override
@@ -72,6 +80,14 @@ public class FeedFragment extends Fragment {
 
         View contentView = inflater.inflate(R.layout.fragment_feed, container, false);
         ListView list = (ListView) contentView.findViewById(R.id.recipeList);
+
+        Model.instance.getRecipeList(new BaseInterface.GetAllRecipesCallback() {
+            @Override
+            public void onComplete(List<Recipe> list) {
+                recipeList = list;
+                adapter.notifyDataSetChanged();
+            }
+        });
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -79,9 +95,14 @@ public class FeedFragment extends Fragment {
             }
         });
 
-        recipeList = Model.instance.getRecipeList();
+        ImageView menuAdd = (ImageView) getActivity().findViewById(R.id.menu_add);
+        menuAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.addRecipe();
+            }
+        });
         list.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
         //((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
         return contentView;
@@ -94,6 +115,16 @@ public class FeedFragment extends Fragment {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) activity;
+        } else {
+            throw new RuntimeException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
     }
@@ -116,6 +147,7 @@ public class FeedFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         void onItemSelected(String recipeId);
+        void addRecipe();
     }
 
     class RecipeListAdapter extends BaseAdapter {
@@ -166,5 +198,11 @@ public class FeedFragment extends Fragment {
             recipeLikes.setTag(position);
             return convertView;
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
 }

@@ -14,11 +14,13 @@ public class Recipe {
     private Integer recipeTime;
     private String recipeImage;
     private Integer recipeLikes;
+    private String recipeDate;
+    private long recipeLastUpdateDate = 0;
 
     public Recipe() {
     }
 
-    public Recipe(String ID, String recipeAuthorID, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes) {
+    public Recipe(String ID, String recipeAuthorID, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes, String recipeDate) {
         this.ID = ID;
         this.recipeAuthorID = recipeAuthorID;
         this.recipeTitle = recipeTitle;
@@ -28,9 +30,38 @@ public class Recipe {
         this.recipeTime = recipeTime;
         this.recipeImage = recipeImage;
         this.recipeLikes = recipeLikes;
+        this.recipeDate = recipeDate;
     }
 
+    public Recipe(String ID, String recipeAuthorID, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes, String recipeDate, long recipeLastUpdateDate) {
+        this.ID = ID;
+        this.recipeAuthorID = recipeAuthorID;
+        this.recipeTitle = recipeTitle;
+        this.recipeCategory = recipeCategory;
+        this.recipeInstructions = recipeInstructions;
+        this.recipeIngredients = recipeIngredients;
+        this.recipeTime = recipeTime;
+        this.recipeImage = recipeImage;
+        this.recipeLikes = recipeLikes;
+        this.recipeDate = recipeDate;
+        this.recipeLastUpdateDate = recipeLastUpdateDate;
+    }
 
+    public String getRecipeDate() {
+        return recipeDate;
+    }
+
+    public void setRecipeDate(String recipeDate) {
+        this.recipeDate = recipeDate;
+    }
+
+    public long getRecipeLastUpdateDate() {
+        return recipeLastUpdateDate;
+    }
+
+    public void setRecipeLastUpdateDate(long recipeLastUpdateDate) {
+        this.recipeLastUpdateDate = recipeLastUpdateDate;
+    }
 
     public String getID() {
         return ID;
