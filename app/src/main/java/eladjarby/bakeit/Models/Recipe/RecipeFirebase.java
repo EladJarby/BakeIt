@@ -1,5 +1,8 @@
 package eladjarby.bakeit.Models.Recipe;
 
+import android.util.Log;
+
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,19 +20,18 @@ import eladjarby.bakeit.Models.BaseInterface;
  */
 
 public class RecipeFirebase {
-    public static final String SORT_RECIPE_LAST_UPDATE = "recipe_last_update_date";
     public static final String RECIPE_TABLE = "Recipes";
-    private static final String RECIPE_ID = "recipe_id";
-    private static final String RECIPE_AUTHOR_ID = "recipe_author_id";
-    private static final String RECIPE_TITLE = "recipe_title";
-    private static final String RECIPE_CATEGORY = "recipe_category";
-    private static final String RECIPE_INSTRUCTIONS = "recipe_instructions";
-    private static final String RECIPE_INGREDIENTS = "recipe_ingredients";
-    private static final String RECIPE_TIME = "recipe_time";
-    private static final String RECIPE_IMAGE = "recipe_image";
-    private static final String RECIPE_LIKES = "recipe_likes";
-    private static final String RECIPE_DATE = "recipe_date";
-    private static final String RECIPE_LAST_UPDATE_DATE = "recipe_last_update_date";
+    private static final String RECIPE_ID = "ID";
+    private static final String RECIPE_AUTHOR_ID = "recipeAuthorId";
+    private static final String RECIPE_TITLE = "recipeTitle";
+    private static final String RECIPE_CATEGORY = "recipeCategory";
+    private static final String RECIPE_INSTRUCTIONS = "recipeInstructions";
+    private static final String RECIPE_INGREDIENTS = "recipeIngredients";
+    private static final String RECIPE_TIME = "recipeTime";
+    private static final String RECIPE_IMAGE = "recipeImage";
+    private static final String RECIPE_LIKES = "recipeLikes";
+    private static final String RECIPE_DATE = "recipeDate";
+    private static final String RECIPE_LAST_UPDATE_DATE = "recipeLastUpdateDate";
 
     private static FirebaseDatabase db = FirebaseDatabase.getInstance();
     private static DatabaseReference myRef = db.getReference(RECIPE_TABLE);
@@ -50,6 +52,10 @@ public class RecipeFirebase {
         myRef.child("" + recipe.getID()).setValue(values);
     }
 
+    public static void updateRecipe(Recipe recipe) {
+        addRecipe(recipe);
+    }
+
     public static void removeRecipe(String recipeId , final BaseInterface.GetRecipeCallback callback) {
         myRef.child(recipeId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -64,4 +70,42 @@ public class RecipeFirebase {
             }
         });
     }
+
+    public static void uploadRecipeUpdates(long lastUpdateDate, final BaseInterface.UploadRecipeUpdates callback) {
+        myRef.orderByChild(RECIPE_LAST_UPDATE_DATE).startAt(lastUpdateDate).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Log.d("TAG","onChildAdded called");
+                Recipe recipe = dataSnapshot.getValue(Recipe.class);
+                callback.onRecipeUpdate(recipe);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                Log.d("TAG","onChildAdded called");
+                Recipe recipe = dataSnapshot.getValue(Recipe.class);
+                callback.onRecipeUpdate(recipe);
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                Log.d("TAG","onChildAdded called");
+                Recipe recipe = dataSnapshot.getValue(Recipe.class);
+                callback.onRecipeUpdate(recipe);
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                Log.d("TAG","onChildAdded called");
+                Recipe recipe = dataSnapshot.getValue(Recipe.class);
+                callback.onRecipeUpdate(recipe);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 }

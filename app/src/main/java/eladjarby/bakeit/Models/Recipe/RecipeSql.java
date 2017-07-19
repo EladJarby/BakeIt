@@ -13,18 +13,17 @@ import java.util.List;
 
 public class RecipeSql {
     public static final String RECIPE_TABLE = "Recipes";
-
-    private static final String RECIPE_ID = "recipe_id";
-    private static final String RECIPE_AUTHOR_ID = "recipe_author_id";
-    private static final String RECIPE_TITLE = "recipe_title";
-    private static final String RECIPE_CATEGORY = "recipe_category";
-    private static final String RECIPE_INSTRUCTIONS = "recipe_instructions";
-    private static final String RECIPE_INGREDIENTS = "recipe_ingredients";
-    private static final String RECIPE_TIME = "recipe_time";
-    private static final String RECIPE_IMAGE = "recipe_image";
-    private static final String RECIPE_LIKES = "recipe_likes";
-    private static final String RECIPE_DATE = "recipe_date";
-    private static final String RECIPE_LAST_UPDATE_DATE = "recipe_last_update_date";
+    private static final String RECIPE_ID = "ID";
+    private static final String RECIPE_AUTHOR_ID = "recipeAuthorId";
+    private static final String RECIPE_TITLE = "recipeTitle";
+    private static final String RECIPE_CATEGORY = "recipeCategory";
+    private static final String RECIPE_INSTRUCTIONS = "recipeInstructions";
+    private static final String RECIPE_INGREDIENTS = "recipeIngredients";
+    private static final String RECIPE_TIME = "recipeTime";
+    private static final String RECIPE_IMAGE = "recipeImage";
+    private static final String RECIPE_LIKES = "recipeLikes";
+    private static final String RECIPE_DATE = "recipeDate";
+    private static final String RECIPE_LAST_UPDATE_DATE = "recipeLastUpdateDate";
 
     public static void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + RECIPE_TABLE + "(" +

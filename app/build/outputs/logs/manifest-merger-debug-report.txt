@@ -144,6 +144,8 @@ MERGED from [com.google.firebase:firebase-auth:10.0.1] C:\Users\EladJ\.android\b
 MERGED from [com.google.android.gms:play-services-base:10.0.1] C:\Users\EladJ\.android\build-cache\a6c788944ca53030b29c420ee53a74e7d633c4cf\output\AndroidManifest.xml:17:5-42
 MERGED from [com.google.firebase:firebase-database:10.0.1] C:\Users\EladJ\.android\build-cache\be71c05e47482cedc1b93219a81d8abe45370b50\output\AndroidManifest.xml:3:5-42
 MERGED from [com.google.firebase:firebase-database-connection:10.0.1] C:\Users\EladJ\.android\build-cache\68ffa678d3fedd87e8f8871fdd99aee973b03a25\output\AndroidManifest.xml:3:5-42
+MERGED from [com.google.firebase:firebase-storage:10.0.1] C:\Users\EladJ\.android\build-cache\7fa15af4352249fb47c8cf7326d51813d03b444a\output\AndroidManifest.xml:3:5-42
+MERGED from [com.google.firebase:firebase-storage-common:10.0.1] C:\Users\EladJ\.android\build-cache\ec85b566f4e662c12c859413157a02f7ac0d12b7\output\AndroidManifest.xml:3:5-42
 MERGED from [com.google.firebase:firebase-core:10.0.1] C:\Users\EladJ\.android\build-cache\0a3a368f1cde63658def3f99b62c7caf3b6be966\output\AndroidManifest.xml:4:5-42
 MERGED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:17:5-42
 MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] C:\Users\EladJ\.android\build-cache\2d70c670885d5426932622d565295690ae9183e8\output\AndroidManifest.xml:17:5-42

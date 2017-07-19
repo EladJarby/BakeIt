@@ -12,12 +12,12 @@
         "source": "C:\\Users\\EladJ\\.android\\build-cache\\899605adf694fcabfddbbe602708fb7060be7134\\output\\res\\drawable\\notification_bg_low.xml"
     },
     {
-        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_vector_test.xml",
-        "source": "C:\\Users\\EladJ\\.android\\build-cache\\899605adf694fcabfddbbe602708fb7060be7134\\output\\res\\drawable\\abc_vector_test.xml"
-    },
-    {
         "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_search_material.xml",
         "source": "C:\\Users\\EladJ\\.android\\build-cache\\899605adf694fcabfddbbe602708fb7060be7134\\output\\res\\drawable\\abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_vector_test.xml",
+        "source": "C:\\Users\\EladJ\\.android\\build-cache\\899605adf694fcabfddbbe602708fb7060be7134\\output\\res\\drawable\\abc_vector_test.xml"
     },
     {
         "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\com_facebook_send_button_icon.xml",

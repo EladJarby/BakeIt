@@ -1,5 +1,7 @@
 package eladjarby.bakeit.Models;
 
+import android.graphics.Bitmap;
+
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,4 +33,23 @@ public interface BaseInterface {
     interface  GetAllRecipesCallback {
         void onComplete(List<Recipe> list);
     }
+
+    interface UploadRecipeUpdates {
+        void onRecipeUpdate(Recipe recipe);
+    }
+
+    interface GetImageListener {
+        void onSuccess(Bitmap image);
+        void onFail();
+    }
+
+    interface SaveImageListener {
+        void complete(String url);
+        void fail();
+    }
+
+    interface LoadImageFromFileAsynch{
+        void onComplete(Bitmap bitmap);
+    }
+
 }
