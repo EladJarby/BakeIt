@@ -43,11 +43,22 @@ public class FeedFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    ListView list;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(Model.RecipeUpdateEvent event) {
-        //Toast.makeText(getActivity(), event.message, Toast.LENGTH_SHORT).show();
-        recipeList.add(event.recipe);
+        Toast.makeText(getActivity(),"got new recipe",Toast.LENGTH_SHORT).show();
+        boolean exist = false;
+        for(Recipe recipe: recipeList) {
+            if(recipe.getID().equals(event.recipe.getID())) {
+                recipe = event.recipe;
+                exist = true;
+                break;
+            }
+        }
+        if(!exist) {
+            recipeList.add(event.recipe);
+        }
         adapter.notifyDataSetChanged();
     }
 
@@ -79,7 +90,7 @@ public class FeedFragment extends Fragment {
         getActivity().setTitle("");
 
         View contentView = inflater.inflate(R.layout.fragment_feed, container, false);
-        ListView list = (ListView) contentView.findViewById(R.id.recipeList);
+        list = (ListView) contentView.findViewById(R.id.recipeList);
 
         Model.instance.getRecipeList(new BaseInterface.GetAllRecipesCallback() {
             @Override

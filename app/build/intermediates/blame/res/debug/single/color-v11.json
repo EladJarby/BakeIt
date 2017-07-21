@@ -1,10 +1,10 @@
 [
     {
-        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
-        "source": "C:\\Users\\EladJ\\.android\\build-cache\\899605adf694fcabfddbbe602708fb7060be7134\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
+        "source": "C:\\Users\\EladJ\\.android\\build-cache\\5f7b03c6cd26cb1433487ab4c680e7acc4c07cf9\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
     },
     {
-        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
-        "source": "C:\\Users\\EladJ\\.android\\build-cache\\899605adf694fcabfddbbe602708fb7060be7134\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
+        "source": "C:\\Users\\EladJ\\.android\\build-cache\\5f7b03c6cd26cb1433487ab4c680e7acc4c07cf9\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
     }
 ]
