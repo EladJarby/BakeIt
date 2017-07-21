@@ -30,11 +30,11 @@
             android:weightSum="1">
             <ImageView
                 android:id="@+id/menu_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_weight="0.1"
                 android:layout_marginLeft="10dp"
-                android:src="@android:drawable/ic_menu_add" />
+                android:src="@drawable/ic_plus_white_24dp" />
 
             <android.support.v7.widget.SearchView
                 android:layout_weight="0.8"
@@ -47,10 +47,10 @@
 
             <ImageView
                 android:layout_weight="0.1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_marginRight="10dp"
-                android:src="@android:drawable/ic_menu_add" />
+                android:src="@drawable/ic_person_white_24dp" />
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
 

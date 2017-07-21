@@ -50,7 +50,7 @@ public class RecipeSql {
         List<Recipe> recipeList = new LinkedList<Recipe>();
         if(cursor.moveToFirst()) {
             do {
-                recipeList.add(getSQLRecipe(cursor));
+                recipeList.add(0 , getSQLRecipe(cursor));
             } while(cursor.moveToNext());
         }
         cursor.close();

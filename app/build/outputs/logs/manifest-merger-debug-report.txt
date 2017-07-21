@@ -64,6 +64,12 @@ ADDED from C:\Users\EladJ\Desktop\BakeIt2\app\src\main\AndroidManifest.xml:15:9-
 		ADDED from C:\Users\EladJ\Desktop\BakeIt2\app\src\main\AndroidManifest.xml:17:13-52
 	android:name
 		ADDED from C:\Users\EladJ\Desktop\BakeIt2\app\src\main\AndroidManifest.xml:16:13-58
+meta-data#android.max_aspect
+ADDED from C:\Users\EladJ\Desktop\BakeIt2\app\src\main\AndroidManifest.xml:18:9-76
+	android:value
+		ADDED from C:\Users\EladJ\Desktop\BakeIt2\app\src\main\AndroidManifest.xml:18:54-73
+	android:name
+		ADDED from C:\Users\EladJ\Desktop\BakeIt2\app\src\main\AndroidManifest.xml:18:20-53
 activity#com.facebook.FacebookActivity
 ADDED from C:\Users\EladJ\Desktop\BakeIt2\app\src\main\AndroidManifest.xml:19:9-22:48
 MERGED from [com.facebook.android:facebook-android-sdk:4.24.0] C:\Users\EladJ\.android\build-cache\f27d8430bb1b72361fc0a702b76a90bf332de908\output\AndroidManifest.xml:29:9-32:66

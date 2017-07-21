@@ -47,7 +47,7 @@ public class FeedFragment extends Fragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(Model.RecipeUpdateEvent event) {
-        Toast.makeText(getActivity(),"got new recipe",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(),"got new recipe",Toast.LENGTH_SHORT).show();
         boolean exist = false;
         for(Recipe recipe: recipeList) {
             if(recipe.getID().equals(event.recipe.getID())) {
@@ -57,7 +57,7 @@ public class FeedFragment extends Fragment {
             }
         }
         if(!exist) {
-            recipeList.add(event.recipe);
+            recipeList.add(0 , event.recipe);
         }
         adapter.notifyDataSetChanged();
     }
@@ -203,8 +203,8 @@ public class FeedFragment extends Fragment {
             Recipe recipe = recipeList.get(position);
             recipeDescription.setText(recipe.getRecipeTitle());
             recipeCategory.setText(recipe.getRecipeCategory());
-            recipeHeader.setText("Elad posted a reicope on");
-            recipeDate.setText("3hrs");
+            recipeHeader.setText("Elad posted a recipe on");
+            recipeDate.setText(recipe.getRecipeDate());
             recipeLikes.setText(recipe.getRecipeLikes() + " peoples liked");
             recipeLikes.setTag(position);
             return convertView;
