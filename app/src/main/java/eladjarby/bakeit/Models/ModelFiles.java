@@ -25,8 +25,9 @@ import eladjarby.bakeit.MyApplication;
 public class ModelFiles {
     public static void saveImageToFile(Bitmap imageBitmap, String imageFileName){
         try {
-            File dir = Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES);
+            String path = Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_PICTURES) + File.separator + "BakeIt";
+            File dir = new File(path);
             if (!dir.exists()) {
                 dir.mkdir();
             }
@@ -76,7 +77,8 @@ public class ModelFiles {
     private static Bitmap loadImageFromFile(String imageFileName){
         Bitmap bitmap = null;
         try {
-            File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+            String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "BakeIt";
+            File dir = new File(path);
             File imageFile = new File(dir,imageFileName);
             InputStream inputStream = new FileInputStream(imageFile);
             bitmap = BitmapFactory.decodeStream(inputStream);

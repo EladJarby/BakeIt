@@ -2,10 +2,15 @@ package eladjarby.bakeit.fragments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +31,11 @@ import java.util.List;
 import eladjarby.bakeit.Models.BaseInterface;
 import eladjarby.bakeit.Models.Model;
 import eladjarby.bakeit.Models.Recipe.Recipe;
+import eladjarby.bakeit.Models.User.User;
+import eladjarby.bakeit.Models.User.UserFirebase;
 import eladjarby.bakeit.R;
+
+import static android.support.v7.content.res.AppCompatResources.getDrawable;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,8 +67,8 @@ public class FeedFragment extends Fragment {
         }
         if(!exist) {
             recipeList.add(0 , event.recipe);
+            adapter.notifyDataSetChanged();
         }
-        adapter.notifyDataSetChanged();
     }
 
     // TODO: Rename and change types of parameters
@@ -86,6 +95,7 @@ public class FeedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        checkPermission();
         // Inflate the layout for this fragment
         getActivity().setTitle("");
 
@@ -161,6 +171,16 @@ public class FeedFragment extends Fragment {
         void addRecipe();
     }
 
+    private void checkPermission() {
+        boolean hasPermission = (ContextCompat.checkSelfPermission(getActivity(),
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+                PackageManager.PERMISSION_GRANTED);
+        if (!hasPermission) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        }
+    }
+
     class RecipeListAdapter extends BaseAdapter {
         @Override
         public int getCount() {
@@ -193,17 +213,66 @@ public class FeedFragment extends Fragment {
                 });
             }
             TextView recipeDescription = (TextView) convertView.findViewById(R.id.strow_description);
-            ImageView recipeImage = (ImageView) convertView.findViewById(R.id.strow_image);
+            final ImageView recipeImage = (ImageView) convertView.findViewById(R.id.strow_image);
             TextView recipeDate = (TextView) convertView.findViewById(R.id.strow_date);
             TextView recipeLikes = (TextView) convertView.findViewById(R.id.strow_likes);
-            ImageView recipeAuthorImage = (ImageView) convertView.findViewById(R.id.strow_authorImage);
+            final ImageView recipeAuthorImage = (ImageView) convertView.findViewById(R.id.strow_authorImage);
             TextView recipeCategory = (TextView) convertView.findViewById(R.id.strow_category);
-            TextView recipeHeader = (TextView) convertView.findViewById(R.id.strow_header);
+            final TextView recipeHeader = (TextView) convertView.findViewById(R.id.strow_header);
             ImageView recipeArrow = (ImageView) convertView.findViewById(R.id.strow_arrow);
-            Recipe recipe = recipeList.get(position);
+            final Recipe recipe = recipeList.get(position);
             recipeDescription.setText(recipe.getRecipeTitle());
+            UserFirebase.getUser(recipe.getRecipeAuthorId(), new BaseInterface.GetUserCallback() {
+                @Override
+                public void onComplete(final User user) {
+                    recipeHeader.setText(user.getUserFirstName() + " " + user.getUserLastName() + " posted a recipe on");
+                    final String userImageUrl = user.getUserImage();
+                    recipeAuthorImage.setTag(userImageUrl);
+                    recipeAuthorImage.setImageDrawable(getDrawable(getActivity(), R.drawable.bakeitlogo));
+
+                    if (userImageUrl != null && !userImageUrl.isEmpty() && !userImageUrl.equals("")) {
+                        Model.instance.getImage(userImageUrl, new BaseInterface.GetImageListener() {
+                            @Override
+                            public void onSuccess(Bitmap image) {
+                                String imageUrl = recipeAuthorImage.getTag().toString();
+                                if (imageUrl.equals(userImageUrl)) {
+                                    recipeAuthorImage.setImageBitmap(image);
+                                }
+                            }
+
+                            @Override
+                            public void onFail() {
+
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onCancel() {
+
+                }
+            });
+            recipeImage.setTag(recipe.getRecipeImage());
+            recipeImage.setImageDrawable(getDrawable(getActivity(), R.drawable.bakeitlogo));
+
+            if(recipe.getRecipeImage() != null && !recipe.getRecipeImage().isEmpty() && !recipe.getRecipeImage().equals("")) {
+                Model.instance.getImage(recipe.getRecipeImage(), new BaseInterface.GetImageListener() {
+                    @Override
+                    public void onSuccess(Bitmap image) {
+                        String imageUrl = recipeImage.getTag().toString();
+                        if(imageUrl.equals(recipe.getRecipeImage())) {
+                            recipeImage.setImageBitmap(image);
+                        }
+                    }
+
+                    @Override
+                    public void onFail() {
+
+                    }
+                });
+            }
             recipeCategory.setText(recipe.getRecipeCategory());
-            recipeHeader.setText("Elad posted a recipe on");
             recipeDate.setText(recipe.getRecipeDate());
             recipeLikes.setText(recipe.getRecipeLikes() + " peoples liked");
             recipeLikes.setTag(position);

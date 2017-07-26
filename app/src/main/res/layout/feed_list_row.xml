@@ -11,6 +11,7 @@
         android:id="@+id/strow_authorImage"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:layout_margin="10dp"
         android:src="@drawable/bakeitlogo"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -77,8 +78,9 @@
         <ImageView
             android:id="@+id/strow_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/bakeitlogo"/>
+            android:layout_height="120dp"
+            android:src="@drawable/bakeitlogo"
+            android:scaleType="centerCrop"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

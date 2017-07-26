@@ -3,30 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\EladJ\.gradle\caches\modules-2\files-2.1\org.greenrobot\eventbus\3.0.0\ddd99896e9569eaababbe81b35d80e1b91c4ad85\eventbus-3.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
-        <dex dex="C:\Users\EladJ\Desktop\BakeIt2\app\build\intermediates\transforms\dex\debug\folders\1000\10\eventbus-3.0.0_fe3702672671f22fa61db8cf7ce88dac164f3c4f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\EladJ\Desktop\BakeIt2\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="a1402b33f92d5bd8f79f4fd6e04c4625e9b13b78">
-        <dex dex="C:\Users\EladJ\Desktop\BakeIt2\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_85f50b494af6e0c8639cab2c9769b89ea2392b1e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\EladJ\Desktop\BakeIt2\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="C:\Users\EladJ\Desktop\BakeIt2\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_f0fc90c0cd8c4889e93300d8fe96d4481f0218eb\classes.dex" />
+        <dex dex="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_61894bfdcc50e9e41a6a2738db4c0ea053aacf4a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="603ff3fe576a52e2398d8e2aaf59486a3381576a">
+        <dex dex="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_486d96a7c17c1376750e65541dfaee8ff162cdcd\classes.dex" />
     </item>
 
 </items>

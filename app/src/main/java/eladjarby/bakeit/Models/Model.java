@@ -15,6 +15,8 @@ import java.util.Random;
 import eladjarby.bakeit.Models.Recipe.Recipe;
 import eladjarby.bakeit.Models.Recipe.RecipeFirebase;
 import eladjarby.bakeit.Models.Recipe.RecipeSql;
+import eladjarby.bakeit.Models.User.User;
+import eladjarby.bakeit.Models.User.UserFirebase;
 import eladjarby.bakeit.MyApplication;
 
 import static android.R.attr.bitmap;
@@ -33,7 +35,17 @@ public class Model {
     private Model() {
         modelSql = new ModelSql(MyApplication.getMyContext());
         modelFirebase = new ModelFirebase();
-        syncAndRegisterRecipeUpedates();
+        UserFirebase.getUser(UserFirebase.getCurrentUserId(), new BaseInterface.GetUserCallback() {
+            @Override
+            public void onComplete(User user) {
+                syncAndRegisterRecipeUpedates();
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+        });
 }
 
     public class RecipeUpdateEvent {

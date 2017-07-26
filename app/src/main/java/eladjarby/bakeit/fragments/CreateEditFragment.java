@@ -1,16 +1,24 @@
 package eladjarby.bakeit.fragments;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import org.greenrobot.eventbus.EventBus;
@@ -18,6 +26,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import eladjarby.bakeit.Models.BaseInterface;
 import eladjarby.bakeit.Models.Model;
 import eladjarby.bakeit.Models.Recipe.Recipe;
 import eladjarby.bakeit.R;
@@ -34,10 +43,14 @@ public class CreateEditFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-
     // TODO: Rename and change types of parameters
+    final static int RESAULT_SUCCESS = 0;
+    final static int RESAULT_FAIL = 1;
+    private static final String JPEG = ".jpeg";
     private String userId;
     View contentView;
+    ImageView imageCapture;
+    Bitmap imageBitmap;
 
     private OnFragmentInteractionListener mListener;
 
@@ -65,7 +78,7 @@ public class CreateEditFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
+        checkCameraPermission();
         contentView = inflater.inflate(R.layout.fragment_create_edit, container, false);
         Spinner categoryDropdown = (Spinner) contentView.findViewById(R.id.recipeCategory);
         String[] items = new String[]{"Browines","Cakes","Loaves","Cupcakes & Muffins","Gluten free"};
@@ -76,10 +89,35 @@ public class CreateEditFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Model.instance.addRecipe(createRecipe());
+                final Recipe recipe = createRecipe();
+                if(imageBitmap != null) {
+                    Model.instance.saveImage(imageBitmap, recipe.getID() + Model.instance.randomNumber() + JPEG, new BaseInterface.SaveImageListener() {
+                        @Override
+                        public void complete(String url) {
+                            recipe.setRecipeImage(url);
+                            Model.instance.addRecipe(recipe);
+
+                        }
+
+                        @Override
+                        public void fail() {
+
+                        }
+                    });
+                } else {
+                    Model.instance.addRecipe(recipe);
+                }
                 getFragmentManager().popBackStack();
             }
         });
+        imageCapture = (ImageView) contentView.findViewById(R.id.imageCapture);
+        imageCapture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dispatchTakePictureIntent();
+            }
+        });
+
         return contentView;
     }
 
@@ -89,7 +127,7 @@ public class CreateEditFragment extends Fragment {
         String recipeIngredients = ((EditText) contentView.findViewById(R.id.recipeIngredients)).getText().toString();
         String recipeInstructions = ((EditText) contentView.findViewById(R.id.recipeInstructions)).getText().toString();
         String recipeCategory = ((Spinner) contentView.findViewById(R.id.recipeCategory)).getSelectedItem().toString();
-        String recipeImage = "image";
+        String recipeImage = "";
         int recipeLikes = 0;
         int recipeTime = Integer.parseInt(((EditText) contentView.findViewById(R.id.recipeTime)).getText().toString());
         return new Recipe(recipeId,userId,recipeTitle,recipeCategory,recipeInstructions,recipeIngredients,recipeTime,recipeImage,recipeLikes,new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
@@ -117,4 +155,32 @@ public class CreateEditFragment extends Fragment {
 
     }
 
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == getActivity().RESULT_OK) {
+            Bundle extras = data.getExtras();
+            imageBitmap = (Bitmap) extras.get("data");
+            ImageView recipePhoto = (ImageView) contentView.findViewById(R.id.recipePhoto);
+            recipePhoto.setVisibility(View.VISIBLE);
+            recipePhoto.setImageBitmap(imageBitmap);
+        }
+    }
+
+    private void checkCameraPermission() {
+        boolean hasPermission = (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED);
+        if (!hasPermission) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{
+                    Manifest.permission.CAMERA}, 1);
+        }
+    }
 }

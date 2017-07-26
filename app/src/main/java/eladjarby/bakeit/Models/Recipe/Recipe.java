@@ -6,7 +6,7 @@ package eladjarby.bakeit.Models.Recipe;
 
 public class Recipe {
     private String ID;
-    private String recipeAuthorID;
+    private String recipeAuthorId;
     private String recipeTitle;
     private String recipeCategory;
     private String recipeInstructions;
@@ -20,9 +20,9 @@ public class Recipe {
     public Recipe() {
     }
 
-    public Recipe(String ID, String recipeAuthorID, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes, String recipeDate) {
+    public Recipe(String ID, String recipeAuthorId, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes, String recipeDate) {
         this.ID = ID;
-        this.recipeAuthorID = recipeAuthorID;
+        this.recipeAuthorId = recipeAuthorId;
         this.recipeTitle = recipeTitle;
         this.recipeCategory = recipeCategory;
         this.recipeInstructions = recipeInstructions;
@@ -33,9 +33,9 @@ public class Recipe {
         this.recipeDate = recipeDate;
     }
 
-    public Recipe(String ID, String recipeAuthorID, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes, String recipeDate, long recipeLastUpdateDate) {
+    public Recipe(String ID, String recipeAuthorId, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes, String recipeDate, long recipeLastUpdateDate) {
         this.ID = ID;
-        this.recipeAuthorID = recipeAuthorID;
+        this.recipeAuthorId = recipeAuthorId;
         this.recipeTitle = recipeTitle;
         this.recipeCategory = recipeCategory;
         this.recipeInstructions = recipeInstructions;
@@ -71,12 +71,12 @@ public class Recipe {
         this.ID = ID;
     }
 
-    public String getRecipeAuthorID() {
-        return recipeAuthorID;
+    public String getRecipeAuthorId() {
+        return recipeAuthorId;
     }
 
-    public void setRecipeAuthorID(String recipeAuthorID) {
-        this.recipeAuthorID = recipeAuthorID;
+    public void setRecipeAuthorId(String recipeAuthorId) {
+        this.recipeAuthorId = recipeAuthorId;
     }
 
     public String getRecipeTitle() {

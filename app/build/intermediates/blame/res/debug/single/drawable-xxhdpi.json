@@ -1,30 +1,38 @@
 [
     {
-        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\bakeitlogo.png",
-        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\src\\main\\res\\drawable-xxhdpi\\bakeitlogo.png"
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\camera.png",
+        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\src\\main\\res\\drawable-xxhdpi\\camera.png"
     },
     {
-        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\splash.png",
-        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\src\\main\\res\\drawable-xxhdpi\\splash.png"
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_plus_white_24dp.png",
+        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_plus_white_24dp.png"
     },
     {
-        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_plus_white_24dp.png",
-        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_plus_white_24dp.png"
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_expand_button.png",
+        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_expand_button.png"
     },
     {
-        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_search_black_24dp.png",
-        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_search_black_24dp.png"
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\bakeitlogo.png",
+        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\src\\main\\res\\drawable-xxhdpi\\bakeitlogo.png"
     },
     {
-        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_expand_button.png",
-        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_expand_button.png"
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\photo.png",
+        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\src\\main\\res\\drawable-xxhdpi\\photo.png"
     },
     {
-        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_favorite_red_24dp.png",
-        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_favorite_red_24dp.png"
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_favorite_red_24dp.png",
+        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_favorite_red_24dp.png"
     },
     {
-        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_person_white_24dp.png",
-        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_person_white_24dp.png"
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_person_white_24dp.png",
+        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_person_white_24dp.png"
+    },
+    {
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_search_black_24dp.png",
+        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_search_black_24dp.png"
+    },
+    {
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\splash.png",
+        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\src\\main\\res\\drawable-xxhdpi\\splash.png"
     }
 ]

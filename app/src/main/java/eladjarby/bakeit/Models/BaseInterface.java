@@ -9,6 +9,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.List;
 
 import eladjarby.bakeit.Models.Recipe.Recipe;
+import eladjarby.bakeit.Models.User.User;
 
 /**
  * Created by EladJ on 13/07/2017.
@@ -27,6 +28,11 @@ public interface BaseInterface {
 
     interface GetRecipeCallback {
         void onComplete();
+        void onCancel();
+    }
+
+    interface GetUserCallback {
+        void onComplete(User user);
         void onCancel();
     }
 

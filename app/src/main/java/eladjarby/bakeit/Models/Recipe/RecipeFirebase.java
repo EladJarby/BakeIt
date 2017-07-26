@@ -39,7 +39,7 @@ public class RecipeFirebase {
     public static void addRecipe(Recipe recipe) {
         Map<String,Object> values = new HashMap<String , Object>();
         values.put(RECIPE_ID,recipe.getID());
-        values.put(RECIPE_AUTHOR_ID,recipe.getRecipeAuthorID());
+        values.put(RECIPE_AUTHOR_ID,recipe.getRecipeAuthorId());
         values.put(RECIPE_TITLE,recipe.getRecipeTitle());
         values.put(RECIPE_CATEGORY,recipe.getRecipeCategory());
         values.put(RECIPE_INSTRUCTIONS,recipe.getRecipeInstructions());
