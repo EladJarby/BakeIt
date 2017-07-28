@@ -42,7 +42,16 @@ public class MainActivity extends AppCompatActivity implements FeedFragment.OnFr
 
     @Override
     public void addRecipe() {
-        CreateEditFragment createEditFragment = CreateEditFragment.newInstance(Model.instance.getCurrentUserId());
+        CreateEditFragment createEditFragment = CreateEditFragment.newInstance("","Create");
+
+        getFragmentManager().beginTransaction()
+                .add(R.id.main_fragment_container,createEditFragment).addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void editRecipe(String recipeId) {
+        CreateEditFragment createEditFragment = CreateEditFragment.newInstance(recipeId,"Edit");
 
         getFragmentManager().beginTransaction()
                 .add(R.id.main_fragment_container,createEditFragment).addToBackStack(null)

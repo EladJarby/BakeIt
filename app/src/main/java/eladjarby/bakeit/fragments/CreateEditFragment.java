@@ -15,6 +15,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.URLUtil;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ import java.util.Date;
 
 import eladjarby.bakeit.Models.BaseInterface;
 import eladjarby.bakeit.Models.Model;
+import eladjarby.bakeit.Models.ModelFiles;
 import eladjarby.bakeit.Models.Recipe.Recipe;
 import eladjarby.bakeit.R;
 
@@ -43,11 +45,13 @@ public class CreateEditFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
     // TODO: Rename and change types of parameters
     final static int RESAULT_SUCCESS = 0;
     final static int RESAULT_FAIL = 1;
     private static final String JPEG = ".jpeg";
-    private String userId;
+    private String recipeId;
+    private String fragMode;
     View contentView;
     ImageView imageCapture;
     Bitmap imageBitmap;
@@ -58,10 +62,11 @@ public class CreateEditFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static CreateEditFragment newInstance(String param1) {
+    public static CreateEditFragment newInstance(String param1,String param2) {
         CreateEditFragment fragment = new CreateEditFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -70,7 +75,8 @@ public class CreateEditFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            userId = getArguments().getString(ARG_PARAM1);
+            recipeId = getArguments().getString(ARG_PARAM1);
+            fragMode = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -85,31 +91,65 @@ public class CreateEditFragment extends Fragment {
         ArrayAdapter<String> dropdownAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,items);
         categoryDropdown.setAdapter(dropdownAdapter);
         Button saveButton = (Button) contentView.findViewById(R.id.saveButton);
-        saveButton.setText("Upload recipe");
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Recipe recipe = createRecipe();
-                if(imageBitmap != null) {
-                    Model.instance.saveImage(imageBitmap, recipe.getID() + Model.instance.randomNumber() + JPEG, new BaseInterface.SaveImageListener() {
-                        @Override
-                        public void complete(String url) {
-                            recipe.setRecipeImage(url);
+        ImageView recipeImage = (ImageView) contentView.findViewById(R.id.recipePhoto);
+        switch (fragMode) {
+            case "Create":
+                recipeImage.setVisibility(View.GONE);
+                saveButton.setText("Upload recipe");
+                saveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final Recipe recipe = createRecipe();
+                        if(imageBitmap != null) {
+                            Model.instance.saveImage(imageBitmap, recipe.getID() + Model.instance.randomNumber() + JPEG, new BaseInterface.SaveImageListener() {
+                                @Override
+                                public void complete(String url) {
+                                    recipe.setRecipeImage(url);
+                                    Model.instance.addRecipe(recipe);
+
+                                }
+
+                                @Override
+                                public void fail() {
+
+                                }
+                            });
+                        } else {
                             Model.instance.addRecipe(recipe);
-
                         }
+                        getFragmentManager().popBackStack();
+                    }
+                });
+                break;
+            case "Edit":
+                getRecipeData(Model.instance.getRecipe(recipeId));
+                recipeImage.setVisibility(View.VISIBLE);
+                saveButton.setText("Edit recipe");
+                saveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final Recipe recipe = createRecipe();
+                        if(imageBitmap != null) {
+                            Model.instance.saveImage(imageBitmap, recipe.getID() + Model.instance.randomNumber() + JPEG, new BaseInterface.SaveImageListener() {
+                                @Override
+                                public void complete(String url) {
+                                    recipe.setRecipeImage(url);
+                                    Model.instance.editRecipe(recipe);
+                                }
 
-                        @Override
-                        public void fail() {
+                                @Override
+                                public void fail() {
 
+                                }
+                            });
+                        } else {
+                            Model.instance.addRecipe(recipe);
                         }
-                    });
-                } else {
-                    Model.instance.addRecipe(recipe);
-                }
-                getFragmentManager().popBackStack();
-            }
-        });
+                        getFragmentManager().popBackStack();
+                    }
+                });
+                break;
+        }
         imageCapture = (ImageView) contentView.findViewById(R.id.imageCapture);
         imageCapture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,15 +162,28 @@ public class CreateEditFragment extends Fragment {
     }
 
     private Recipe createRecipe() {
-        String recipeId = userId + Model.instance.randomNumber();
+        String recipeId = null;
+        String recipeImage = null;
+        int recipeLikes = 0;
         String recipeTitle = ((EditText) contentView.findViewById(R.id.recipeName)).getText().toString();
         String recipeIngredients = ((EditText) contentView.findViewById(R.id.recipeIngredients)).getText().toString();
         String recipeInstructions = ((EditText) contentView.findViewById(R.id.recipeInstructions)).getText().toString();
         String recipeCategory = ((Spinner) contentView.findViewById(R.id.recipeCategory)).getSelectedItem().toString();
-        String recipeImage = "";
-        int recipeLikes = 0;
+        switch (fragMode) {
+            case "Create":
+                recipeId = Model.instance.getCurrentUserId() + Model.instance.randomNumber();
+                recipeImage = "";
+                recipeLikes = 0;
+                break;
+            case "Edit":
+                recipeId = this.recipeId;
+                Recipe recipe = Model.instance.getRecipe(recipeId);
+                recipeImage = recipe.getRecipeImage();
+                recipeLikes = recipe.getRecipeLikes();
+                break;
+        }
         int recipeTime = Integer.parseInt(((EditText) contentView.findViewById(R.id.recipeTime)).getText().toString());
-        return new Recipe(recipeId,userId,recipeTitle,recipeCategory,recipeInstructions,recipeIngredients,recipeTime,recipeImage,recipeLikes,new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        return new Recipe(recipeId,Model.instance.getCurrentUserId(),recipeTitle,recipeCategory,recipeInstructions,recipeIngredients,recipeTime,recipeImage,recipeLikes,new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
     }
     @Override
     public void onAttach(Context context) {
@@ -182,5 +235,31 @@ public class CreateEditFragment extends Fragment {
             ActivityCompat.requestPermissions(getActivity(), new String[]{
                     Manifest.permission.CAMERA}, 1);
         }
+    }
+
+    private void getRecipeData(Recipe recipe) {
+        ((EditText)contentView.findViewById(R.id.recipeName)).setText(recipe.getRecipeTitle());
+        ((EditText)contentView.findViewById(R.id.recipeIngredients)).setText(recipe.getRecipeIngredients());
+        ((EditText)contentView.findViewById(R.id.recipeTime)).setText("" + recipe.getRecipeTime());
+        ((EditText)contentView.findViewById(R.id.recipeInstructions)).setText(recipe.getRecipeInstructions());
+        Spinner categorySpinner = ((Spinner)contentView.findViewById(R.id.recipeCategory));
+        categorySpinner.setSelection(getSpinnerIndex(categorySpinner, recipe.getRecipeCategory()));
+        if(recipe.getRecipeImage() != null && !recipe.getRecipeImage().isEmpty() && !recipe.getRecipeImage().equals("")) {
+            ((ImageView) contentView.findViewById(R.id.recipePhoto)).setImageBitmap(ModelFiles.loadImageFromFile(URLUtil.guessFileName(recipe.getRecipeImage(), null, null)));
+        } else {
+            ((ImageView) contentView.findViewById(R.id.recipePhoto)).setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.bakeitlogo));
+        }
+    }
+
+    private int getSpinnerIndex(Spinner spinner, String value) {
+        int index = 0;
+
+        for (int i=0;i<spinner.getCount();i++){
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(value)){
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 }
