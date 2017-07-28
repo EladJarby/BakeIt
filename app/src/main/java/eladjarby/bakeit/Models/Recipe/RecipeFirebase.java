@@ -71,7 +71,7 @@ public class RecipeFirebase {
         });
     }
 
-    public static void uploadRecipeUpdates(long lastUpdateDate, final BaseInterface.UploadRecipeUpdates callback) {
+    public static void uploadRecipeUpdates(long lastUpdateDate, final BaseInterface.RecipeUpdates callback) {
         myRef.orderByChild(RECIPE_LAST_UPDATE_DATE).startAt(lastUpdateDate).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -84,14 +84,13 @@ public class RecipeFirebase {
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 Log.d("TAG","onChildAdded called");
                 Recipe recipe = dataSnapshot.getValue(Recipe.class);
-                callback.onRecipeUpdate(recipe);
+                callback.onRecipeChanged(recipe);
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                Log.d("TAG","onChildAdded called");
                 Recipe recipe = dataSnapshot.getValue(Recipe.class);
-                callback.onRecipeUpdate(recipe);
+                callback.onRecipeRemove(recipe);
             }
 
             @Override

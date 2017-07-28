@@ -1,4 +1,4 @@
-#Wed Jul 26 23:48:08 IDT 2017
-base.0=C\:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_0
+#Fri Jul 28 16:13:13 IDT 2017
+base.0=C\:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_0
 renamed.0=classes.dex
-file.0=C\:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_0\\classes.dex
+file.0=C\:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_0\\classes.dex

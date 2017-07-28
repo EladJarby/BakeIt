@@ -57,6 +57,23 @@ public class Model {
         }
     }
 
+    public class RecipeChangedEvent {
+
+        public final Recipe recipe;
+
+        public RecipeChangedEvent(Recipe recipe) {
+            this.recipe = recipe;
+        }
+    }
+
+    public class RecipeRemoveEvent {
+
+        public final String recipeId;
+
+        public RecipeRemoveEvent(String recipeId) {
+            this.recipeId = recipeId;
+        }
+    }
     public void getRecipeList(BaseInterface.GetAllRecipesCallback callback) {
         callback.onComplete(RecipeSql.getRecipeList(modelSql.getReadableDatabase()));
     }
@@ -65,9 +82,32 @@ public class Model {
         return modelFirebase.getCurrentUserId();
     }
 
+    public Recipe getRecipe(String recipeId) {
+        return RecipeSql.getRecipe(modelSql.getReadableDatabase(),recipeId);
+    }
     public void addRecipe(Recipe recipe) {
-        RecipeSql.addRecipe(modelSql.getWritableDatabase(),recipe);
+        //RecipeSql.addRecipe(modelSql.getWritableDatabase(),recipe);
         RecipeFirebase.addRecipe(recipe);
+    }
+
+    public void editRecipe(Recipe recipe) {
+        RecipeSql.updateRecipe(modelSql.getWritableDatabase(),recipe);
+        RecipeFirebase.updateRecipe(recipe);
+    }
+
+    public void removeRecipe(final String recipeId , final BaseInterface.GetRecipeCallback callback) {
+        //RecipeSql.removeRecipe(modelSql.getWritableDatabase(),recipeId);
+        RecipeFirebase.removeRecipe(recipeId, new BaseInterface.GetRecipeCallback() {
+            @Override
+            public void onComplete() {
+                callback.onComplete();
+            }
+
+            @Override
+            public void onCancel() {
+                callback.onCancel();
+            }
+        });
     }
 
     public String randomNumber() {
@@ -80,7 +120,7 @@ public class Model {
         final long lastUpdateDate = pref.getLong(RECIPE_LAST_UPDATE_DATE, 0);
         Log.d("TAG","lastUpdateDate: " + lastUpdateDate);
 
-        RecipeFirebase.uploadRecipeUpdates(lastUpdateDate, new BaseInterface.UploadRecipeUpdates() {
+        RecipeFirebase.uploadRecipeUpdates(lastUpdateDate, new BaseInterface.RecipeUpdates() {
             @Override
             public void onRecipeUpdate(Recipe recipe) {
                 RecipeSql.addRecipe(modelSql.getWritableDatabase(),recipe);
@@ -91,6 +131,18 @@ public class Model {
                     prefEditor.putLong(RECIPE_LAST_UPDATE_DATE,recipe.getRecipeLastUpdateDate()).apply();
                 }
                 EventBus.getDefault().post(new RecipeUpdateEvent(recipe));
+            }
+
+            @Override
+            public void onRecipeChanged(Recipe recipe) {
+                RecipeSql.updateRecipe(modelSql.getWritableDatabase(),recipe);
+                EventBus.getDefault().post(new RecipeChangedEvent(recipe));
+            }
+
+            @Override
+            public void onRecipeRemove(Recipe recipe) {
+                RecipeSql.removeRecipe(modelSql.getWritableDatabase(),recipe.getID());
+                EventBus.getDefault().post(new RecipeRemoveEvent(recipe.getID()));
             }
         });
     }

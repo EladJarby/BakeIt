@@ -56,7 +56,7 @@ public class ModelFiles {
     }
 
 
-    static void loadImageFromFileAsynch(String imageFileName,
+    public static void loadImageFromFileAsynch(String imageFileName,
                                         final BaseInterface.LoadImageFromFileAsynch callback) {
         AsyncTask<String,String,Bitmap> task = new AsyncTask<String,String,Bitmap>(){
             @Override
@@ -74,7 +74,7 @@ public class ModelFiles {
     }
 
 
-    private static Bitmap loadImageFromFile(String imageFileName){
+    public static Bitmap loadImageFromFile(String imageFileName){
         Bitmap bitmap = null;
         try {
             String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "BakeIt";

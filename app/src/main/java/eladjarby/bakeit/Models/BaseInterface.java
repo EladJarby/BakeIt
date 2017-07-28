@@ -40,8 +40,10 @@ public interface BaseInterface {
         void onComplete(List<Recipe> list);
     }
 
-    interface UploadRecipeUpdates {
+    interface RecipeUpdates {
         void onRecipeUpdate(Recipe recipe);
+        void onRecipeChanged(Recipe recipe);
+        void onRecipeRemove(Recipe recipe);
     }
 
     interface GetImageListener {

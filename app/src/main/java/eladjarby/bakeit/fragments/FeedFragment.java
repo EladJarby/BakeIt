@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,13 +12,19 @@ import android.app.Fragment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +32,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,6 +42,7 @@ import eladjarby.bakeit.Models.Model;
 import eladjarby.bakeit.Models.Recipe.Recipe;
 import eladjarby.bakeit.Models.User.User;
 import eladjarby.bakeit.Models.User.UserFirebase;
+import eladjarby.bakeit.MyApplication;
 import eladjarby.bakeit.R;
 
 import static android.support.v7.content.res.AppCompatResources.getDrawable;
@@ -53,6 +63,7 @@ public class FeedFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     ListView list;
+    private PopupWindow popWindow;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(Model.RecipeUpdateEvent event) {
@@ -71,6 +82,37 @@ public class FeedFragment extends Fragment {
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(Model.RecipeChangedEvent event) {
+        //Toast.makeText(getActivity(),"got new recipe",Toast.LENGTH_SHORT).show();
+        int index = 0;
+        for(index = 0; index < recipeList.size(); index++) {
+            if(recipeList.get(index).getID().equals(event.recipe.getID())) {
+                break;
+            }
+        }
+        if(index < recipeList.size()) {
+            recipeList.set(index,event.recipe);
+            adapter.notifyDataSetChanged();
+        }
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(Model.RecipeRemoveEvent event) {
+        //Toast.makeText(getActivity(),"got new recipe",Toast.LENGTH_SHORT).show();
+        boolean exist = false;
+        Recipe recipe = null;
+        for(Recipe r: recipeList) {
+            if(r.getID().equals(event.recipeId)){
+                 recipe = r;
+                exist = true;
+                break;
+            }
+        }
+        if(exist && recipe != null) {
+            recipeList.remove(recipe);
+            adapter.notifyDataSetChanged();
+        }
+    }
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -169,6 +211,7 @@ public class FeedFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         void onItemSelected(String recipeId);
         void addRecipe();
+        void editRecipe(String recipeId);
     }
 
     private void checkPermission() {
@@ -198,7 +241,7 @@ public class FeedFragment extends Fragment {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             if(convertView == null) {
                 convertView = getActivity().getLayoutInflater().inflate(R.layout.feed_list_row,null);
                 TextView likesTv = (TextView) convertView.findViewById(R.id.strow_likes);
@@ -220,6 +263,12 @@ public class FeedFragment extends Fragment {
             TextView recipeCategory = (TextView) convertView.findViewById(R.id.strow_category);
             final TextView recipeHeader = (TextView) convertView.findViewById(R.id.strow_header);
             ImageView recipeArrow = (ImageView) convertView.findViewById(R.id.strow_arrow);
+            recipeArrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onShowPopup(v,position);
+                }
+            });
             final Recipe recipe = recipeList.get(position);
             recipeDescription.setText(recipe.getRecipeTitle());
             UserFirebase.getUser(recipe.getRecipeAuthorId(), new BaseInterface.GetUserCallback() {
@@ -280,6 +329,68 @@ public class FeedFragment extends Fragment {
         }
     }
 
+
+    public void onShowPopup(View v,int position){
+
+        LayoutInflater layoutInflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        // inflate the custom popup layout
+        final View inflatedView = layoutInflater.inflate(R.layout.arrow_popup, null,false);
+       // find the ListView in the popup layout
+        ListView listView = (ListView)inflatedView.findViewById(R.id.arrow_popup_list);
+
+        // get device size
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        final Point size = new Point();
+        display.getSize(size);
+
+        // fill the data to the list items
+        setSimpleList(listView,position);
+
+        // set height depends on the device size
+        popWindow = new PopupWindow(inflatedView, size.x, WindowManager.LayoutParams.WRAP_CONTENT, true );
+
+        // make it focusable to show the keyboard to enter in `EditText`
+        popWindow.setFocusable(true);
+        // make it outside touchable to dismiss the popup window
+        popWindow.setOutsideTouchable(true);
+
+        popWindow.setAnimationStyle(R.style.AnimationPopup);
+        // show the popup at bottom of the screen and set some margin at bottom ie,
+        popWindow.showAtLocation(v, Gravity.BOTTOM, 0,0);
+    }
+
+    void setSimpleList(ListView listView, final int positionList){
+
+        final ArrayList<String> popupList = new ArrayList<String>();
+
+        popupList.add("Edit recipe");
+        popupList.add("Delete");
+        listView.setAdapter(new ArrayAdapter<String>(getActivity(),
+                R.layout.arrow_popup_row, R.id.arrow_popup_title,popupList));
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 1) {
+                    Log.d("TAG","" + position);
+                    Model.instance.removeRecipe(recipeList.get(positionList).getID(), new BaseInterface.GetRecipeCallback() {
+                        @Override
+                        public void onComplete() {
+                        }
+
+                        @Override
+                        public void onCancel() {
+
+                        }
+                    });
+                } else if(position == 0) {
+                    mListener.editRecipe(recipeList.get(positionList).getID());
+                }
+                popWindow.dismiss();
+            }
+        });
+    }
     @Override
     public void onDestroy() {
         EventBus.getDefault().unregister(this);

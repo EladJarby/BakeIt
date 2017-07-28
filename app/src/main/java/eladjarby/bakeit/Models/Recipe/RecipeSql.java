@@ -62,15 +62,15 @@ public class RecipeSql {
     }
 
     public static void removeRecipe(SQLiteDatabase db , String recipeId) {
-        db.delete(RECIPE_TABLE,"recipe_id=" + recipeId, null);
+            db.delete(RECIPE_TABLE,"ID=?", new String[]{recipeId});
     }
 
     public static void updateRecipe(SQLiteDatabase db , Recipe recipe) {
-        db.update(RECIPE_TABLE, getRecipeValues(recipe), "recipe_id=" + recipe.getID(), null);
+        db.update(RECIPE_TABLE, getRecipeValues(recipe), "ID=?",new String[]{recipe.getID()});
     }
 
     public static Recipe getRecipe (SQLiteDatabase db , String recipeId) {
-        Cursor cursor = db.query(RECIPE_TABLE,null,"recipe_id=" + recipeId , null, null, null, null);
+        Cursor cursor = db.query(RECIPE_TABLE,null,"ID=?", new String[]{recipeId}, null, null, null);
         if(cursor.moveToFirst()) {
             Recipe recipe = getSQLRecipe(cursor);
             cursor.close();
