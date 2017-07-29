@@ -1,5 +1,7 @@
 package eladjarby.bakeit.Models.Recipe;
 
+import java.util.HashMap;
+
 /**
  * Created by EladJ on 14/7/2017.
  */
@@ -14,13 +16,15 @@ public class Recipe {
     private Integer recipeTime;
     private String recipeImage;
     private Integer recipeLikes;
+    private HashMap<String,Boolean> recipeLikesList = new HashMap<>();
     private String recipeDate;
     private long recipeLastUpdateDate = 0;
+    private Integer recipeIsRemoved = 0;
 
     public Recipe() {
     }
 
-    public Recipe(String ID, String recipeAuthorId, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes, String recipeDate) {
+    public Recipe(String ID, String recipeAuthorId, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes, String recipeDate, Integer recipeIsRemoved) {
         this.ID = ID;
         this.recipeAuthorId = recipeAuthorId;
         this.recipeTitle = recipeTitle;
@@ -31,9 +35,10 @@ public class Recipe {
         this.recipeImage = recipeImage;
         this.recipeLikes = recipeLikes;
         this.recipeDate = recipeDate;
+        this.recipeIsRemoved = recipeIsRemoved;
     }
 
-    public Recipe(String ID, String recipeAuthorId, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes, String recipeDate, long recipeLastUpdateDate) {
+    public Recipe(String ID, String recipeAuthorId, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes, String recipeDate, long recipeLastUpdateDate, Integer recipeIsRemoved) {
         this.ID = ID;
         this.recipeAuthorId = recipeAuthorId;
         this.recipeTitle = recipeTitle;
@@ -45,6 +50,7 @@ public class Recipe {
         this.recipeLikes = recipeLikes;
         this.recipeDate = recipeDate;
         this.recipeLastUpdateDate = recipeLastUpdateDate;
+        this.recipeIsRemoved = recipeIsRemoved;
     }
 
     public String getRecipeDate() {
@@ -131,9 +137,25 @@ public class Recipe {
         return recipeLikes;
     }
 
+    public HashMap<String, Boolean> getRecipeLikesList() {
+        return recipeLikesList;
+    }
+
+    public void setRecipeLikesList(HashMap<String, Boolean> recipeLikesList) {
+        this.recipeLikesList = recipeLikesList;
+    }
+
     public void setRecipeLikes(Integer recipeLikes) {
         this.recipeLikes = recipeLikes;
     }
-    //private List<Comment> recipeComments;
+
+    public Integer getRecipeIsRemoved() {
+        return recipeIsRemoved;
+    }
+
+    public void setRecipeIsRemoved(Integer recipeIsRemoved) {
+        this.recipeIsRemoved = recipeIsRemoved;
+    }
+//private List<Comment> recipeComments;
 }
 

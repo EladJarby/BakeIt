@@ -1,0 +1,141 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="eladjarby.bakeit.fragments.RecipeDetailsFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                // this is your first layout to put the big image
+                // use src or backgroud image as per requirement
+
+                <ImageView
+                    android:id="@+id/details_image"
+                    android:src="@drawable/bakeitlogo"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop">
+
+                </ImageView>
+
+                // this is your bottom layout
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                </LinearLayout>
+            </LinearLayout>
+
+            // This is the imageview which overlay the first LinearLayout
+            <ImageView
+                android:id="@+id/details_author_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bakeitlogo"
+                android:adjustViewBounds="true" />
+        </FrameLayout>
+        <TextView
+        android:id="@+id/details_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textSize="30dp"
+        android:textColor="#000000"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date:"
+                android:layout_marginLeft="10dp"/>
+            <TextView
+                android:id="@+id/details_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category:"/>
+            <TextView
+                android:id="@+id/details_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time:"/>
+            <TextView
+                android:id="@+id/details_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Likes:"/>
+            <TextView
+                android:id="@+id/details_likes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ingredients"
+            android:textSize="25dp"
+            android:textColor="#000000"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/details_ingredients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Instructions"
+            android:textSize="25dp"
+            android:textColor="#000000"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"/>
+        <TextView
+            android:id="@+id/details_instructions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+</ScrollView>

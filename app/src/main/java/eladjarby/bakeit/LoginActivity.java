@@ -19,6 +19,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import eladjarby.bakeit.Dialogs.myProgressDialog;
 import eladjarby.bakeit.Models.BaseInterface;
 import eladjarby.bakeit.Models.User.UserFirebase;
 
@@ -26,11 +27,12 @@ public class LoginActivity extends Activity {
     private FirebaseAuth mAuth;
     private EditText mUsername;
     private EditText mPassword;
-    public ProgressDialog mProgressDialog;
+    public myProgressDialog mProgressDialog;
 
     @Override
     protected void onStart() {
         super.onStart();
+        mProgressDialog = new myProgressDialog(this);
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             Intent intent = new Intent(LoginActivity.this , MainActivity.class);
@@ -70,13 +72,13 @@ public class LoginActivity extends Activity {
         if (!validateForm()) {
             return;
         }
-        showProgressDialog();
+        mProgressDialog.showProgressDialog();
         UserFirebase.loginAccount(LoginActivity.this, email, password, new BaseInterface.LoginAccountCallBack() {
             @Override
             public void onComplete(FirebaseUser user, Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     Intent intent = new Intent(LoginActivity.this , MainActivity.class);
-                    hideProgressDialog();
+                    mProgressDialog.hideProgressDialog();
                     startActivity(intent);
                     finish();
                 }
@@ -84,7 +86,7 @@ public class LoginActivity extends Activity {
 
             @Override
             public void onFailure(String errorMessage) {
-                hideProgressDialog();
+                mProgressDialog.hideProgressDialog();
                 Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
@@ -110,21 +112,5 @@ public class LoginActivity extends Activity {
         }
 
         return valid;
-    }
-
-    public void showProgressDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(this);
-            mProgressDialog.setMessage(getString(R.string.loading));
-            mProgressDialog.setIndeterminate(true);
-        }
-
-        mProgressDialog.show();
-    }
-
-    public void hideProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
     }
 }

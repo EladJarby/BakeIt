@@ -1,11 +1,11 @@
 package eladjarby.bakeit.fragments;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -21,12 +21,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import eladjarby.bakeit.Dialogs.myProgressDialog;
 import eladjarby.bakeit.Models.BaseInterface;
 import eladjarby.bakeit.Models.Model;
 import eladjarby.bakeit.Models.ModelFiles;
@@ -55,6 +59,7 @@ public class CreateEditFragment extends Fragment {
     View contentView;
     ImageView imageCapture;
     Bitmap imageBitmap;
+    myProgressDialog mProgressDialog;
 
     private OnFragmentInteractionListener mListener;
 
@@ -85,6 +90,7 @@ public class CreateEditFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         checkCameraPermission();
+        mProgressDialog = new myProgressDialog(getActivity());
         contentView = inflater.inflate(R.layout.fragment_create_edit, container, false);
         Spinner categoryDropdown = (Spinner) contentView.findViewById(R.id.recipeCategory);
         String[] items = new String[]{"Browines","Cakes","Loaves","Cupcakes & Muffins","Gluten free"};
@@ -99,6 +105,7 @@ public class CreateEditFragment extends Fragment {
                 saveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        mProgressDialog.showProgressDialog();
                         final Recipe recipe = createRecipe();
                         if(imageBitmap != null) {
                             Model.instance.saveImage(imageBitmap, recipe.getID() + Model.instance.randomNumber() + JPEG, new BaseInterface.SaveImageListener() {
@@ -106,7 +113,8 @@ public class CreateEditFragment extends Fragment {
                                 public void complete(String url) {
                                     recipe.setRecipeImage(url);
                                     Model.instance.addRecipe(recipe);
-
+                                    mProgressDialog.hideProgressDialog();
+                                    getFragmentManager().popBackStack();
                                 }
 
                                 @Override
@@ -116,8 +124,9 @@ public class CreateEditFragment extends Fragment {
                             });
                         } else {
                             Model.instance.addRecipe(recipe);
+                            mProgressDialog.hideProgressDialog();
+                            getFragmentManager().popBackStack();
                         }
-                        getFragmentManager().popBackStack();
                     }
                 });
                 break;
@@ -128,6 +137,7 @@ public class CreateEditFragment extends Fragment {
                 saveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        mProgressDialog.showProgressDialog();
                         final Recipe recipe = createRecipe();
                         if(imageBitmap != null) {
                             Model.instance.saveImage(imageBitmap, recipe.getID() + Model.instance.randomNumber() + JPEG, new BaseInterface.SaveImageListener() {
@@ -135,6 +145,8 @@ public class CreateEditFragment extends Fragment {
                                 public void complete(String url) {
                                     recipe.setRecipeImage(url);
                                     Model.instance.editRecipe(recipe);
+                                    mProgressDialog.hideProgressDialog();
+                                    getFragmentManager().popBackStack();
                                 }
 
                                 @Override
@@ -144,8 +156,9 @@ public class CreateEditFragment extends Fragment {
                             });
                         } else {
                             Model.instance.addRecipe(recipe);
+                            mProgressDialog.hideProgressDialog();
+                            getFragmentManager().popBackStack();
                         }
-                        getFragmentManager().popBackStack();
                     }
                 });
                 break;
@@ -155,6 +168,13 @@ public class CreateEditFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 dispatchTakePictureIntent();
+            }
+        });
+        ImageView imageGallery = (ImageView) contentView.findViewById(R.id.imageGallery);
+        imageGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                takePictureFromGallery();
             }
         });
 
@@ -182,8 +202,9 @@ public class CreateEditFragment extends Fragment {
                 recipeLikes = recipe.getRecipeLikes();
                 break;
         }
+        int recipeIsRemoved = 0;
         int recipeTime = Integer.parseInt(((EditText) contentView.findViewById(R.id.recipeTime)).getText().toString());
-        return new Recipe(recipeId,Model.instance.getCurrentUserId(),recipeTitle,recipeCategory,recipeInstructions,recipeIngredients,recipeTime,recipeImage,recipeLikes,new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        return new Recipe(recipeId,Model.instance.getCurrentUserId(),recipeTitle,recipeCategory,recipeInstructions,recipeIngredients,recipeTime,recipeImage,recipeLikes,new SimpleDateFormat("yyyy-MM-dd").format(new Date()),recipeIsRemoved);
     }
     @Override
     public void onAttach(Context context) {
@@ -209,7 +230,13 @@ public class CreateEditFragment extends Fragment {
     }
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_IMAGE_GALLERY = 2;
 
+    private void takePictureFromGallery() {
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, REQUEST_IMAGE_GALLERY);
+    }
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
@@ -225,6 +252,21 @@ public class CreateEditFragment extends Fragment {
             ImageView recipePhoto = (ImageView) contentView.findViewById(R.id.recipePhoto);
             recipePhoto.setVisibility(View.VISIBLE);
             recipePhoto.setImageBitmap(imageBitmap);
+        }
+        if (requestCode == REQUEST_IMAGE_GALLERY) {
+            try {
+                final Uri imageUri = data.getData();
+                final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
+                imageBitmap = BitmapFactory.decodeStream(imageStream);
+                ImageView recipePhoto = (ImageView) contentView.findViewById(R.id.recipePhoto);
+                recipePhoto.setVisibility(View.VISIBLE);
+                recipePhoto.setImageBitmap(imageBitmap);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG).show();
+            }
+        }else {
+            Toast.makeText(getActivity(), "You haven't picked Image",Toast.LENGTH_LONG).show();
         }
     }
 

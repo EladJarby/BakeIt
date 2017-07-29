@@ -73,7 +73,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="eladjarby.bakeit.MainActivity" />
+        <activity
+            android:name="eladjarby.bakeit.MainActivity"
+            android:screenOrientation="portrait" />
         <activity android:name="com.facebook.CustomTabMainActivity" />
         <!--
          The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically

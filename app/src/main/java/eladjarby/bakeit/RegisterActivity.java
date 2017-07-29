@@ -1,12 +1,10 @@
 package eladjarby.bakeit;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,12 +15,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import eladjarby.bakeit.Dialogs.myProgressDialog;
 import eladjarby.bakeit.Models.BaseInterface;
 import eladjarby.bakeit.Models.Model;
 import eladjarby.bakeit.Models.User.User;
@@ -34,11 +31,12 @@ public class RegisterActivity extends Activity {
     private EditText mUsername;
     private EditText mPassword;
     private Bitmap imageBitmap;
-    public ProgressDialog mProgressDialog;
+    public myProgressDialog mProgressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        mProgressDialog = new myProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
         mUsername = (EditText) findViewById(R.id.register_user);
         mPassword = (EditText) findViewById(R.id.register_password);
@@ -72,7 +70,7 @@ public class RegisterActivity extends Activity {
             return;
         }
 
-        showProgressDialog();
+        mProgressDialog.showProgressDialog();
 
         UserFirebase.registerAccount(RegisterActivity.this, email, password, new BaseInterface.RegisterAccountCallBack() {
             @Override
@@ -85,7 +83,7 @@ public class RegisterActivity extends Activity {
                             public void complete(String url) {
                                 newUser.setUserImage(url);
                                 UserFirebase.addDBUser(newUser);
-                                hideProgressDialog();
+                                mProgressDialog.hideProgressDialog();
                                 Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -98,7 +96,7 @@ public class RegisterActivity extends Activity {
                         });
                     } else {
                         UserFirebase.addDBUser(newUser);
-                        hideProgressDialog();
+                        mProgressDialog.hideProgressDialog();
                         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
@@ -108,7 +106,7 @@ public class RegisterActivity extends Activity {
 
             @Override
             public void onFailure(String errorMessage) {
-                hideProgressDialog();
+                mProgressDialog.hideProgressDialog();
                 Toast.makeText(RegisterActivity.this, errorMessage , Toast.LENGTH_SHORT).show();
             }
         });
@@ -136,21 +134,6 @@ public class RegisterActivity extends Activity {
         return valid;
     }
 
-    public void showProgressDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(this);
-            mProgressDialog.setMessage(getString(R.string.loading));
-            mProgressDialog.setIndeterminate(true);
-        }
-
-        mProgressDialog.show();
-    }
-
-    public void hideProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
-    }
 
     private User newUser(String userID) {
         String ID = userID;

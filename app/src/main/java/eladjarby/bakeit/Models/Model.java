@@ -8,8 +8,6 @@ import android.webkit.URLUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 
 import eladjarby.bakeit.Models.Recipe.Recipe;
@@ -19,7 +17,6 @@ import eladjarby.bakeit.Models.User.User;
 import eladjarby.bakeit.Models.User.UserFirebase;
 import eladjarby.bakeit.MyApplication;
 
-import static android.R.attr.bitmap;
 import static eladjarby.bakeit.Models.ModelFiles.saveImageToFile;
 
 /**
@@ -96,16 +93,16 @@ public class Model {
     }
 
     public void removeRecipe(final String recipeId , final BaseInterface.GetRecipeCallback callback) {
+        final Recipe recipe = Model.instance.getRecipe(recipeId);
         //RecipeSql.removeRecipe(modelSql.getWritableDatabase(),recipeId);
-        RecipeFirebase.removeRecipe(recipeId, new BaseInterface.GetRecipeCallback() {
+        RecipeFirebase.removeRecipe(recipe, new BaseInterface.GetRecipeCallback() {
             @Override
             public void onComplete() {
-                callback.onComplete();
             }
 
             @Override
             public void onCancel() {
-                callback.onCancel();
+
             }
         });
     }
@@ -123,27 +120,26 @@ public class Model {
         RecipeFirebase.uploadRecipeUpdates(lastUpdateDate, new BaseInterface.RecipeUpdates() {
             @Override
             public void onRecipeUpdate(Recipe recipe) {
-                RecipeSql.addRecipe(modelSql.getWritableDatabase(),recipe);
+                boolean isChanged = false;
+                if(RecipeSql.getRecipe(modelSql.getReadableDatabase(),recipe.getID()) == null) {
+                    RecipeSql.addRecipe(modelSql.getWritableDatabase(), recipe);
+                } else {
+                    RecipeSql.updateRecipe(modelSql.getWritableDatabase(),recipe);
+                    isChanged = true;
+                }
                 SharedPreferences pref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
                 final long lastUpdateDate = pref.getLong(RECIPE_LAST_UPDATE_DATE, 0);
                 if(lastUpdateDate < recipe.getRecipeLastUpdateDate()) {
                     SharedPreferences.Editor prefEditor = MyApplication.getMyContext().getSharedPreferences("TAG" ,Context.MODE_PRIVATE).edit();
                     prefEditor.putLong(RECIPE_LAST_UPDATE_DATE,recipe.getRecipeLastUpdateDate()).apply();
                 }
-                EventBus.getDefault().post(new RecipeUpdateEvent(recipe));
+                if(!isChanged) {
+                    EventBus.getDefault().post(new RecipeUpdateEvent(recipe));
+                } else {
+                    EventBus.getDefault().post(new RecipeChangedEvent(recipe));
+                }
             }
 
-            @Override
-            public void onRecipeChanged(Recipe recipe) {
-                RecipeSql.updateRecipe(modelSql.getWritableDatabase(),recipe);
-                EventBus.getDefault().post(new RecipeChangedEvent(recipe));
-            }
-
-            @Override
-            public void onRecipeRemove(Recipe recipe) {
-                RecipeSql.removeRecipe(modelSql.getWritableDatabase(),recipe.getID());
-                EventBus.getDefault().post(new RecipeRemoveEvent(recipe.getID()));
-            }
         });
     }
 
@@ -190,6 +186,21 @@ public class Model {
                     });
 
                 }
+            }
+        });
+    }
+
+    public void changeLike(final Recipe recipe) {
+        RecipeFirebase.changeLike(recipe,new BaseInterface.GetLikesCallback() {
+
+            @Override
+            public void onComplete(Recipe newRecipe) {
+                editRecipe(newRecipe);
+            }
+
+            @Override
+            public void onCancel() {
+
             }
         });
     }

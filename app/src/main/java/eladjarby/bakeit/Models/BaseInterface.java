@@ -31,6 +31,12 @@ public interface BaseInterface {
         void onCancel();
     }
 
+
+    interface GetLikesCallback {
+        void onComplete(Recipe newRecipe);
+        void onCancel();
+    }
+
     interface GetUserCallback {
         void onComplete(User user);
         void onCancel();
@@ -42,8 +48,8 @@ public interface BaseInterface {
 
     interface RecipeUpdates {
         void onRecipeUpdate(Recipe recipe);
-        void onRecipeChanged(Recipe recipe);
-        void onRecipeRemove(Recipe recipe);
+        //void onRecipeChanged(Recipe recipe);
+        //void onRecipeRemove(Recipe recipe);
     }
 
     interface GetImageListener {

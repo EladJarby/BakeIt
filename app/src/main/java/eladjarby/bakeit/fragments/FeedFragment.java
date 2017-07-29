@@ -25,6 +25,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,6 +64,7 @@ public class FeedFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     ListView list;
+    int changeIndex = 0;
     private PopupWindow popWindow;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -77,7 +79,10 @@ public class FeedFragment extends Fragment {
             }
         }
         if(!exist) {
-            recipeList.add(0 , event.recipe);
+            if(event.recipe.getRecipeIsRemoved() == 0) {
+                recipeList.add(0, event.recipe);
+            }
+            changeIndex = 0;
             adapter.notifyDataSetChanged();
         }
     }
@@ -93,26 +98,30 @@ public class FeedFragment extends Fragment {
         }
         if(index < recipeList.size()) {
             recipeList.set(index,event.recipe);
-            adapter.notifyDataSetChanged();
-        }
-    }
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(Model.RecipeRemoveEvent event) {
-        //Toast.makeText(getActivity(),"got new recipe",Toast.LENGTH_SHORT).show();
-        boolean exist = false;
-        Recipe recipe = null;
-        for(Recipe r: recipeList) {
-            if(r.getID().equals(event.recipeId)){
-                 recipe = r;
-                exist = true;
-                break;
+            if(event.recipe.getRecipeIsRemoved() == 1) {
+                recipeList.remove(index);
             }
-        }
-        if(exist && recipe != null) {
-            recipeList.remove(recipe);
+            changeIndex = index;
             adapter.notifyDataSetChanged();
         }
     }
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void onMessageEvent(Model.RecipeRemoveEvent event) {
+//        //Toast.makeText(getActivity(),"got new recipe",Toast.LENGTH_SHORT).show();
+//        boolean exist = false;
+//        Recipe recipe = null;
+//        for(Recipe r: recipeList) {
+//            if(r.getID().equals(event.recipeId)){
+//                 recipe = r;
+//                exist = true;
+//                break;
+//            }
+//        }
+//        if(exist && recipe != null) {
+//            recipeList.remove(recipe);
+//            adapter.notifyDataSetChanged();
+//        }
+//    }
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -151,13 +160,6 @@ public class FeedFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mListener.onItemSelected(recipeList.get(position).getID());
-            }
-        });
-
         ImageView menuAdd = (ImageView) getActivity().findViewById(R.id.menu_add);
         menuAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -224,7 +226,19 @@ public class FeedFragment extends Fragment {
         }
     }
 
+    static class ViewHolder {
+        public ImageView recipeAuthorImage;
+        public TextView recipeTitle;
+        public TextView recipeCategory;
+        public TextView recipeDate;
+        public TextView recipeDescription;
+        public ImageView recipeImage;
+        public TextView recipeLikes;
+        public ImageView recipeArrow;
+    }
     class RecipeListAdapter extends BaseAdapter {
+
+        ViewHolder holder;
         @Override
         public int getCount() {
             return recipeList.size();
@@ -245,13 +259,27 @@ public class FeedFragment extends Fragment {
             if(convertView == null) {
                 convertView = getActivity().getLayoutInflater().inflate(R.layout.feed_list_row,null);
                 TextView likesTv = (TextView) convertView.findViewById(R.id.strow_likes);
+                ImageView recipeImage = (ImageView) convertView.findViewById(R.id.strow_image);
+                ImageView recipeArrow = (ImageView) convertView.findViewById(R.id.strow_arrow);
                 likesTv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         // Problem could happend: will raise likes every click
                         int pos = (int)v.getTag();
                         Recipe recipe = recipeList.get(pos);
-                        recipe.setRecipeLikes(recipe.getRecipeLikes()+1);
+                        Model.instance.changeLike(recipe);
+                    }
+                });
+                recipeArrow.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onShowPopup(v,position);
+                    }
+                });
+                recipeImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mListener.onItemSelected(recipeList.get(position).getID());
                     }
                 });
             }
@@ -271,13 +299,20 @@ public class FeedFragment extends Fragment {
             });
             final Recipe recipe = recipeList.get(position);
             recipeDescription.setText(recipe.getRecipeTitle());
+            final ProgressBar authorProgressBar = ((ProgressBar) convertView.findViewById(R.id.authorProgressBar));
+            final ProgressBar recipeProgressBar = ((ProgressBar) convertView.findViewById(R.id.recipeProgressBar));
+            authorProgressBar.setVisibility(View.VISIBLE);
+            recipeProgressBar.setVisibility(View.GONE);
             UserFirebase.getUser(recipe.getRecipeAuthorId(), new BaseInterface.GetUserCallback() {
                 @Override
                 public void onComplete(final User user) {
                     recipeHeader.setText(user.getUserFirstName() + " " + user.getUserLastName() + " posted a recipe on");
                     final String userImageUrl = user.getUserImage();
                     recipeAuthorImage.setTag(userImageUrl);
-                    recipeAuthorImage.setImageDrawable(getDrawable(getActivity(), R.drawable.bakeitlogo));
+                    if(position == changeIndex) {
+                        recipeAuthorImage.setImageDrawable(null);
+                    }
+                    //recipeAuthorImage.setImageDrawable(getDrawable(getActivity(), R.drawable.bakeitlogo));
 
                     if (userImageUrl != null && !userImageUrl.isEmpty() && !userImageUrl.equals("")) {
                         Model.instance.getImage(userImageUrl, new BaseInterface.GetImageListener() {
@@ -287,6 +322,7 @@ public class FeedFragment extends Fragment {
                                 if (imageUrl.equals(userImageUrl)) {
                                     recipeAuthorImage.setImageBitmap(image);
                                 }
+                                authorProgressBar.setVisibility(View.GONE);
                             }
 
                             @Override
@@ -302,17 +338,21 @@ public class FeedFragment extends Fragment {
 
                 }
             });
+            if(position == changeIndex) {
+                recipeImage.setImageDrawable(null);
+            }
             recipeImage.setTag(recipe.getRecipeImage());
-            recipeImage.setImageDrawable(getDrawable(getActivity(), R.drawable.bakeitlogo));
-
             if(recipe.getRecipeImage() != null && !recipe.getRecipeImage().isEmpty() && !recipe.getRecipeImage().equals("")) {
+                recipeProgressBar.setVisibility(View.VISIBLE);
                 Model.instance.getImage(recipe.getRecipeImage(), new BaseInterface.GetImageListener() {
                     @Override
                     public void onSuccess(Bitmap image) {
                         String imageUrl = recipeImage.getTag().toString();
                         if(imageUrl.equals(recipe.getRecipeImage())) {
                             recipeImage.setImageBitmap(image);
+                            recipeImage.setTag(null);
                         }
+                        recipeProgressBar.setVisibility(View.GONE);
                     }
 
                     @Override

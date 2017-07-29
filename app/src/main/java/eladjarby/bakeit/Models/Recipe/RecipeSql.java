@@ -24,6 +24,7 @@ public class RecipeSql {
     private static final String RECIPE_LIKES = "recipeLikes";
     private static final String RECIPE_DATE = "recipeDate";
     private static final String RECIPE_LAST_UPDATE_DATE = "recipeLastUpdateDate";
+    private static final String RECIPE_IS_REMOVED = "recipeIsRemoved";
 
     public static void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + RECIPE_TABLE + "(" +
@@ -37,7 +38,8 @@ public class RecipeSql {
                 RECIPE_IMAGE + " TEXT, " +
                 RECIPE_LIKES + " NUMBER, " +
                 RECIPE_DATE + " DATE, " +
-                RECIPE_LAST_UPDATE_DATE + " NUMBER);");
+                RECIPE_LAST_UPDATE_DATE + " NUMBER, " +
+                RECIPE_IS_REMOVED + " NUMBER );");
     }
 
     public static void onUpgrade(SQLiteDatabase db , int oldVersion , int newVersion) {
@@ -50,7 +52,9 @@ public class RecipeSql {
         List<Recipe> recipeList = new LinkedList<Recipe>();
         if(cursor.moveToFirst()) {
             do {
-                recipeList.add(0 , getSQLRecipe(cursor));
+                if(getSQLRecipe(cursor).getRecipeIsRemoved() == 0) {
+                    recipeList.add(0 , getSQLRecipe(cursor));
+                }
             } while(cursor.moveToNext());
         }
         cursor.close();
@@ -61,9 +65,9 @@ public class RecipeSql {
         db.insert(RECIPE_TABLE,RECIPE_ID,getRecipeValues(recipe));
     }
 
-    public static void removeRecipe(SQLiteDatabase db , String recipeId) {
-            db.delete(RECIPE_TABLE,"ID=?", new String[]{recipeId});
-    }
+//    public static void removeRecipe(SQLiteDatabase db , String recipeId) {
+//            db.delete(RECIPE_TABLE,"ID=?", new String[]{recipeId});
+//    }
 
     public static void updateRecipe(SQLiteDatabase db , Recipe recipe) {
         db.update(RECIPE_TABLE, getRecipeValues(recipe), "ID=?",new String[]{recipe.getID()});
@@ -94,6 +98,7 @@ public class RecipeSql {
         values.put(RECIPE_LIKES,recipe.getRecipeLikes());
         values.put(RECIPE_DATE,recipe.getRecipeDate());
         values.put(RECIPE_LAST_UPDATE_DATE,recipe.getRecipeLastUpdateDate());
+        values.put(RECIPE_IS_REMOVED,recipe.getRecipeIsRemoved());
         return values;
     }
 
@@ -109,6 +114,7 @@ public class RecipeSql {
         int recipeLikesIndex = cursor.getColumnIndex(RECIPE_LIKES);
         int recipeDateIndex = cursor.getColumnIndex(RECIPE_DATE);
         int recipeLastUpdateIndex = cursor.getColumnIndex(RECIPE_LAST_UPDATE_DATE);
+        int recipeIsRemoved = cursor.getColumnIndex(RECIPE_IS_REMOVED);
 
         Recipe recipe = new Recipe(cursor.getString(recipeIdIndex),
                 cursor.getString(recipeAuthorIdIndex),
@@ -120,7 +126,8 @@ public class RecipeSql {
                 cursor.getString(recipeImageIndex),
                 Integer.parseInt(cursor.getString(recipeLikesIndex)),
                 cursor.getString(recipeDateIndex),
-                cursor.getLong(recipeLastUpdateIndex));
+                cursor.getLong(recipeLastUpdateIndex),
+                Integer.parseInt(cursor.getString(recipeIsRemoved)));
 
         return recipe;
     }

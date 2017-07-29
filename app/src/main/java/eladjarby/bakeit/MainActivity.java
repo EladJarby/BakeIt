@@ -1,6 +1,7 @@
 package eladjarby.bakeit;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -13,10 +14,11 @@ import eladjarby.bakeit.Models.Model;
 import eladjarby.bakeit.Models.ModelFirebase;
 import eladjarby.bakeit.fragments.CreateEditFragment;
 import eladjarby.bakeit.fragments.FeedFragment;
+import eladjarby.bakeit.fragments.RecipeDetailsFragment;
 
 public class MainActivity extends AppCompatActivity implements FeedFragment.OnFragmentInteractionListener
-,CreateEditFragment.OnFragmentInteractionListener{
-
+,CreateEditFragment.OnFragmentInteractionListener,
+RecipeDetailsFragment.OnFragmentInteractionListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +39,11 @@ public class MainActivity extends AppCompatActivity implements FeedFragment.OnFr
 
     @Override
     public void onItemSelected(String recipeId) {
-        Log.d("tag",recipeId);
+        RecipeDetailsFragment recipeDetailsFragment = RecipeDetailsFragment.newInstance(recipeId);
+
+        getFragmentManager().beginTransaction()
+                .add(R.id.main_fragment_container,recipeDetailsFragment).addToBackStack(null)
+                .commit();
     }
 
     @Override
@@ -57,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements FeedFragment.OnFr
                 .add(R.id.main_fragment_container,createEditFragment).addToBackStack(null)
                 .commit();
     }
-
     public boolean onCreateOptionsMenu(Menu menu){
         return super.onCreateOptionsMenu(menu);
     }
