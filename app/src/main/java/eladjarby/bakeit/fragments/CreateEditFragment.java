@@ -252,8 +252,7 @@ public class CreateEditFragment extends Fragment {
             ImageView recipePhoto = (ImageView) contentView.findViewById(R.id.recipePhoto);
             recipePhoto.setVisibility(View.VISIBLE);
             recipePhoto.setImageBitmap(imageBitmap);
-        }
-        if (requestCode == REQUEST_IMAGE_GALLERY) {
+        } else if (requestCode == REQUEST_IMAGE_GALLERY && resultCode == getActivity().RESULT_OK) {
             try {
                 final Uri imageUri = data.getData();
                 final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
