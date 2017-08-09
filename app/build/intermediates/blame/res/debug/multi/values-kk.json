@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-kk\\values-kk.xml",
+        "outputFile": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-kk\\values-kk.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 205
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\a6c788944ca53030b29c420ee53a74e7d633c4cf\\output\\res\\values-kk\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\73d62e9135208d327b3bdbeebe1653bb549c9ae7\\output\\res\\values-kk\\values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 0,
@@ -30,7 +30,7 @@
                     "endOffset": 390
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\a6c788944ca53030b29c420ee53a74e7d633c4cf\\output\\res\\values-kk\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\73d62e9135208d327b3bdbeebe1653bb549c9ae7\\output\\res\\values-kk\\values.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 0,
@@ -49,7 +49,7 @@
                     "endOffset": 518
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\a6c788944ca53030b29c420ee53a74e7d633c4cf\\output\\res\\values-kk\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\73d62e9135208d327b3bdbeebe1653bb549c9ae7\\output\\res\\values-kk\\values.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 0,
@@ -68,7 +68,7 @@
                     "endOffset": 626
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\a6c788944ca53030b29c420ee53a74e7d633c4cf\\output\\res\\values-kk\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\73d62e9135208d327b3bdbeebe1653bb549c9ae7\\output\\res\\values-kk\\values.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 0,
@@ -87,7 +87,7 @@
                     "endOffset": 825
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\a6c788944ca53030b29c420ee53a74e7d633c4cf\\output\\res\\values-kk\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\73d62e9135208d327b3bdbeebe1653bb549c9ae7\\output\\res\\values-kk\\values.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 0,
@@ -106,7 +106,7 @@
                     "endOffset": 953
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\a6c788944ca53030b29c420ee53a74e7d633c4cf\\output\\res\\values-kk\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\73d62e9135208d327b3bdbeebe1653bb549c9ae7\\output\\res\\values-kk\\values.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 0,
@@ -125,7 +125,7 @@
                     "endOffset": 1091
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\a6c788944ca53030b29c420ee53a74e7d633c4cf\\output\\res\\values-kk\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\73d62e9135208d327b3bdbeebe1653bb549c9ae7\\output\\res\\values-kk\\values.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 0,
@@ -144,7 +144,7 @@
                     "endOffset": 1314
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\a7dccc2363e1bef8559884a7f2d892b2c7af12f6\\output\\res\\values-kk\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\f9890cff141bc468029589e06e82f80130bc366c\\output\\res\\values-kk\\values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 0,
@@ -163,7 +163,7 @@
                     "endOffset": 1538
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\a6c788944ca53030b29c420ee53a74e7d633c4cf\\output\\res\\values-kk\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\73d62e9135208d327b3bdbeebe1653bb549c9ae7\\output\\res\\values-kk\\values.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 0,
@@ -182,7 +182,7 @@
                     "endOffset": 1646
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\a6c788944ca53030b29c420ee53a74e7d633c4cf\\output\\res\\values-kk\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\73d62e9135208d327b3bdbeebe1653bb549c9ae7\\output\\res\\values-kk\\values.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 0,
@@ -201,7 +201,7 @@
                     "endOffset": 1834
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\a6c788944ca53030b29c420ee53a74e7d633c4cf\\output\\res\\values-kk\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\73d62e9135208d327b3bdbeebe1653bb549c9ae7\\output\\res\\values-kk\\values.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 0,
@@ -220,7 +220,7 @@
                     "endOffset": 1965
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\a6c788944ca53030b29c420ee53a74e7d633c4cf\\output\\res\\values-kk\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\73d62e9135208d327b3bdbeebe1653bb549c9ae7\\output\\res\\values-kk\\values.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 0,
@@ -239,7 +239,7 @@
                     "endOffset": 2177
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\a6c788944ca53030b29c420ee53a74e7d633c4cf\\output\\res\\values-kk\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\73d62e9135208d327b3bdbeebe1653bb549c9ae7\\output\\res\\values-kk\\values.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 0,
@@ -258,7 +258,7 @@
                     "endOffset": 2364
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\a6c788944ca53030b29c420ee53a74e7d633c4cf\\output\\res\\values-kk\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\73d62e9135208d327b3bdbeebe1653bb549c9ae7\\output\\res\\values-kk\\values.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 0,
@@ -277,7 +277,7 @@
                     "endOffset": 2457
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\a6c788944ca53030b29c420ee53a74e7d633c4cf\\output\\res\\values-kk\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\73d62e9135208d327b3bdbeebe1653bb549c9ae7\\output\\res\\values-kk\\values.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 0,
@@ -296,7 +296,7 @@
                     "endOffset": 2546
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\a6c788944ca53030b29c420ee53a74e7d633c4cf\\output\\res\\values-kk\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\73d62e9135208d327b3bdbeebe1653bb549c9ae7\\output\\res\\values-kk\\values.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 0,
@@ -315,7 +315,7 @@
                     "endOffset": 2653
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\a6c788944ca53030b29c420ee53a74e7d633c4cf\\output\\res\\values-kk\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\73d62e9135208d327b3bdbeebe1653bb549c9ae7\\output\\res\\values-kk\\values.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 0,

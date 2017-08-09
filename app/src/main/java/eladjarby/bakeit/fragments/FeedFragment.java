@@ -260,10 +260,16 @@ public class FeedFragment extends Fragment {
         public View getView(final int position, View convertView, ViewGroup parent) {
             if(convertView == null) {
                 convertView = getActivity().getLayoutInflater().inflate(R.layout.feed_list_row,null);
-                TextView likesTv = (TextView) convertView.findViewById(R.id.strow_likes);
-                ImageView recipeImage = (ImageView) convertView.findViewById(R.id.strow_image);
-                ImageView recipeArrow = (ImageView) convertView.findViewById(R.id.strow_arrow);
-                likesTv.setOnClickListener(new View.OnClickListener() {
+                ViewHolder holder = new ViewHolder();
+                holder.recipeAuthorImage = (ImageView) convertView.findViewById(R.id.strow_authorImage);
+                holder.recipeTitle = (TextView) convertView.findViewById(R.id.strow_header);
+                holder.recipeDescription = (TextView) convertView.findViewById(R.id.strow_description);
+                holder.recipeCategory = (TextView) convertView.findViewById(R.id.strow_category);
+                holder.recipeDate = (TextView) convertView.findViewById(R.id.strow_date);
+                holder.recipeLikes = (TextView) convertView.findViewById(R.id.strow_likes);
+                holder.recipeImage = (ImageView) convertView.findViewById(R.id.strow_image);
+                holder.recipeArrow = (ImageView) convertView.findViewById(R.id.strow_arrow);
+                holder.recipeLikes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         // Problem could happend: will raise likes every click
@@ -272,59 +278,48 @@ public class FeedFragment extends Fragment {
                         Model.instance.changeLike(recipe);
                     }
                 });
-                recipeArrow.setOnClickListener(new View.OnClickListener() {
+                holder.recipeArrow.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         onShowPopup(v,position);
                     }
                 });
-                recipeImage.setOnClickListener(new View.OnClickListener() {
+                holder.recipeImage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         mListener.onItemSelected(recipeList.get(position).getID());
                     }
                 });
+                convertView.setTag(holder);
             }
-            TextView recipeDescription = (TextView) convertView.findViewById(R.id.strow_description);
-            final ImageView recipeImage = (ImageView) convertView.findViewById(R.id.strow_image);
-            TextView recipeDate = (TextView) convertView.findViewById(R.id.strow_date);
-            TextView recipeLikes = (TextView) convertView.findViewById(R.id.strow_likes);
-            final ImageView recipeAuthorImage = (ImageView) convertView.findViewById(R.id.strow_authorImage);
-            TextView recipeCategory = (TextView) convertView.findViewById(R.id.strow_category);
-            final TextView recipeHeader = (TextView) convertView.findViewById(R.id.strow_header);
-            ImageView recipeArrow = (ImageView) convertView.findViewById(R.id.strow_arrow);
-            recipeArrow.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onShowPopup(v,position);
-                }
-            });
             final Recipe recipe = recipeList.get(position);
-            recipeDescription.setText(recipe.getRecipeTitle());
+            final ViewHolder holder = (ViewHolder) convertView.getTag();
             final ProgressBar authorProgressBar = ((ProgressBar) convertView.findViewById(R.id.authorProgressBar));
             final ProgressBar recipeProgressBar = ((ProgressBar) convertView.findViewById(R.id.recipeProgressBar));
             authorProgressBar.setVisibility(View.VISIBLE);
             recipeProgressBar.setVisibility(View.GONE);
+            holder.recipeDescription.setText(recipe.getRecipeTitle());
             UserFirebase.getUser(recipe.getRecipeAuthorId(), new BaseInterface.GetUserCallback() {
                 @Override
                 public void onComplete(final User user) {
-                    recipeHeader.setText(user.getUserFirstName() + " " + user.getUserLastName() + " posted a recipe on");
+                    holder.recipeTitle.setText(user.getUserFirstName() + " " + user.getUserLastName() + " posted a recipe on");
                     final String userImageUrl = user.getUserImage();
-                    recipeAuthorImage.setTag(userImageUrl);
-                    if(position == changeIndex) {
-                        recipeAuthorImage.setImageDrawable(null);
+                    boolean authorImageUpdated = false;
+                    if(holder.recipeAuthorImage.getTag() == null || !holder.recipeAuthorImage.getTag().equals(userImageUrl)) {
+                        holder.recipeAuthorImage.setTag(userImageUrl);
+                        authorImageUpdated = true;
                     }
-                    //recipeAuthorImage.setImageDrawable(getDrawable(getActivity(), R.drawable.bakeitlogo));
-
-                    if (userImageUrl != null && !userImageUrl.isEmpty() && !userImageUrl.equals("")) {
+                        //recipeAuthorImage.setImageDrawable(getDrawable(getActivity(), R.drawable.bakeitlogo));
+                    if (userImageUrl != null && !userImageUrl.isEmpty() && !userImageUrl.equals("") && authorImageUpdated) {
+                        holder.recipeAuthorImage.setImageDrawable(null);
+                        authorImageUpdated = false;
                         Model.instance.getImage(userImageUrl, new BaseInterface.GetImageListener() {
                             @Override
                             public void onSuccess(Bitmap image) {
-                                String imageUrl = recipeAuthorImage.getTag().toString();
+                                String imageUrl = holder.recipeAuthorImage.getTag().toString();
                                 if (imageUrl.equals(userImageUrl)) {
-                                    recipeAuthorImage.setImageBitmap(image);
+                                    holder.recipeAuthorImage.setImageBitmap(image);
                                 }
-                                authorProgressBar.setVisibility(View.GONE);
                             }
 
                             @Override
@@ -333,6 +328,7 @@ public class FeedFragment extends Fragment {
                             }
                         });
                     }
+                    authorProgressBar.setVisibility(View.GONE);
                 }
 
                 @Override
@@ -340,19 +336,22 @@ public class FeedFragment extends Fragment {
 
                 }
             });
-            if(position == changeIndex) {
-                recipeImage.setImageDrawable(null);
+            boolean recipeImageUpdated = false;
+            if(holder.recipeImage.getTag() == null || !holder.recipeImage.getTag().equals(recipe.getRecipeImage())) {
+                holder.recipeImage.setTag(recipe.getRecipeImage());
+                recipeImageUpdated = true;
             }
-            recipeImage.setTag(recipe.getRecipeImage());
-            if(recipe.getRecipeImage() != null && !recipe.getRecipeImage().isEmpty() && !recipe.getRecipeImage().equals("")) {
+            if (recipe.getRecipeImage() != null && !recipe.getRecipeImage().isEmpty()
+                    && !recipe.getRecipeImage().equals("") && recipeImageUpdated) {
+                recipeImageUpdated = false;
+                holder.recipeImage.setImageDrawable(null);
                 recipeProgressBar.setVisibility(View.VISIBLE);
                 Model.instance.getImage(recipe.getRecipeImage(), new BaseInterface.GetImageListener() {
                     @Override
                     public void onSuccess(Bitmap image) {
-                        String imageUrl = recipeImage.getTag().toString();
-                        if(imageUrl.equals(recipe.getRecipeImage())) {
-                            recipeImage.setImageBitmap(image);
-                            recipeImage.setTag(null);
+                        String imageUrl = holder.recipeImage.getTag().toString();
+                        if (imageUrl.equals(recipe.getRecipeImage())) {
+                            holder.recipeImage.setImageBitmap(image);
                         }
                         recipeProgressBar.setVisibility(View.GONE);
                     }
@@ -363,10 +362,10 @@ public class FeedFragment extends Fragment {
                     }
                 });
             }
-            recipeCategory.setText(recipe.getRecipeCategory());
-            recipeDate.setText(recipe.getRecipeDate());
-            recipeLikes.setText(recipe.getRecipeLikes() + " peoples liked");
-            recipeLikes.setTag(position);
+            holder.recipeCategory.setText(recipe.getRecipeCategory());
+            holder.recipeDate.setText(recipe.getRecipeDate());
+            holder.recipeLikes.setText(recipe.getRecipeLikes() + " peoples liked");
+            holder.recipeLikes.setTag(position);
             return convertView;
         }
     }
