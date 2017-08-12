@@ -9,6 +9,7 @@ import java.util.HashMap;
 public class Recipe {
     private String ID;
     private String recipeAuthorId;
+    private String recipeAuthorName;
     private String recipeTitle;
     private String recipeCategory;
     private String recipeInstructions;
@@ -24,9 +25,10 @@ public class Recipe {
     public Recipe() {
     }
 
-    public Recipe(String ID, String recipeAuthorId, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes, String recipeDate, Integer recipeIsRemoved) {
+    public Recipe(String ID, String recipeAuthorId,String recipeAuthorName, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes, String recipeDate, Integer recipeIsRemoved) {
         this.ID = ID;
         this.recipeAuthorId = recipeAuthorId;
+        this.recipeAuthorName = recipeAuthorName;
         this.recipeTitle = recipeTitle;
         this.recipeCategory = recipeCategory;
         this.recipeInstructions = recipeInstructions;
@@ -38,9 +40,10 @@ public class Recipe {
         this.recipeIsRemoved = recipeIsRemoved;
     }
 
-    public Recipe(String ID, String recipeAuthorId, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes, String recipeDate, long recipeLastUpdateDate, Integer recipeIsRemoved) {
+    public Recipe(String ID, String recipeAuthorId,String recipeAuthorName, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes, String recipeDate, long recipeLastUpdateDate, Integer recipeIsRemoved) {
         this.ID = ID;
         this.recipeAuthorId = recipeAuthorId;
+        this.recipeAuthorName = recipeAuthorName;
         this.recipeTitle = recipeTitle;
         this.recipeCategory = recipeCategory;
         this.recipeInstructions = recipeInstructions;
@@ -83,6 +86,14 @@ public class Recipe {
 
     public void setRecipeAuthorId(String recipeAuthorId) {
         this.recipeAuthorId = recipeAuthorId;
+    }
+
+    public String getRecipeAuthorName() {
+        return recipeAuthorName;
+    }
+
+    public void setRecipeAuthorName(String recipeAuthorName) {
+        this.recipeAuthorName = recipeAuthorName;
     }
 
     public String getRecipeTitle() {

@@ -15,6 +15,7 @@ public class RecipeSql {
     public static final String RECIPE_TABLE = "Recipes";
     private static final String RECIPE_ID = "ID";
     private static final String RECIPE_AUTHOR_ID = "recipeAuthorId";
+    private static final String RECIPE_AUTHOR_NAME = "recipeAuthorName";
     private static final String RECIPE_TITLE = "recipeTitle";
     private static final String RECIPE_CATEGORY = "recipeCategory";
     private static final String RECIPE_INSTRUCTIONS = "recipeInstructions";
@@ -30,6 +31,7 @@ public class RecipeSql {
         db.execSQL("create table " + RECIPE_TABLE + "(" +
                 RECIPE_ID + " TEXT PRIMARY KEY, " +
                 RECIPE_AUTHOR_ID + " TEXT, " +
+                RECIPE_AUTHOR_NAME + " TEXT, " +
                 RECIPE_TITLE + " TEXT, " +
                 RECIPE_CATEGORY + " TEXT, " +
                 RECIPE_INSTRUCTIONS + " TEXT, " +
@@ -89,6 +91,7 @@ public class RecipeSql {
         ContentValues values = new ContentValues();
         values.put(RECIPE_ID,recipe.getID());
         values.put(RECIPE_AUTHOR_ID,recipe.getRecipeAuthorId());
+        values.put(RECIPE_AUTHOR_NAME,recipe.getRecipeAuthorName());
         values.put(RECIPE_TITLE,recipe.getRecipeTitle());
         values.put(RECIPE_CATEGORY,recipe.getRecipeCategory());
         values.put(RECIPE_INSTRUCTIONS,recipe.getRecipeInstructions());
@@ -105,6 +108,7 @@ public class RecipeSql {
     private static Recipe getSQLRecipe(Cursor cursor) {
         int recipeIdIndex = cursor.getColumnIndex(RECIPE_ID);
         int recipeAuthorIdIndex = cursor.getColumnIndex(RECIPE_AUTHOR_ID);
+        int recipeAuthorNameIndex = cursor.getColumnIndex(RECIPE_AUTHOR_NAME);
         int recipeTitleIndex = cursor.getColumnIndex(RECIPE_TITLE);
         int recipeCategoryIndex = cursor.getColumnIndex(RECIPE_CATEGORY);
         int recipeInstructionsIndex = cursor.getColumnIndex(RECIPE_INSTRUCTIONS);
@@ -118,6 +122,7 @@ public class RecipeSql {
 
         Recipe recipe = new Recipe(cursor.getString(recipeIdIndex),
                 cursor.getString(recipeAuthorIdIndex),
+                cursor.getString(recipeAuthorNameIndex),
                 cursor.getString(recipeTitleIndex),
                 cursor.getString(recipeCategoryIndex),
                 cursor.getString(recipeInstructionsIndex),

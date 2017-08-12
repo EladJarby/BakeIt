@@ -6,4 +6,9 @@
     <string name="facebook_app_id">295848057509630</string>
     <string name="fb_login_protocol_scheme">fb295848057509630</string>
     <string name="category">category</string>
+    <string name="categoryicon">categoryIcon</string>
+    <string name="recipeImage">recipeImage</string>
+    <string name="likeimage">likeImage</string>
+    <string name="strowarrow">strowArrow</string>
+    <string name="strowauthor">strowAuthor</string>
 </resources>

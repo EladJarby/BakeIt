@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +15,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -310,10 +315,15 @@ public class FeedFragment extends Fragment {
             } else {
                 holder.recipeArrow.setVisibility(View.INVISIBLE);
             }
+            String userName = recipe.getRecipeAuthorName();
+            String recipeHeader = " posted a recipe on";
+            String finalString = userName+recipeHeader;
+            Spannable sb = new SpannableString(userName+recipeHeader);
+            sb.setSpan(new StyleSpan(Typeface.BOLD), finalString.indexOf(userName),finalString.indexOf(userName)+ userName.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            holder.recipeTitle.setText(sb);
             UserFirebase.getUser(recipe.getRecipeAuthorId(), new BaseInterface.GetUserCallback() {
                 @Override
                 public void onComplete(final User user) {
-                    holder.recipeTitle.setText(user.getUserFirstName() + " " + user.getUserLastName());
                     final String userImageUrl = user.getUserImage();
                     boolean authorImageUpdated = false;
                     if(holder.recipeAuthorImage.getTag() == null || !holder.recipeAuthorImage.getTag().equals(userImageUrl)) {

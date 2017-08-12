@@ -27,6 +27,7 @@ public class Model {
     public final static Model instance = new Model();
     private ModelFirebase modelFirebase;
     private ModelSql modelSql;
+    private User currentUser;
     private static final String RECIPE_LAST_UPDATE_DATE = "recipeLastUpdateDate";
 
     private Model() {
@@ -35,6 +36,7 @@ public class Model {
         UserFirebase.getUser(UserFirebase.getCurrentUserId(), new BaseInterface.GetUserCallback() {
             @Override
             public void onComplete(User user) {
+                currentUser = user;
                 syncAndRegisterRecipeUpedates();
             }
 
@@ -79,6 +81,9 @@ public class Model {
         return modelFirebase.getCurrentUserId();
     }
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
     public Recipe getRecipe(String recipeId) {
         return RecipeSql.getRecipe(modelSql.getReadableDatabase(),recipeId);
     }

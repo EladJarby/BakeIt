@@ -26,6 +26,7 @@ public class RecipeFirebase {
     public static final String RECIPE_TABLE = "Recipes";
     private static final String RECIPE_ID = "ID";
     private static final String RECIPE_AUTHOR_ID = "recipeAuthorId";
+    private static final String RECIPE_AUTHOR_NAME = "recipeAuthorName";
     private static final String RECIPE_TITLE = "recipeTitle";
     private static final String RECIPE_CATEGORY = "recipeCategory";
     private static final String RECIPE_INSTRUCTIONS = "recipeInstructions";
@@ -45,6 +46,7 @@ public class RecipeFirebase {
         Map<String,Object> values = new HashMap<String , Object>();
         values.put(RECIPE_ID,recipe.getID());
         values.put(RECIPE_AUTHOR_ID,recipe.getRecipeAuthorId());
+        values.put(RECIPE_AUTHOR_NAME,recipe.getRecipeAuthorName());
         values.put(RECIPE_TITLE,recipe.getRecipeTitle());
         values.put(RECIPE_CATEGORY,recipe.getRecipeCategory());
         values.put(RECIPE_INSTRUCTIONS,recipe.getRecipeInstructions());

@@ -12,15 +12,19 @@ import android.app.Fragment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.URLUtil;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
@@ -28,13 +32,17 @@ import org.greenrobot.eventbus.EventBus;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import eladjarby.bakeit.Dialogs.myProgressDialog;
 import eladjarby.bakeit.Models.BaseInterface;
 import eladjarby.bakeit.Models.Model;
 import eladjarby.bakeit.Models.ModelFiles;
+import eladjarby.bakeit.Models.ModelFirebase;
 import eladjarby.bakeit.Models.Recipe.Recipe;
+import eladjarby.bakeit.Models.User.User;
+import eladjarby.bakeit.Models.User.UserFirebase;
 import eladjarby.bakeit.R;
 
 /**
@@ -60,8 +68,11 @@ public class CreateEditFragment extends Fragment {
     ImageView imageCapture;
     Bitmap imageBitmap;
     myProgressDialog mProgressDialog;
-
+    ArrayList<String> ingredientsList = new ArrayList<>();
+//    IngredientsListAdapter adapter = new IngredientsListAdapter();
     private OnFragmentInteractionListener mListener;
+    private EditText recipeTitle,recipeIngredients,recipeTime,recipeInstructions;
+    private ImageView recipeImage;
 
     public CreateEditFragment() {
         // Required empty public constructor
@@ -97,7 +108,23 @@ public class CreateEditFragment extends Fragment {
         ArrayAdapter<String> dropdownAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,items);
         categoryDropdown.setAdapter(dropdownAdapter);
         Button saveButton = (Button) contentView.findViewById(R.id.saveButton);
-        ImageView recipeImage = (ImageView) contentView.findViewById(R.id.recipePhoto);
+        recipeTitle = (EditText) contentView.findViewById(R.id.recipeName);
+        recipeIngredients = (EditText) contentView.findViewById(R.id.recipeIngredients);
+        recipeTime = (EditText) contentView.findViewById(R.id.recipeTime);
+        recipeInstructions = (EditText) contentView.findViewById(R.id.recipeInstructions);
+        recipeImage = (ImageView) contentView.findViewById(R.id.recipePhoto);
+        //ImageView recipeAddIngredient = (ImageView) contentView.findViewById(R.id.recipeAddIngredient);
+        //final EditText recipeIngredientET = (EditText) contentView.findViewById(R.id.recipeIngredients);
+        //ListView recipeIngredientsLV = (ListView) contentView.findViewById(R.id.recipeIngredientsList);
+        //recipeIngredientsLV.setAdapter(adapter);
+//        recipeAddIngredient.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ingredientsList.add(recipeIngredientET.getText().toString());
+//                adapter.notifyDataSetChanged();
+//                recipeIngredientET.setText("");
+//            }
+//        });
         switch (fragMode) {
             case "Create":
                 recipeImage.setVisibility(View.GONE);
@@ -105,6 +132,9 @@ public class CreateEditFragment extends Fragment {
                 saveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (!validateForm()) {
+                            return;
+                        }
                         mProgressDialog.showProgressDialog();
                         final Recipe recipe = createRecipe();
                         if(imageBitmap != null) {
@@ -192,7 +222,7 @@ public class CreateEditFragment extends Fragment {
         switch (fragMode) {
             case "Create":
                 recipeId = Model.instance.getCurrentUserId() + Model.instance.randomNumber();
-                recipeImage = "";
+                recipeImage = "https://firebasestorage.googleapis.com/v0/b/bakeit-f8116.appspot.com/o/noimage.png?alt=media&token=9ec9fdea-b5d4-480f-b8af-3c3f12c70aef";
                 recipeLikes = 0;
                 break;
             case "Edit":
@@ -204,8 +234,48 @@ public class CreateEditFragment extends Fragment {
         }
         int recipeIsRemoved = 0;
         int recipeTime = Integer.parseInt(((EditText) contentView.findViewById(R.id.recipeTime)).getText().toString());
-        return new Recipe(recipeId,Model.instance.getCurrentUserId(),recipeTitle,recipeCategory,recipeInstructions,recipeIngredients,recipeTime,recipeImage,recipeLikes,new SimpleDateFormat("yyyy-MM-dd").format(new Date()),recipeIsRemoved);
+        String userFullName = Model.instance.getCurrentUser().getUserFirstName() + " " + Model.instance.getCurrentUser().getUserLastName();
+        return new Recipe(recipeId,Model.instance.getCurrentUserId(), userFullName ,recipeTitle,recipeCategory,recipeInstructions,recipeIngredients,recipeTime,recipeImage,recipeLikes,new SimpleDateFormat("yyyy-MM-dd").format(new Date()),recipeIsRemoved);
     }
+
+    private boolean validateForm() {
+        boolean valid = true;
+
+        String recipeName = recipeTitle.getText().toString();
+        if (TextUtils.isEmpty(recipeName)) {
+            recipeTitle.setError("Required.");
+            valid = false;
+        } else {
+            recipeTitle.setError(null);
+        }
+
+        String ingredients = recipeIngredients.getText().toString();
+        if (TextUtils.isEmpty(ingredients)) {
+            recipeIngredients.setError("Required.");
+            valid = false;
+        } else {
+            recipeIngredients.setError(null);
+        }
+
+        String time = recipeTime.getText().toString();
+        if (TextUtils.isEmpty(time)) {
+            recipeTime.setError("Required.");
+            valid = false;
+        } else {
+            recipeTime.setError(null);
+        }
+
+        String instructions = recipeInstructions.getText().toString();
+        if (TextUtils.isEmpty(instructions)) {
+            recipeInstructions.setError("Required.");
+            valid = false;
+        } else {
+            recipeInstructions.setError(null);
+        }
+
+        return valid;
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -303,4 +373,47 @@ public class CreateEditFragment extends Fragment {
         }
         return index;
     }
+
+
+//    static class ViewHolder {
+//        public TextView ingredientName;
+//        public ImageView deleteIngredient;
+//    }
+//    private class IngredientsListAdapter extends BaseAdapter {
+//        @Override
+//        public int getCount() {
+//            return ingredientsList.size();
+//        }
+//
+//        @Override
+//        public Object getItem(int position) {
+//            return ingredientsList.get(position);
+//        }
+//
+//        @Override
+//        public long getItemId(int position) {
+//            return position;
+//        }
+//
+//
+//        @Override
+//        public View getView(final int position, View convertView, ViewGroup parent) {
+//            if(convertView == null) {
+//                convertView = getActivity().getLayoutInflater().inflate(R.layout.ingredients_list_row,null);
+//                final ViewHolder holder = new ViewHolder();
+//                holder.ingredientName = (TextView) convertView.findViewById(R.id.ingredient_name);
+//                holder.deleteIngredient = (ImageView) convertView.findViewById(R.id.ingredient_delete);
+//                holder.deleteIngredient.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        ingredientsList.remove(position);
+//                    }
+//                });
+//                convertView.setTag(holder);
+//            }
+//            ViewHolder holder = (ViewHolder) convertView.getTag();
+//            holder.ingredientName.setText(ingredientsList.get(position));
+//            return null;
+//        }
+//    }
 }
