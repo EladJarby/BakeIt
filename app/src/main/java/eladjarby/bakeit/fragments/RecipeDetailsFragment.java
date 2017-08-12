@@ -1,6 +1,15 @@
 package eladjarby.bakeit.fragments;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.Shader;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -78,7 +87,7 @@ public class RecipeDetailsFragment extends Fragment {
             @Override
             public void onComplete(User user) {
                 if(user.getUserImage() != null && !user.getUserImage().isEmpty() && !user.getUserImage().equals("")) {
-                    ((ImageView) contentView.findViewById(R.id.details_author_image)).setImageBitmap(ModelFiles.loadImageFromFile(URLUtil.guessFileName(user.getUserImage(), null, null)));
+                    ((ImageView) contentView.findViewById(R.id.details_author_image)).setImageBitmap(getCroppedBitmap(ModelFiles.loadImageFromFile(URLUtil.guessFileName(user.getUserImage(), null, null)),1));
                 } else {
                     ((ImageView) contentView.findViewById(R.id.details_author_image)).setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.bakeitlogo));
                 }
@@ -127,5 +136,26 @@ public class RecipeDetailsFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
+    }
+
+    public Bitmap getCroppedBitmap(Bitmap bitmap,int borderWidth) {
+        final int width = bitmap.getWidth() + borderWidth;
+        final int height = bitmap.getHeight() + borderWidth;
+
+        Bitmap canvasBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        BitmapShader shader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setShader(shader);
+
+        Canvas canvas = new Canvas(canvasBitmap);
+        float radius = width > height ? ((float) height) / 2f : ((float) width) / 2f;
+        canvas.drawCircle(width / 2, height / 2, radius, paint);
+        paint.setShader(null);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(Color.BLACK);
+        paint.setStrokeWidth(borderWidth);
+        canvas.drawCircle(width / 2, height / 2, radius - borderWidth / 2, paint);
+        return canvasBitmap;
     }
 }

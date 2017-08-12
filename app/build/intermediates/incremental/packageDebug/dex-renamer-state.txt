@@ -1,4 +1,4 @@
-#Wed Aug 09 07:36:33 IDT 2017
+#Sat Aug 12 14:46:54 IDT 2017
 base.0=C\:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_85f50b494af6e0c8639cab2c9769b89ea2392b1e
 renamed.1=classes.dex
 renamed.0=classes2.dex

@@ -20,16 +20,16 @@
         "source": "C:\\Users\\EladJ\\.android\\build-cache\\a7e420404cb410db3370456fc200cd61e8734789\\output\\res\\drawable\\com_facebook_auth_dialog_background.xml"
     },
     {
-        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\com_facebook_button_background.xml",
-        "source": "C:\\Users\\EladJ\\.android\\build-cache\\a7e420404cb410db3370456fc200cd61e8734789\\output\\res\\drawable\\com_facebook_button_background.xml"
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_icon_background.xml",
+        "source": "C:\\Users\\EladJ\\.android\\build-cache\\5f7b03c6cd26cb1433487ab4c680e7acc4c07cf9\\output\\res\\drawable\\notification_icon_background.xml"
     },
     {
         "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_light.xml",
         "source": "C:\\Users\\EladJ\\.android\\build-cache\\5f7b03c6cd26cb1433487ab4c680e7acc4c07cf9\\output\\res\\drawable\\abc_list_selector_holo_light.xml"
     },
     {
-        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_icon_background.xml",
-        "source": "C:\\Users\\EladJ\\.android\\build-cache\\5f7b03c6cd26cb1433487ab4c680e7acc4c07cf9\\output\\res\\drawable\\notification_icon_background.xml"
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\com_facebook_button_background.xml",
+        "source": "C:\\Users\\EladJ\\.android\\build-cache\\a7e420404cb410db3370456fc200cd61e8734789\\output\\res\\drawable\\com_facebook_button_background.xml"
     },
     {
         "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\com_facebook_favicon_blue.xml",
@@ -42,6 +42,10 @@
     {
         "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_dark.xml",
         "source": "C:\\Users\\EladJ\\.android\\build-cache\\73d62e9135208d327b3bdbeebe1653bb549c9ae7\\output\\res\\drawable\\common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\circle.xml",
+        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\src\\main\\res\\drawable\\circle.xml"
     },
     {
         "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",

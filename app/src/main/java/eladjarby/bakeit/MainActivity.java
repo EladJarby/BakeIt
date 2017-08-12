@@ -31,7 +31,7 @@ RecipeDetailsFragment.OnFragmentInteractionListener{
         searchView.setFocusable(false);
 
 
-        FeedFragment feedFragment = FeedFragment.newInstance();
+        FeedFragment feedFragment = FeedFragment.newInstance("list","");
         getFragmentManager().beginTransaction()
                 .replace(R.id.main_fragment_container, feedFragment)
                 .commit();
@@ -63,6 +63,15 @@ RecipeDetailsFragment.OnFragmentInteractionListener{
                 .add(R.id.main_fragment_container,createEditFragment).addToBackStack(null)
                 .commit();
     }
+
+    @Override
+    public void userProfile() {
+        FeedFragment feedProfile = FeedFragment.newInstance("profile","");
+        getFragmentManager().beginTransaction()
+                .add(R.id.main_fragment_container, feedProfile).addToBackStack(null)
+                .commit();
+    }
+
     public boolean onCreateOptionsMenu(Menu menu){
         return super.onCreateOptionsMenu(menu);
     }

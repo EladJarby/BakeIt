@@ -224,6 +224,10 @@
         "source": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\src\\main\\res\\layout\\fragment_create_edit.xml"
     },
     {
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_user_profile.xml",
+        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\src\\main\\res\\layout\\fragment_user_profile.xml"
+    },
+    {
         "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_login.xml",
         "source": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\src\\main\\res\\layout\\activity_login.xml"
     },

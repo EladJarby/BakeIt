@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -66,7 +67,6 @@ public class FeedFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     ListView list;
-    int changeIndex = 0;
     private PopupWindow popWindow;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -84,7 +84,6 @@ public class FeedFragment extends Fragment {
             if(event.recipe.getRecipeIsRemoved() == 0) {
                 recipeList.add(0, event.recipe);
             }
-            changeIndex = 0;
             adapter.notifyDataSetChanged();
         }
     }
@@ -103,7 +102,6 @@ public class FeedFragment extends Fragment {
             if(event.recipe.getRecipeIsRemoved() == 1) {
                 recipeList.remove(index);
             }
-            changeIndex = index;
             adapter.notifyDataSetChanged();
         }
     }
@@ -124,17 +122,13 @@ public class FeedFragment extends Fragment {
 //            adapter.notifyDataSetChanged();
 //        }
 //    }
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     private OnFragmentInteractionListener mListener;
 
     public FeedFragment() {
         // Required empty public constructor
     }
     // TODO: Rename and change types and number of parameters
-    public static FeedFragment newInstance() {
+    public static FeedFragment newInstance(String fragState,String recipeCategory) {
         FeedFragment fragment = new FeedFragment();
         return fragment;
     }
@@ -167,6 +161,13 @@ public class FeedFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mListener.addRecipe();
+            }
+        });
+        ImageView menuProfile = (ImageView) getActivity().findViewById(R.id.menu_profile);
+        menuProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.userProfile();
             }
         });
         list.setAdapter(adapter);
@@ -216,6 +217,7 @@ public class FeedFragment extends Fragment {
         void onItemSelected(String recipeId);
         void addRecipe();
         void editRecipe(String recipeId);
+        void userProfile();
     }
 
     private void checkPermission() {
@@ -237,6 +239,7 @@ public class FeedFragment extends Fragment {
         public ImageView recipeImage;
         public TextView recipeLikes;
         public ImageView recipeArrow;
+        public ImageView likeImage;
     }
     class RecipeListAdapter extends BaseAdapter {
 
@@ -260,7 +263,7 @@ public class FeedFragment extends Fragment {
         public View getView(final int position, View convertView, ViewGroup parent) {
             if(convertView == null) {
                 convertView = getActivity().getLayoutInflater().inflate(R.layout.feed_list_row,null);
-                ViewHolder holder = new ViewHolder();
+                final ViewHolder holder = new ViewHolder();
                 holder.recipeAuthorImage = (ImageView) convertView.findViewById(R.id.strow_authorImage);
                 holder.recipeTitle = (TextView) convertView.findViewById(R.id.strow_header);
                 holder.recipeDescription = (TextView) convertView.findViewById(R.id.strow_description);
@@ -269,6 +272,7 @@ public class FeedFragment extends Fragment {
                 holder.recipeLikes = (TextView) convertView.findViewById(R.id.strow_likes);
                 holder.recipeImage = (ImageView) convertView.findViewById(R.id.strow_image);
                 holder.recipeArrow = (ImageView) convertView.findViewById(R.id.strow_arrow);
+                holder.likeImage = (ImageView) convertView.findViewById(R.id.strow_likeImage);
                 holder.recipeLikes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -276,6 +280,8 @@ public class FeedFragment extends Fragment {
                         int pos = (int)v.getTag();
                         Recipe recipe = recipeList.get(pos);
                         Model.instance.changeLike(recipe);
+                        Animation pulse = AnimationUtils.loadAnimation(getActivity(), R.anim.pulse);
+                        holder.likeImage.setAnimation(pulse);
                     }
                 });
                 holder.recipeArrow.setOnClickListener(new View.OnClickListener() {
@@ -299,10 +305,15 @@ public class FeedFragment extends Fragment {
             authorProgressBar.setVisibility(View.VISIBLE);
             recipeProgressBar.setVisibility(View.GONE);
             holder.recipeDescription.setText(recipe.getRecipeTitle());
+            if(UserFirebase.getCurrentUserId().equals(recipe.getRecipeAuthorId())) {
+                holder.recipeArrow.setVisibility(View.VISIBLE);
+            } else {
+                holder.recipeArrow.setVisibility(View.INVISIBLE);
+            }
             UserFirebase.getUser(recipe.getRecipeAuthorId(), new BaseInterface.GetUserCallback() {
                 @Override
                 public void onComplete(final User user) {
-                    holder.recipeTitle.setText(user.getUserFirstName() + " " + user.getUserLastName() + " posted a recipe on");
+                    holder.recipeTitle.setText(user.getUserFirstName() + " " + user.getUserLastName());
                     final String userImageUrl = user.getUserImage();
                     boolean authorImageUpdated = false;
                     if(holder.recipeAuthorImage.getTag() == null || !holder.recipeAuthorImage.getTag().equals(userImageUrl)) {

@@ -12,9 +12,11 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/strow_authorImage"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="10dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="7dp"
 />
         <ProgressBar
             android:id="@+id/authorProgressBar"
@@ -30,38 +32,54 @@
         android:layout_marginTop="2dp"
         android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/strow_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="User posted a reciepe on"
-            android:textSize="20dp"
-            android:textColor="#000000"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="4dp">
+            <TextView
+                android:id="@+id/strow_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:layout_marginLeft="3dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:text="user"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:text=" posted a recipeghgyjghjg on"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@android:drawable/ic_menu_my_calendar" />
+
             <TextView
                 android:id="@+id/strow_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="category"
-                android:textSize="15dp"
-                android:textColor="#000000"/>
+                android:text="@string/category"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="15dp" />
         </LinearLayout>
         <TextView
             android:id="@+id/strow_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textColor="#000000"
+            android:layout_marginTop="2dp"
+            android:textColor="#6e6e6e"
+            android:layout_marginLeft="3dp"
             android:text="4hrs"/>
     </LinearLayout>
 
@@ -74,25 +92,30 @@
         android:focusable="false"
         android:src="@drawable/ic_expand_button" />
 </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/strow_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
             android:layout_marginLeft="10dp"
-            android:text="bla"/>
+            android:text="bla"
+            android:textColor="#000000" />
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/strow_image"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop" />
+
             <ProgressBar
                 android:id="@+id/recipeProgressBar"
                 android:layout_width="match_parent"
@@ -100,25 +123,30 @@
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:visibility="gone" />
         </FrameLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             android:orientation="horizontal">
+
             <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
+                android:id="@+id/strow_likeImage"
+                android:paddingTop="5dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_favorite_red_24dp"
-                />
+                android:src="@drawable/ic_favorite_red_24dp" />
+
             <TextView
                 android:id="@+id/strow_likes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
                 android:layout_marginLeft="5dp"
-                android:textColor="#000000"
-                android:text="8 peoples liked"/>
+                android:text="8 peoples liked"
+                android:textColor="#000000" />
 
         </LinearLayout>
     </LinearLayout>
