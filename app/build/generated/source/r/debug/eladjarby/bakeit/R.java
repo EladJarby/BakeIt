@@ -2770,13 +2770,13 @@ containing a value of this type.
         public static final int default_activity_button=0x7f0b0048;
         public static final int details_author_image=0x7f0b00b0;
         public static final int details_category=0x7f0b00b3;
-        public static final int details_date=0x7f0b00b2;
+        public static final int details_date=0x7f0b00b1;
         public static final int details_image=0x7f0b00af;
         public static final int details_ingredients=0x7f0b00b6;
         public static final int details_instructions=0x7f0b00b7;
         public static final int details_likes=0x7f0b00b5;
         public static final int details_time=0x7f0b00b4;
-        public static final int details_title=0x7f0b00b1;
+        public static final int details_title=0x7f0b00b2;
         public static final int disableHome=0x7f0b0015;
         public static final int display_always=0x7f0b003e;
         public static final int edit_query=0x7f0b0067;

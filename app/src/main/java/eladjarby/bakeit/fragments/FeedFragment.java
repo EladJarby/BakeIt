@@ -292,7 +292,8 @@ public class FeedFragment extends Fragment {
                 holder.recipeArrow.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        onShowPopup(v,position);
+                        int pos = (int)v.getTag();
+                        onShowPopup(v,pos);
                     }
                 });
                 holder.recipeImage.setOnClickListener(new View.OnClickListener() {
@@ -386,6 +387,7 @@ public class FeedFragment extends Fragment {
             holder.recipeCategory.setText(recipe.getRecipeCategory());
             holder.recipeDate.setText(recipe.getRecipeDate());
             holder.recipeLikes.setText(recipe.getRecipeLikes() + " peoples liked");
+            holder.recipeArrow.setTag(position);
             holder.recipeLikes.setTag(position);
             return convertView;
         }

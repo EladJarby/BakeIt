@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat Aug 12 22:08:28 IDT 2017
+#Sun Aug 13 00:20:26 IDT 2017
 210.set=ANDROID_RESOURCE
 282.file=C\:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\photo.png
 14.set=ANDROID_RESOURCE

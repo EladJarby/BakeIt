@@ -791,13 +791,13 @@ int id decor_content_parent 0x7f0b0063
 int id default_activity_button 0x7f0b0048
 int id details_author_image 0x7f0b00b0
 int id details_category 0x7f0b00b3
-int id details_date 0x7f0b00b2
+int id details_date 0x7f0b00b1
 int id details_image 0x7f0b00af
 int id details_ingredients 0x7f0b00b6
 int id details_instructions 0x7f0b00b7
 int id details_likes 0x7f0b00b5
 int id details_time 0x7f0b00b4
-int id details_title 0x7f0b00b1
+int id details_title 0x7f0b00b2
 int id disableHome 0x7f0b0015
 int id display_always 0x7f0b003e
 int id edit_query 0x7f0b0067
