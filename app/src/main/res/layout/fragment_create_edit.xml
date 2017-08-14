@@ -84,12 +84,18 @@
                     android:layout_height="wrap_content"
                     android:text="Time"
                     android:textColor="#000000" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:textSize="10sp"
+                    android:text="(Minutes)" />
 
                 <EditText
                     android:id="@+id/recipeTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="48dp"
+                    android:layout_marginLeft="4dp"
                     android:inputType="numberSigned" />
             </LinearLayout>
 
