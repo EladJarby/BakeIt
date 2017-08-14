@@ -52,12 +52,12 @@
         "source": "C:\\Users\\EladJ\\.android\\build-cache\\ed0861a2e3521ea67b23d62958af941ae88e6882\\output\\res\\color\\com_facebook_send_button_text_color.xml"
     },
     {
-        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\color\\abc_tint_default.xml",
-        "source": "C:\\Users\\EladJ\\.android\\build-cache\\899605adf694fcabfddbbe602708fb7060be7134\\output\\res\\color\\abc_tint_default.xml"
-    },
-    {
         "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\color\\com_facebook_button_text_color.xml",
         "source": "C:\\Users\\EladJ\\.android\\build-cache\\ed0861a2e3521ea67b23d62958af941ae88e6882\\output\\res\\color\\com_facebook_button_text_color.xml"
+    },
+    {
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\color\\abc_tint_default.xml",
+        "source": "C:\\Users\\EladJ\\.android\\build-cache\\899605adf694fcabfddbbe602708fb7060be7134\\output\\res\\color\\abc_tint_default.xml"
     },
     {
         "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\color\\common_google_signin_btn_text_dark.xml",

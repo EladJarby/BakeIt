@@ -39,6 +39,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 import eladjarby.bakeit.Dialogs.myProgressDialog;
 import eladjarby.bakeit.MainActivity;
@@ -271,7 +272,8 @@ public class CreateEditFragment extends Fragment {
         int recipeIsRemoved = 0;
         int recipeTime = Integer.parseInt(((EditText) contentView.findViewById(R.id.recipeTime)).getText().toString());
         String userFullName = Model.instance.getCurrentUser().getUserFirstName() + " " + Model.instance.getCurrentUser().getUserLastName();
-        return new Recipe(recipeId,Model.instance.getCurrentUserId(), userFullName ,recipeTitle,recipeCategory,recipeInstructions,recipeIngredients,recipeTime,recipeImage,recipeLikes,new SimpleDateFormat("yyyy-MM-dd").format(new Date()),recipeIsRemoved);
+        String currentTime = new SimpleDateFormat("d MMM yyyy", Locale.ENGLISH).format(new Date()) + " at " + new SimpleDateFormat("H:mm").format(new Date());
+        return new Recipe(recipeId,Model.instance.getCurrentUserId(), userFullName ,recipeTitle,recipeCategory,recipeInstructions,recipeIngredients,recipeTime,recipeImage,recipeLikes,currentTime,recipeIsRemoved);
     }
 
     private boolean validateForm() {
