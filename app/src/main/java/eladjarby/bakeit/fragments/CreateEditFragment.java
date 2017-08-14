@@ -12,7 +12,11 @@ import android.app.Fragment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
+import org.w3c.dom.Text;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -36,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import eladjarby.bakeit.Dialogs.myProgressDialog;
+import eladjarby.bakeit.MainActivity;
 import eladjarby.bakeit.Models.BaseInterface;
 import eladjarby.bakeit.Models.Model;
 import eladjarby.bakeit.Models.ModelFiles;
@@ -110,23 +116,48 @@ public class CreateEditFragment extends Fragment {
         Button saveButton = (Button) contentView.findViewById(R.id.saveButton);
         recipeTitle = (EditText) contentView.findViewById(R.id.recipeName);
         recipeIngredients = (EditText) contentView.findViewById(R.id.recipeIngredients);
+        recipeIngredients.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus && ((EditText)v).getText().length() == 0) {
+                    recipeIngredients.setText("* ");
+                    recipeIngredients.setSelection(recipeIngredients.getText().length());
+                }
+            }
+        });
+        recipeIngredients.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode == event.KEYCODE_ENTER && event.getAction() != event.ACTION_DOWN) {
+                    recipeIngredients.setText(recipeIngredients.getText() + "* ");
+                    recipeIngredients.setSelection(recipeIngredients.getText().length());
+                    return true;
+                }
+                return false;
+            }
+        });
         recipeTime = (EditText) contentView.findViewById(R.id.recipeTime);
         recipeInstructions = (EditText) contentView.findViewById(R.id.recipeInstructions);
         recipeImage = (ImageView) contentView.findViewById(R.id.recipePhoto);
-        //ImageView recipeAddIngredient = (ImageView) contentView.findViewById(R.id.recipeAddIngredient);
-        //final EditText recipeIngredientET = (EditText) contentView.findViewById(R.id.recipeIngredients);
-        //ListView recipeIngredientsLV = (ListView) contentView.findViewById(R.id.recipeIngredientsList);
-        //recipeIngredientsLV.setAdapter(adapter);
-//        recipeAddIngredient.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ingredientsList.add(recipeIngredientET.getText().toString());
-//                adapter.notifyDataSetChanged();
-//                recipeIngredientET.setText("");
-//            }
-//        });
+
+        //Menu
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        ImageView menuAdd = (ImageView) getActivity().findViewById(R.id.menu_add);
+        ImageView menuProfile = (ImageView) getActivity().findViewById(R.id.menu_profile);
+        SearchView searchItem = (SearchView) getActivity().findViewById(R.id.item_search);
+        TextView menuTitle = (TextView) getActivity().findViewById(R.id.menu_title);
+        menuTitle.setVisibility(View.VISIBLE);
+        menuAdd.setVisibility(View.GONE);
+        menuProfile.setVisibility(View.GONE);
+        searchItem.setVisibility(View.GONE);
+
         switch (fragMode) {
             case "Create":
+                // Make back button enable on actionbar.
+                menuTitle.setText("Create recipe");
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Home");
                 recipeImage.setVisibility(View.GONE);
                 saveButton.setText("Upload recipe");
                 saveButton.setOnClickListener(new View.OnClickListener() {
@@ -144,6 +175,7 @@ public class CreateEditFragment extends Fragment {
                                     recipe.setRecipeImage(url);
                                     Model.instance.addRecipe(recipe);
                                     mProgressDialog.hideProgressDialog();
+                                    ((MainActivity)getActivity()).showMenu();
                                     getFragmentManager().popBackStack();
                                 }
 
@@ -155,12 +187,14 @@ public class CreateEditFragment extends Fragment {
                         } else {
                             Model.instance.addRecipe(recipe);
                             mProgressDialog.hideProgressDialog();
+                            ((MainActivity)getActivity()).showMenu();
                             getFragmentManager().popBackStack();
                         }
                     }
                 });
                 break;
             case "Edit":
+                menuTitle.setText("Edit recipe");
                 getRecipeData(Model.instance.getRecipe(recipeId));
                 recipeImage.setVisibility(View.VISIBLE);
                 saveButton.setText("Edit recipe");
@@ -176,6 +210,7 @@ public class CreateEditFragment extends Fragment {
                                     recipe.setRecipeImage(url);
                                     Model.instance.editRecipe(recipe);
                                     mProgressDialog.hideProgressDialog();
+                                    ((MainActivity)getActivity()).showMenu();
                                     getFragmentManager().popBackStack();
                                 }
 
@@ -187,6 +222,7 @@ public class CreateEditFragment extends Fragment {
                         } else {
                             Model.instance.addRecipe(recipe);
                             mProgressDialog.hideProgressDialog();
+                            ((MainActivity)getActivity()).showMenu();
                             getFragmentManager().popBackStack();
                         }
                     }

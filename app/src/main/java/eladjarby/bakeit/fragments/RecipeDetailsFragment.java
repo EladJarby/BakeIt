@@ -14,6 +14,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,6 +77,20 @@ public class RecipeDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        ImageView menuAdd = (ImageView) getActivity().findViewById(R.id.menu_add);
+        ImageView menuProfile = (ImageView) getActivity().findViewById(R.id.menu_profile);
+        SearchView searchItem = (SearchView) getActivity().findViewById(R.id.item_search);
+        TextView menuTitle = (TextView) getActivity().findViewById(R.id.menu_title);
+        menuTitle.setVisibility(View.VISIBLE);
+        menuAdd.setVisibility(View.GONE);
+        menuProfile.setVisibility(View.GONE);
+        searchItem.setVisibility(View.GONE);
+        menuTitle.setText("Recipe details");
+
         final View contentView = inflater.inflate(R.layout.fragment_recipe_details, container, false);
         final Recipe recipe = Model.instance.getRecipe(recipeId);
         ((TextView)contentView.findViewById(R.id.details_title)).setText(recipe.getRecipeTitle());

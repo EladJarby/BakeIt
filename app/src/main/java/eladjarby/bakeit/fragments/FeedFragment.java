@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.text.Spannable;
@@ -149,9 +150,11 @@ public class FeedFragment extends Fragment {
                              Bundle savedInstanceState) {
         checkPermission();
         // Inflate the layout for this fragment
-        getActivity().setTitle("");
-
         View contentView = inflater.inflate(R.layout.fragment_feed, container, false);
+
+        ImageView menuAdd = (ImageView) getActivity().findViewById(R.id.menu_add);
+        ImageView menuProfile = (ImageView) getActivity().findViewById(R.id.menu_profile);
+
         list = (ListView) contentView.findViewById(R.id.recipeList);
 
         Model.instance.getRecipeList(new BaseInterface.GetAllRecipesCallback() {
@@ -161,14 +164,12 @@ public class FeedFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
-        ImageView menuAdd = (ImageView) getActivity().findViewById(R.id.menu_add);
         menuAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.addRecipe();
             }
         });
-        ImageView menuProfile = (ImageView) getActivity().findViewById(R.id.menu_profile);
         menuProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,8 +177,6 @@ public class FeedFragment extends Fragment {
             }
         });
         list.setAdapter(adapter);
-        //((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
         return contentView;
     }
 
@@ -282,7 +281,7 @@ public class FeedFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         // Problem could happend: will raise likes every click
-                        int pos = (int)v.getTag();
+                        int pos = (int)holder.recipeLikes.getTag();
                         Recipe recipe = recipeList.get(pos);
                         Model.instance.changeLike(recipe);
                         Animation pulse = AnimationUtils.loadAnimation(getActivity(), R.anim.pulse);
@@ -292,14 +291,15 @@ public class FeedFragment extends Fragment {
                 holder.recipeArrow.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int pos = (int)v.getTag();
+                        int pos = (int)holder.recipeLikes.getTag();
                         onShowPopup(v,pos);
                     }
                 });
                 holder.recipeImage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mListener.onItemSelected(recipeList.get(position).getID());
+                        int pos = (int)holder.recipeLikes.getTag();
+                        mListener.onItemSelected(recipeList.get(pos).getID());
                     }
                 });
                 convertView.setTag(holder);
@@ -387,7 +387,6 @@ public class FeedFragment extends Fragment {
             holder.recipeCategory.setText(recipe.getRecipeCategory());
             holder.recipeDate.setText(recipe.getRecipeDate());
             holder.recipeLikes.setText(recipe.getRecipeLikes() + " peoples liked");
-            holder.recipeArrow.setTag(position);
             holder.recipeLikes.setTag(position);
             return convertView;
         }

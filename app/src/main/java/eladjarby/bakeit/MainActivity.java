@@ -3,12 +3,16 @@ package eladjarby.bakeit;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import eladjarby.bakeit.Models.Model;
 import eladjarby.bakeit.Models.ModelFirebase;
@@ -72,8 +76,38 @@ RecipeDetailsFragment.OnFragmentInteractionListener{
                 .commit();
     }
 
-    public boolean onCreateOptionsMenu(Menu menu){
-        return super.onCreateOptionsMenu(menu);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                getFragmentManager().popBackStack();
+                showMenu();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
-    
+
+    @Override
+    public void onBackPressed() {
+        if(getFragmentManager().getBackStackEntryCount() == 0) {
+            finish();
+        }
+        getFragmentManager().popBackStack();
+        showMenu();
+    }
+
+    public void showMenu() {
+        ActionBar actionBar = ((AppCompatActivity) this).getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        ImageView menuAdd = (ImageView) findViewById(R.id.menu_add);
+        ImageView menuProfile = (ImageView) findViewById(R.id.menu_profile);
+        SearchView searchItem = (SearchView) findViewById(R.id.item_search);
+        TextView menuTitle = (TextView) findViewById(R.id.menu_title);
+        menuTitle.setVisibility(View.GONE);
+        menuAdd.setVisibility(View.VISIBLE);
+        menuProfile.setVisibility(View.VISIBLE);
+        searchItem.setVisibility(View.VISIBLE);
+    }
+
 }
