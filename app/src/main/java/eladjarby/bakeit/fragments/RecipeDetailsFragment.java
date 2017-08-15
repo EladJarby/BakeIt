@@ -83,12 +83,12 @@ public class RecipeDetailsFragment extends Fragment {
 
         ImageView menuAdd = (ImageView) getActivity().findViewById(R.id.menu_add);
         ImageView menuProfile = (ImageView) getActivity().findViewById(R.id.menu_profile);
-        SearchView searchItem = (SearchView) getActivity().findViewById(R.id.item_search);
         TextView menuTitle = (TextView) getActivity().findViewById(R.id.menu_title);
+        TextView menuTitleBakeIt = (TextView) getActivity().findViewById(R.id.menu_title_bakeit);
+        menuTitleBakeIt.setVisibility(View.GONE);
         menuTitle.setVisibility(View.VISIBLE);
         menuAdd.setVisibility(View.GONE);
         menuProfile.setVisibility(View.GONE);
-        searchItem.setVisibility(View.GONE);
         menuTitle.setText("Recipe details");
         final View contentView = inflater.inflate(R.layout.fragment_recipe_details, container, false);
         final Recipe recipe = Model.instance.getRecipe(recipeId);

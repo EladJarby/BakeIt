@@ -61,6 +61,10 @@ public class UserFirebase {
         // [END sign_in_with_email]
     }
 
+    public static void logoutAccount() {
+        mAuth.signOut();
+    }
+
     public static void loginAccount(LoginActivity loginActivity , String email , String password , final BaseInterface.LoginAccountCallBack callback) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(loginActivity, new OnCompleteListener<AuthResult>() {

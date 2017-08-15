@@ -1,53 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="arm64-v8a,armeabi-v7a,armeabi"
-    api-level="24"
+    abi="x86"
+    api-level="22"
     build-mode="COLD"
-    density="420dpi"
+    density="xxhdpi"
     format="10"
     plugin-version="2.3.3"
-    timestamp="1502745169389"
+    timestamp="1502830428710"
     token="5147019778999230369"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="1638" />
+        duration="559" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="14" />
+        duration="25" />
     <task
         name="verifier"
-        duration="110" />
+        duration="3" />
 
     <artifact
         location="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
         type="SPLIT" />
+    <artifact
+        location="C:\Users\EladJ\Desktop\BakeIt\app\build\outputs\apk\app-debug.apk"
+        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1502742082807"
+        timestamp="1502827030695"
         verifier="FULL_BUILD_REQUESTED" >
-        <artifact
-            location="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
-            type="SPLIT" />
         <artifact
             location="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\EladJ\Desktop\BakeIt\app\build\outputs\apk\app-debug.apk"
-            type="SPLIT_MAIN" />
+            location="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+            type="SPLIT" />
         <artifact
             location="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
@@ -59,6 +56,9 @@
             location="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
         <artifact
+            location="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            type="SPLIT" />
+        <artifact
             location="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
             type="SPLIT" />
         <artifact
@@ -67,10 +67,24 @@
         <artifact
             location="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
             type="SPLIT" />
+        <artifact
+            location="C:\Users\EladJ\Desktop\BakeIt\app\build\outputs\apk\app-debug.apk"
+            type="SPLIT_MAIN" />
     </build>
     <build
         build-mode="COLD"
-        timestamp="1502744209799"
+        timestamp="1502828555559"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+            type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        timestamp="1502828800454"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
@@ -78,19 +92,25 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1502744492807"
+        timestamp="1502830328865"
         verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+            type="SPLIT" />
         <artifact
             location="C:\Users\EladJ\Desktop\BakeIt\app\build\outputs\apk\app-debug.apk"
             type="SPLIT_MAIN" />
     </build>
     <build
         build-mode="COLD"
-        timestamp="1502745169389"
+        timestamp="1502830428710"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
+        <artifact
+            location="C:\Users\EladJ\Desktop\BakeIt\app\build\outputs\apk\app-debug.apk"
+            type="SPLIT_MAIN" />
     </build>
 
 </instant-run>

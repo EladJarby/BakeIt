@@ -33,6 +33,9 @@ public class Model {
     private Model() {
         modelSql = new ModelSql(MyApplication.getMyContext());
         modelFirebase = new ModelFirebase();
+    }
+
+    public void syncUser() {
         UserFirebase.getUser(UserFirebase.getCurrentUserId(), new BaseInterface.GetUserCallback() {
             @Override
             public void onComplete(User user) {
@@ -45,7 +48,7 @@ public class Model {
 
             }
         });
-}
+    }
 
     public class RecipeUpdateEvent {
 

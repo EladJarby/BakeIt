@@ -39,14 +39,17 @@
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/ic_plus_white_24dp" />
 
-            <android.support.v7.widget.SearchView
+            <TextView
+                android:id="@+id/menu_title_bakeit"
                 android:layout_weight="0.8"
-                android:id="@+id/item_search"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:actionViewClass="android.support.v7.widget.SearchView"
-                android:showAsAction="always"
-                android:title="Search" />
+                android:text="BakeIt"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                />
 
             <ImageView
                 android:id="@+id/menu_profile"

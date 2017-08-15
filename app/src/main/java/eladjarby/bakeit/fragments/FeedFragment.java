@@ -154,6 +154,8 @@ public class FeedFragment extends Fragment {
 
         ImageView menuAdd = (ImageView) getActivity().findViewById(R.id.menu_add);
         ImageView menuProfile = (ImageView) getActivity().findViewById(R.id.menu_profile);
+        TextView menuTitleBakeIt = (TextView) getActivity().findViewById(R.id.menu_title_bakeit);
+        menuTitleBakeIt.setVisibility(View.VISIBLE);
 
         list = (ListView) contentView.findViewById(R.id.recipeList);
 
@@ -431,7 +433,6 @@ public class FeedFragment extends Fragment {
         popupList.add("Delete");
         listView.setAdapter(new ArrayAdapter<String>(getActivity(),
                 R.layout.arrow_popup_row, R.id.arrow_popup_title,popupList));
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
