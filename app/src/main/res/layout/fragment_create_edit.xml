@@ -62,18 +62,18 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1" />
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/recipeAddIngredient"-->
-                    <!--android:layout_width="30sp"-->
-                    <!--android:layout_height="30sp"-->
-                    <!--android:layout_marginTop="5dp"-->
-                    <!--android:src="@drawable/ic_plus_green_24dp" />-->
+                <ImageView
+                    android:id="@+id/recipeAddIngredient"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_plus_green_24dp" />
             </LinearLayout>
 
-            <!--<ListView-->
-                <!--android:id="@+id/recipeIngredientsList"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content" />-->
+            <ListView
+                android:id="@+id/recipeIngredientsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <LinearLayout
                 android:layout_width="match_parent"

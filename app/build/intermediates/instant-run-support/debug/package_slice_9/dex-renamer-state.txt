@@ -1,4 +1,4 @@
-#Tue Aug 15 23:22:41 IDT 2017
+#Fri Aug 18 09:00:51 IDT 2017
 base.0=C\:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_9
 renamed.0=classes.dex
 file.0=C\:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_9\\classes.dex

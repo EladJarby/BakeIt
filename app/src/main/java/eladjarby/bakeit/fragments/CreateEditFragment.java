@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -26,6 +27,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,8 +38,10 @@ import org.w3c.dom.Text;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.sql.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
@@ -76,10 +80,11 @@ public class CreateEditFragment extends Fragment {
     Bitmap imageBitmap;
     myProgressDialog mProgressDialog;
     ArrayList<String> ingredientsList = new ArrayList<>();
-//    IngredientsListAdapter adapter = new IngredientsListAdapter();
+    IngredientsListAdapter adapter = new IngredientsListAdapter();
     private OnFragmentInteractionListener mListener;
     private EditText recipeTitle,recipeIngredients,recipeTime,recipeInstructions;
     private ImageView recipeImage;
+    private ListView ingredientsListLV;
 
     public CreateEditFragment() {
         // Required empty public constructor
@@ -117,26 +122,39 @@ public class CreateEditFragment extends Fragment {
         Button saveButton = (Button) contentView.findViewById(R.id.saveButton);
         recipeTitle = (EditText) contentView.findViewById(R.id.recipeName);
         recipeIngredients = (EditText) contentView.findViewById(R.id.recipeIngredients);
-        recipeIngredients.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        ImageView recipeAddIngredient = (ImageView) contentView.findViewById(R.id.recipeAddIngredient);
+        ingredientsListLV = (ListView) contentView.findViewById(R.id.recipeIngredientsList);
+        ingredientsListLV.setAdapter(adapter);
+        recipeAddIngredient.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus && ((EditText)v).getText().length() == 0) {
-                    recipeIngredients.setText("* ");
-                    recipeIngredients.setSelection(recipeIngredients.getText().length());
-                }
+            public void onClick(View v) {
+                ingredientsList.add(recipeIngredients.getText().toString());
+                recipeIngredients.setText("");
+                adapter.notifyDataSetChanged();
+                setListViewHeightBasedOnChildren(ingredientsListLV);
             }
         });
-        recipeIngredients.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if(keyCode == event.KEYCODE_ENTER && event.getAction() != event.ACTION_DOWN) {
-                    recipeIngredients.setText(recipeIngredients.getText() + "* ");
-                    recipeIngredients.setSelection(recipeIngredients.getText().length());
-                    return true;
-                }
-                return false;
-            }
-        });
+//        recipeIngredients.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if(hasFocus && ((EditText)v).getText().length() == 0) {
+//                    recipeIngredients.setText("* ");
+//                    recipeIngredients.setSelection(recipeIngredients.getText().length());
+//                }
+//            }
+//        });
+//        recipeIngredients.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                if(keyCode == event.KEYCODE_ENTER && event.getAction() != event.ACTION_DOWN) {
+//                    recipeIngredients.setText(recipeIngredients.getText() + "* ");
+//                    recipeIngredients.setSelection(recipeIngredients.getText().length());
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
+
         recipeTime = (EditText) contentView.findViewById(R.id.recipeTime);
         recipeInstructions = (EditText) contentView.findViewById(R.id.recipeInstructions);
         recipeImage = (ImageView) contentView.findViewById(R.id.recipePhoto);
@@ -252,8 +270,14 @@ public class CreateEditFragment extends Fragment {
         String recipeId = null;
         String recipeImage = null;
         int recipeLikes = 0;
+        String recipeIngredients = "";
         String recipeTitle = ((EditText) contentView.findViewById(R.id.recipeName)).getText().toString();
-        String recipeIngredients = ((EditText) contentView.findViewById(R.id.recipeIngredients)).getText().toString();
+
+        for(int i=0; i < ingredientsList.size()-1; i++) {
+            recipeIngredients = recipeIngredients + "\u2022 " + ingredientsList.get(i).toString() + "\n";
+        }
+        recipeIngredients = recipeIngredients + "\u2022 " + ingredientsList.get(ingredientsList.size()-1).toString();
+
         String recipeInstructions = ((EditText) contentView.findViewById(R.id.recipeInstructions)).getText().toString();
         String recipeCategory = ((Spinner) contentView.findViewById(R.id.recipeCategory)).getSelectedItem().toString();
         switch (fragMode) {
@@ -288,8 +312,8 @@ public class CreateEditFragment extends Fragment {
         }
 
         String ingredients = recipeIngredients.getText().toString();
-        if (TextUtils.isEmpty(ingredients)) {
-            recipeIngredients.setError("Required.");
+        if (ingredientsList.size() == 0) {
+            recipeIngredients.setError("Required at least 1.");
             valid = false;
         } else {
             recipeIngredients.setError(null);
@@ -388,7 +412,11 @@ public class CreateEditFragment extends Fragment {
 
     private void getRecipeData(Recipe recipe) {
         ((EditText)contentView.findViewById(R.id.recipeName)).setText(recipe.getRecipeTitle());
-        ((EditText)contentView.findViewById(R.id.recipeIngredients)).setText(recipe.getRecipeIngredients());
+        //((EditText)contentView.findViewById(R.id.recipeIngredients)).setText(recipe.getRecipeIngredients());
+        String recipeIngredients = recipe.getRecipeIngredients();
+        recipeIngredients = recipeIngredients.replace("\u2022 ","");
+        ingredientsList = new ArrayList<String>(Arrays.asList(recipeIngredients.split("\n")));
+        setListViewHeightBasedOnChildren(ingredientsListLV);
         ((EditText)contentView.findViewById(R.id.recipeTime)).setText("" + recipe.getRecipeTime());
         ((EditText)contentView.findViewById(R.id.recipeInstructions)).setText(recipe.getRecipeInstructions());
         Spinner categorySpinner = ((Spinner)contentView.findViewById(R.id.recipeCategory));
@@ -413,45 +441,66 @@ public class CreateEditFragment extends Fragment {
     }
 
 
-//    static class ViewHolder {
-//        public TextView ingredientName;
-//        public ImageView deleteIngredient;
-//    }
-//    private class IngredientsListAdapter extends BaseAdapter {
-//        @Override
-//        public int getCount() {
-//            return ingredientsList.size();
-//        }
-//
-//        @Override
-//        public Object getItem(int position) {
-//            return ingredientsList.get(position);
-//        }
-//
-//        @Override
-//        public long getItemId(int position) {
-//            return position;
-//        }
-//
-//
-//        @Override
-//        public View getView(final int position, View convertView, ViewGroup parent) {
-//            if(convertView == null) {
-//                convertView = getActivity().getLayoutInflater().inflate(R.layout.ingredients_list_row,null);
-//                final ViewHolder holder = new ViewHolder();
-//                holder.ingredientName = (TextView) convertView.findViewById(R.id.ingredient_name);
-//                holder.deleteIngredient = (ImageView) convertView.findViewById(R.id.ingredient_delete);
-//                holder.deleteIngredient.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        ingredientsList.remove(position);
-//                    }
-//                });
-//                convertView.setTag(holder);
-//            }
-//            ViewHolder holder = (ViewHolder) convertView.getTag();
-//            holder.ingredientName.setText(ingredientsList.get(position));
-//            return null;
-//        }
-//    }
+    static class ViewHolder {
+        public TextView ingredientName;
+        public ImageView deleteIngredient;
+    }
+    private class IngredientsListAdapter extends BaseAdapter {
+        @Override
+        public int getCount() {
+            return ingredientsList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return ingredientsList.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            if(convertView == null) {
+                convertView = getActivity().getLayoutInflater().inflate(R.layout.ingredients_list_row,parent,false);
+                final ViewHolder holder = new ViewHolder();
+                holder.ingredientName = (TextView) convertView.findViewById(R.id.ingredient_name);
+                holder.deleteIngredient = (ImageView) convertView.findViewById(R.id.ingredient_delete);
+                holder.deleteIngredient.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ingredientsList.remove(position);
+                        adapter.notifyDataSetChanged();
+                        setListViewHeightBasedOnChildren(ingredientsListLV);
+                    }
+                });
+                convertView.setTag(holder);
+            }
+            ViewHolder holder = (ViewHolder) convertView.getTag();
+            holder.ingredientName.setText(ingredientsList.get(position));
+            return convertView;
+        }
+    }
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+    }
 }
