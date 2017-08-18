@@ -28,7 +28,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@drawable/avatar" />
 
             <EditText
                 android:id="@+id/profile_firstName"
@@ -49,23 +49,32 @@
                 android:hint="Last name"
                 android:inputType="text" />
 
-            <EditText
-                android:id="@+id/profile_town"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:ellipsize="start"
-                android:hint="Town"
-                android:inputType="text" />
-
-            <EditText
-                android:id="@+id/profile_street"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:ellipsize="start"
-                android:hint="Street"
-                android:inputType="text" />
+                android:orientation="horizontal">
+                <AutoCompleteTextView
+                    android:id="@+id/profile_city"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="start"
+                    android:hint="City"
+                    android:inputType="text" />
+                <!--<EditText-->
+                    <!--android:id="@+id/profile_city"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:ellipsize="start"-->
+                    <!--android:hint="City"-->
+                    <!--android:inputType="text" />-->
+                <!--<ImageView-->
+                    <!--android:id="@+id/profile_city_search_filter"-->
+                    <!--android:layout_width="30dp"-->
+                    <!--android:layout_height="30dp"-->
+                    <!--android:src="@drawable/ic_search_black_24dp"/>-->
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
@@ -18,6 +21,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.style.ImageSpan;
+import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.Display;
@@ -31,6 +36,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -74,6 +80,7 @@ public class FeedFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     ListView list;
     private PopupWindow popWindow;
+    private FrameLayout layout_MainMenu;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(Model.RecipeUpdateEvent event) {
@@ -134,7 +141,7 @@ public class FeedFragment extends Fragment {
         // Required empty public constructor
     }
     // TODO: Rename and change types and number of parameters
-    public static FeedFragment newInstance(String fragState,String recipeCategory) {
+    public static FeedFragment newInstance() {
         FeedFragment fragment = new FeedFragment();
         return fragment;
     }
@@ -239,7 +246,6 @@ public class FeedFragment extends Fragment {
     static class ViewHolder {
         public ImageView recipeAuthorImage;
         public TextView recipeTitle;
-        public TextView recipeCategory;
         public TextView recipeDate;
         public TextView recipeDescription;
         public ImageView recipeImage;
@@ -273,7 +279,6 @@ public class FeedFragment extends Fragment {
                 holder.recipeAuthorImage = (ImageView) convertView.findViewById(R.id.strow_authorImage);
                 holder.recipeTitle = (TextView) convertView.findViewById(R.id.strow_header);
                 holder.recipeDescription = (TextView) convertView.findViewById(R.id.strow_description);
-                holder.recipeCategory = (TextView) convertView.findViewById(R.id.strow_category);
                 holder.recipeDate = (TextView) convertView.findViewById(R.id.strow_date);
                 holder.recipeLikes = (TextView) convertView.findViewById(R.id.strow_likes);
                 holder.recipeImage = (ImageView) convertView.findViewById(R.id.strow_image);
@@ -319,11 +324,16 @@ public class FeedFragment extends Fragment {
                 holder.recipeArrow.setVisibility(View.INVISIBLE);
             }
             String userName = recipe.getRecipeAuthorName();
-            String recipeHeader = " posted a recipe on";
-            String finalString = userName+recipeHeader;
-            Spannable sb = new SpannableString(userName+recipeHeader);
+            String recipeHeader = " posted a recipe on ";
+            String category = recipe.getRecipeCategory();
+            String finalString = userName+recipeHeader + category;
+            Spannable sb = new SpannableString(userName+recipeHeader + category);
+            Bitmap categoryIcon = BitmapFactory.decodeResource(getResources(),android.R.drawable.ic_menu_my_calendar);
             sb.setSpan(new StyleSpan(Typeface.BOLD), finalString.indexOf(userName),finalString.indexOf(userName)+ userName.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            holder.recipeTitle.setText(sb);
+            sb.setSpan(new ImageSpan(MyApplication.getMyContext(),Bitmap.createScaledBitmap(categoryIcon, 70, 70, false)),(userName+recipeHeader).length()-1,(userName+recipeHeader).length(),Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+            sb.setSpan(new StyleSpan(Typeface.BOLD), finalString.indexOf(category),finalString.indexOf(category)+ category.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            sb.setSpan(new RelativeSizeSpan(0.8f), finalString.indexOf(category),finalString.indexOf(category)+ category.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            holder.recipeTitle.setText(sb, TextView.BufferType.SPANNABLE);
             UserFirebase.getUser(recipe.getRecipeAuthorId(), new BaseInterface.GetUserCallback() {
                 @Override
                 public void onComplete(final User user) {
@@ -386,7 +396,6 @@ public class FeedFragment extends Fragment {
                     }
                 });
             }
-            holder.recipeCategory.setText(recipe.getRecipeCategory());
             holder.recipeDate.setText(recipe.getRecipeDate());
             holder.recipeLikes.setText(recipe.getRecipeLikes() + " peoples liked");
             holder.recipeLikes.setTag(position);
@@ -412,6 +421,10 @@ public class FeedFragment extends Fragment {
         // fill the data to the list items
         setSimpleList(listView,position);
 
+        layout_MainMenu = (FrameLayout) getActivity().findViewById(R.id.main_fragment_container);
+
+        // set dim when popup window show
+        layout_MainMenu.getForeground().setAlpha(50);
         // set height depends on the device size
         popWindow = new PopupWindow(inflatedView, size.x, WindowManager.LayoutParams.WRAP_CONTENT, true );
 
@@ -421,6 +434,16 @@ public class FeedFragment extends Fragment {
         popWindow.setOutsideTouchable(true);
 
         popWindow.setAnimationStyle(R.style.AnimationPopup);
+        popWindow.setBackgroundDrawable(new ColorDrawable(
+                android.graphics.Color.TRANSPARENT));
+
+        popWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                popWindow.dismiss();
+                layout_MainMenu.getForeground().setAlpha(0);
+            }
+        });
         // show the popup at bottom of the screen and set some margin at bottom ie,
         popWindow.showAtLocation(v, Gravity.BOTTOM, 0,0);
     }
@@ -452,6 +475,7 @@ public class FeedFragment extends Fragment {
                     mListener.editRecipe(recipeList.get(positionList).getID());
                 }
                 popWindow.dismiss();
+                layout_MainMenu.getForeground().setAlpha(0);
             }
         });
     }

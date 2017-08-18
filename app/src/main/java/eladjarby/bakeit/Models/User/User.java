@@ -8,7 +8,6 @@ public class User {
     private String ID;
     private String userEmail;
     private String userTown;
-    private String userStreet;
     private String userImage;
     private String userFirstName;
     private String userLastName;
@@ -16,11 +15,10 @@ public class User {
     public User() {
     }
 
-    public User(String ID, String userEmail, String userTown, String userStreet, String userImage, String userFirstName, String userLastName) {
+    public User(String ID, String userEmail, String userTown, String userImage, String userFirstName, String userLastName) {
         this.ID = ID;
         this.userEmail = userEmail;
         this.userTown = userTown;
-        this.userStreet = userStreet;
         this.userImage = userImage;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
@@ -48,14 +46,6 @@ public class User {
 
     public void setUserTown(String userTown) {
         this.userTown = userTown;
-    }
-
-    public String getUserStreet() {
-        return userStreet;
-    }
-
-    public void setUserStreet(String userStreet) {
-        this.userStreet = userStreet;
     }
 
     public String getUserImage() {

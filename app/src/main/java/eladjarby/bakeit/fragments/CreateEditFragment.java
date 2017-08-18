@@ -17,10 +17,12 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.URLUtil;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
@@ -32,6 +34,11 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.w3c.dom.Text;
@@ -55,6 +62,9 @@ import eladjarby.bakeit.Models.Recipe.Recipe;
 import eladjarby.bakeit.Models.User.User;
 import eladjarby.bakeit.Models.User.UserFirebase;
 import eladjarby.bakeit.R;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
+import static com.facebook.login.widget.ProfilePictureView.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -128,10 +138,14 @@ public class CreateEditFragment extends Fragment {
         recipeAddIngredient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ingredientsList.add(recipeIngredients.getText().toString());
-                recipeIngredients.setText("");
-                adapter.notifyDataSetChanged();
-                setListViewHeightBasedOnChildren(ingredientsListLV);
+                if(!recipeIngredients.getText().toString().isEmpty()) {
+                    ingredientsList.add(recipeIngredients.getText().toString());
+                    recipeIngredients.setText("");
+                    adapter.notifyDataSetChanged();
+                    setListViewHeightBasedOnChildren(ingredientsListLV);
+                } else {
+                    recipeIngredients.setError("At least 1 character.");
+                }
             }
         });
 //        recipeIngredients.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -185,6 +199,8 @@ public class CreateEditFragment extends Fragment {
                         if (!validateForm()) {
                             return;
                         }
+                        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
                         mProgressDialog.showProgressDialog();
                         final Recipe recipe = createRecipe();
                         if(imageBitmap != null) {
@@ -220,6 +236,11 @@ public class CreateEditFragment extends Fragment {
                 saveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (!validateForm()) {
+                            return;
+                        }
+                        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
                         mProgressDialog.showProgressDialog();
                         final Recipe recipe = createRecipe();
                         if(imageBitmap != null) {

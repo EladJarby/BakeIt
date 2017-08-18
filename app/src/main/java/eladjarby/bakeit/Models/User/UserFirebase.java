@@ -55,6 +55,8 @@ public class UserFirebase {
                                             }
                                         });
                             }
+                        } else {
+                            callBack.onFailure("Failed to register");
                         }
                     }
                 });

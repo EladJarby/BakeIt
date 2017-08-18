@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:2:1-57:12
+ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:2:1-60:12
 	package
 		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:3:5-31
 		INJECTED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml
@@ -15,16 +15,18 @@ ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:2:1-57
 		INJECTED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml
 uses-permission#android.permission.INTERNET
 ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:5:5-67
-MERGED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:20:5-66
-MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] C:\Users\EladJ\.android\build-cache\2d70c670885d5426932622d565295690ae9183e8\output\AndroidManifest.xml:20:5-66
-MERGED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:20:5-66
+MERGED from [com.google.android.gms:play-services-maps:11.0.4] C:\Users\EladJ\.android\build-cache\16c7f75603ce7de89b6c9a522d74cc8c1c9069c6\output\AndroidManifest.xml:20:5-66
+MERGED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:20:5-66
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] C:\Users\EladJ\.android\build-cache\3cb8ecfcfd7a04ae48d2c9c98abbb9a1298830a1\output\AndroidManifest.xml:20:5-66
+MERGED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:20:5-66
 	android:name
 		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:5:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:6:5-79
-MERGED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:21:5-78
-MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] C:\Users\EladJ\.android\build-cache\2d70c670885d5426932622d565295690ae9183e8\output\AndroidManifest.xml:21:5-78
-MERGED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:19:5-78
+MERGED from [com.google.android.gms:play-services-maps:11.0.4] C:\Users\EladJ\.android\build-cache\16c7f75603ce7de89b6c9a522d74cc8c1c9069c6\output\AndroidManifest.xml:19:5-78
+MERGED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:21:5-78
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] C:\Users\EladJ\.android\build-cache\3cb8ecfcfd7a04ae48d2c9c98abbb9a1298830a1\output\AndroidManifest.xml:21:5-78
+MERGED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:19:5-78
 	android:name
 		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:6:22-76
 uses-permission#android.permission.CAMERA
@@ -36,7 +38,7 @@ ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:8:5-81
 	android:name
 		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:8:22-78
 application
-ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:10:5-55:19
+ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:10:5-58:19
 MERGED from [com.facebook.android:facebook-android-sdk:4.25.0] C:\Users\EladJ\.android\build-cache\ed0861a2e3521ea67b23d62958af941ae88e6882\output\AndroidManifest.xml:28:5-48:19
 MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\EladJ\.android\build-cache\899605adf694fcabfddbbe602708fb7060be7134\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\EladJ\.android\build-cache\cc628ab33f98e36d9cbe6f1adf1de759a8e49549\output\AndroidManifest.xml:26:5-20
@@ -44,15 +46,17 @@ MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\EladJ\
 MERGED from [com.android.support:cardview-v7:25.3.1] C:\Users\EladJ\.android\build-cache\7266ca75c9033729a6d216d191b4f8cda55f778f\output\AndroidManifest.xml:26:5-20
 MERGED from [com.android.support:customtabs:25.3.1] C:\Users\EladJ\.android\build-cache\5af02dbeb3998c4100e97231d51d96068206db3b\output\AndroidManifest.xml:26:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\EladJ\.android\build-cache\96d9e47fdaec1d4555774542803c709e50f8395e\output\AndroidManifest.xml:9:5-20
-MERGED from [com.google.firebase:firebase-auth:10.0.1] C:\Users\EladJ\.android\build-cache\df253695aead6591472f56e090405ed444373765\output\AndroidManifest.xml:19:5-20:19
-MERGED from [com.google.android.gms:play-services-base:10.0.1] C:\Users\EladJ\.android\build-cache\a6c788944ca53030b29c420ee53a74e7d633c4cf\output\AndroidManifest.xml:18:5-20:19
-MERGED from [com.google.firebase:firebase-core:10.0.1] C:\Users\EladJ\.android\build-cache\0a3a368f1cde63658def3f99b62c7caf3b6be966\output\AndroidManifest.xml:5:5-20
-MERGED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:24:5-33:19
-MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] C:\Users\EladJ\.android\build-cache\2d70c670885d5426932622d565295690ae9183e8\output\AndroidManifest.xml:24:5-28:19
-MERGED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:28:5-50:19
-MERGED from [com.google.firebase:firebase-common:10.0.1] C:\Users\EladJ\.android\build-cache\98634a46d5974018621c76fcca6863f8bb76f22b\output\AndroidManifest.xml:4:5-7:19
-MERGED from [com.google.android.gms:play-services-tasks:10.0.1] C:\Users\EladJ\.android\build-cache\65b6c5e825454b560f10f8c3e92feaeb2efa13c9\output\AndroidManifest.xml:4:5-19
-MERGED from [com.google.android.gms:play-services-basement:10.0.1] C:\Users\EladJ\.android\build-cache\a7dccc2363e1bef8559884a7f2d892b2c7af12f6\output\AndroidManifest.xml:19:5-21:19
+MERGED from [com.google.firebase:firebase-auth:11.0.4] C:\Users\EladJ\.android\build-cache\3f43a1c859c3e508364512b87c6223d31dbffedd\output\AndroidManifest.xml:19:5-20:19
+MERGED from [com.google.android.gms:play-services-places:11.0.4] C:\Users\EladJ\.android\build-cache\e5d425229799455abfe429a865739e36026268b2\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-maps:11.0.4] C:\Users\EladJ\.android\build-cache\16c7f75603ce7de89b6c9a522d74cc8c1c9069c6\output\AndroidManifest.xml:24:5-19
+MERGED from [com.google.android.gms:play-services-base:11.0.4] C:\Users\EladJ\.android\build-cache\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\output\AndroidManifest.xml:18:5-20:19
+MERGED from [com.google.firebase:firebase-core:11.0.4] C:\Users\EladJ\.android\build-cache\ecb7c825111e20e7e4d4e9de2c7160e811ccca12\output\AndroidManifest.xml:5:5-20
+MERGED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:24:5-34:19
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] C:\Users\EladJ\.android\build-cache\3cb8ecfcfd7a04ae48d2c9c98abbb9a1298830a1\output\AndroidManifest.xml:24:5-28:19
+MERGED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:28:5-49:19
+MERGED from [com.google.firebase:firebase-common:11.0.4] C:\Users\EladJ\.android\build-cache\80b6b0edc0cd18cfca0970903086bfba6b41195b\output\AndroidManifest.xml:4:5-7:19
+MERGED from [com.google.android.gms:play-services-tasks:11.0.4] C:\Users\EladJ\.android\build-cache\809142b79bfbdc04af0de770a85ab66deb51c18c\output\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-basement:11.0.4] C:\Users\EladJ\.android\build-cache\e5233b24922426d3bb7a6799477a5cd2ac045de1\output\AndroidManifest.xml:19:5-21:19
 MERGED from [com.android.support:support-v4:25.3.1] C:\Users\EladJ\.android\build-cache\74401b2124d19e87343a0d3808bc16231e4a14ae\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\EladJ\.android\build-cache\0f87a0321fefde18f7327408113811e199037813\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\EladJ\.android\build-cache\e21768f2a9f977881090cad9499a8472456f81d5\output\AndroidManifest.xml:29:5-20
@@ -79,81 +83,87 @@ ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:18:9-2
 		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:20:13-52
 	android:name
 		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:19:13-58
-meta-data#android.max_aspect
-ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:21:9-76
+meta-data#com.google.android.geo.API_KEY
+ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:21:9-23:53
 	android:value
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:21:54-73
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:23:13-51
 	android:name
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:21:20-53
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:22:13-58
+meta-data#android.max_aspect
+ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:24:9-76
+	android:value
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:24:54-73
+	android:name
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:24:20-53
 activity#com.facebook.FacebookActivity
-ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:22:9-25:48
+ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:25:9-28:48
 MERGED from [com.facebook.android:facebook-android-sdk:4.25.0] C:\Users\EladJ\.android\build-cache\ed0861a2e3521ea67b23d62958af941ae88e6882\output\AndroidManifest.xml:29:9-32:66
 	android:label
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:25:13-45
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:28:13-45
 	android:configChanges
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:24:13-96
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:27:13-96
 	android:theme
 		ADDED from [com.facebook.android:facebook-android-sdk:4.25.0] C:\Users\EladJ\.android\build-cache\ed0861a2e3521ea67b23d62958af941ae88e6882\output\AndroidManifest.xml:32:13-63
 	android:name
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:23:13-57
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:26:13-57
 activity#com.facebook.CustomTabActivity
-ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:26:9-37:20
+ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:29:9-40:20
 	android:exported
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:28:13-36
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:31:13-36
 	android:name
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:27:13-58
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:30:13-58
 intent-filter#android.intent.action.VIEW+android.intent.category.BROWSABLE+android.intent.category.DEFAULT
-ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:29:13-36:29
+ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:32:13-39:29
 action#android.intent.action.VIEW
-ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:30:17-69
+ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:33:17-69
 	android:name
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:30:25-66
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:33:25-66
 category#android.intent.category.DEFAULT
-ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:32:17-76
+ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:35:17-76
 	android:name
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:32:27-73
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:35:27-73
 category#android.intent.category.BROWSABLE
-ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:33:17-78
+ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:36:17-78
 	android:name
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:33:27-75
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:36:27-75
 data
-ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:35:17-75
+ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:38:17-75
 	android:scheme
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:35:23-72
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:38:23-72
 activity#eladjarby.bakeit.LoginActivity
-ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:38:9-40:52
-	android:screenOrientation
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:40:13-49
-	android:name
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:39:13-42
-activity#eladjarby.bakeit.RegisterActivity
 ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:41:9-43:52
 	android:screenOrientation
 		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:43:13-49
 	android:name
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:42:13-45
-activity#eladjarby.bakeit.SplashActivity
-ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:44:9-52:20
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:42:13-42
+activity#eladjarby.bakeit.RegisterActivity
+ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:44:9-46:52
 	android:screenOrientation
 		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:46:13-49
 	android:name
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:45:13-43
-intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:47:13-51:29
-action#android.intent.action.MAIN
-ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:48:17-69
-	android:name
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:48:25-66
-category#android.intent.category.LAUNCHER
-ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:50:17-77
-	android:name
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:50:27-74
-activity#eladjarby.bakeit.MainActivity
-ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:53:9-54:61
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:45:13-45
+activity#eladjarby.bakeit.SplashActivity
+ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:47:9-55:20
 	android:screenOrientation
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:54:13-49
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:49:13-49
 	android:name
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:53:19-47
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:48:13-43
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:50:13-54:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:51:17-69
+	android:name
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:51:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:53:17-77
+	android:name
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:53:27-74
+activity#eladjarby.bakeit.MainActivity
+ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:56:9-57:61
+	android:screenOrientation
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:57:13-49
+	android:name
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:56:19-47
 uses-sdk
 INJECTED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.facebook.android:facebook-android-sdk:4.25.0] C:\Users\EladJ\.android\build-cache\ed0861a2e3521ea67b23d62958af941ae88e6882\output\AndroidManifest.xml:24:5-26:41
@@ -163,19 +173,21 @@ MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\EladJ\
 MERGED from [com.android.support:cardview-v7:25.3.1] C:\Users\EladJ\.android\build-cache\7266ca75c9033729a6d216d191b4f8cda55f778f\output\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:customtabs:25.3.1] C:\Users\EladJ\.android\build-cache\5af02dbeb3998c4100e97231d51d96068206db3b\output\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\EladJ\.android\build-cache\96d9e47fdaec1d4555774542803c709e50f8395e\output\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-auth:10.0.1] C:\Users\EladJ\.android\build-cache\df253695aead6591472f56e090405ed444373765\output\AndroidManifest.xml:17:5-42
-MERGED from [com.google.android.gms:play-services-base:10.0.1] C:\Users\EladJ\.android\build-cache\a6c788944ca53030b29c420ee53a74e7d633c4cf\output\AndroidManifest.xml:17:5-42
-MERGED from [com.google.firebase:firebase-database:10.0.1] C:\Users\EladJ\.android\build-cache\be71c05e47482cedc1b93219a81d8abe45370b50\output\AndroidManifest.xml:3:5-42
-MERGED from [com.google.firebase:firebase-database-connection:10.0.1] C:\Users\EladJ\.android\build-cache\68ffa678d3fedd87e8f8871fdd99aee973b03a25\output\AndroidManifest.xml:3:5-42
-MERGED from [com.google.firebase:firebase-storage:10.0.1] C:\Users\EladJ\.android\build-cache\7fa15af4352249fb47c8cf7326d51813d03b444a\output\AndroidManifest.xml:3:5-42
-MERGED from [com.google.firebase:firebase-storage-common:10.0.1] C:\Users\EladJ\.android\build-cache\ec85b566f4e662c12c859413157a02f7ac0d12b7\output\AndroidManifest.xml:3:5-42
-MERGED from [com.google.firebase:firebase-core:10.0.1] C:\Users\EladJ\.android\build-cache\0a3a368f1cde63658def3f99b62c7caf3b6be966\output\AndroidManifest.xml:4:5-42
-MERGED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:17:5-42
-MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] C:\Users\EladJ\.android\build-cache\2d70c670885d5426932622d565295690ae9183e8\output\AndroidManifest.xml:17:5-42
-MERGED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:17:5-42
-MERGED from [com.google.firebase:firebase-common:10.0.1] C:\Users\EladJ\.android\build-cache\98634a46d5974018621c76fcca6863f8bb76f22b\output\AndroidManifest.xml:3:5-42
-MERGED from [com.google.android.gms:play-services-tasks:10.0.1] C:\Users\EladJ\.android\build-cache\65b6c5e825454b560f10f8c3e92feaeb2efa13c9\output\AndroidManifest.xml:3:5-42
-MERGED from [com.google.android.gms:play-services-basement:10.0.1] C:\Users\EladJ\.android\build-cache\a7dccc2363e1bef8559884a7f2d892b2c7af12f6\output\AndroidManifest.xml:17:5-42
+MERGED from [com.google.firebase:firebase-auth:11.0.4] C:\Users\EladJ\.android\build-cache\3f43a1c859c3e508364512b87c6223d31dbffedd\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-database:11.0.4] C:\Users\EladJ\.android\build-cache\b995b516ce747395e1f520a7e03183284715e2c0\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.firebase:firebase-database-connection:11.0.4] C:\Users\EladJ\.android\build-cache\7e5ec637c500cfce19dcbf416aa9632e66cc67ef\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-places:11.0.4] C:\Users\EladJ\.android\build-cache\e5d425229799455abfe429a865739e36026268b2\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-maps:11.0.4] C:\Users\EladJ\.android\build-cache\16c7f75603ce7de89b6c9a522d74cc8c1c9069c6\output\AndroidManifest.xml:23:5-43
+MERGED from [com.google.android.gms:play-services-base:11.0.4] C:\Users\EladJ\.android\build-cache\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-storage:11.0.4] C:\Users\EladJ\.android\build-cache\8b2e8bfad4e23f543d13142121dc260d7da0fb4f\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.firebase:firebase-storage-common:11.0.4] C:\Users\EladJ\.android\build-cache\da84ebf92d8c238073fe9407b9fd966f962d785d\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.firebase:firebase-core:11.0.4] C:\Users\EladJ\.android\build-cache\ecb7c825111e20e7e4d4e9de2c7160e811ccca12\output\AndroidManifest.xml:4:5-43
+MERGED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] C:\Users\EladJ\.android\build-cache\3cb8ecfcfd7a04ae48d2c9c98abbb9a1298830a1\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-common:11.0.4] C:\Users\EladJ\.android\build-cache\80b6b0edc0cd18cfca0970903086bfba6b41195b\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-tasks:11.0.4] C:\Users\EladJ\.android\build-cache\809142b79bfbdc04af0de770a85ab66deb51c18c\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-basement:11.0.4] C:\Users\EladJ\.android\build-cache\e5233b24922426d3bb7a6799477a5cd2ac045de1\output\AndroidManifest.xml:17:5-43
 MERGED from [com.android.support:support-v4:25.3.1] C:\Users\EladJ\.android\build-cache\74401b2124d19e87343a0d3808bc16231e4a14ae\output\AndroidManifest.xml:21:5-23:54
 MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\EladJ\.android\build-cache\0f87a0321fefde18f7327408113811e199037813\output\AndroidManifest.xml:21:5-23:60
 MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\EladJ\.android\build-cache\e21768f2a9f977881090cad9499a8472456f81d5\output\AndroidManifest.xml:21:5-23:63
@@ -218,121 +230,135 @@ MERGED from [com.android.support:support-compat:25.3.1] C:\Users\EladJ\.android\
 		ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\EladJ\.android\build-cache\899605adf694fcabfddbbe602708fb7060be7134\output\AndroidManifest.xml:27:9-31
 	android:name
 		ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\EladJ\.android\build-cache\899605adf694fcabfddbbe602708fb7060be7134\output\AndroidManifest.xml:26:9-47
+uses-feature#0x00020000
+ADDED from [com.google.android.gms:play-services-maps:11.0.4] C:\Users\EladJ\.android\build-cache\16c7f75603ce7de89b6c9a522d74cc8c1c9069c6\output\AndroidManifest.xml:21:5-77
+	android:glEsVersion
+		ADDED from [com.google.android.gms:play-services-maps:11.0.4] C:\Users\EladJ\.android\build-cache\16c7f75603ce7de89b6c9a522d74cc8c1c9069c6\output\AndroidManifest.xml:21:19-51
+	android:required
+		ADDED from [com.google.android.gms:play-services-maps:11.0.4] C:\Users\EladJ\.android\build-cache\16c7f75603ce7de89b6c9a522d74cc8c1c9069c6\output\AndroidManifest.xml:21:52-75
 activity#com.google.android.gms.common.api.GoogleApiActivity
-ADDED from [com.google.android.gms:play-services-base:10.0.1] C:\Users\EladJ\.android\build-cache\a6c788944ca53030b29c420ee53a74e7d633c4cf\output\AndroidManifest.xml:19:9-172
+ADDED from [com.google.android.gms:play-services-base:11.0.4] C:\Users\EladJ\.android\build-cache\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\output\AndroidManifest.xml:19:9-172
 	android:exported
-		ADDED from [com.google.android.gms:play-services-base:10.0.1] C:\Users\EladJ\.android\build-cache\a6c788944ca53030b29c420ee53a74e7d633c4cf\output\AndroidManifest.xml:19:146-170
+		ADDED from [com.google.android.gms:play-services-base:11.0.4] C:\Users\EladJ\.android\build-cache\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\output\AndroidManifest.xml:19:146-170
 	android:theme
-		ADDED from [com.google.android.gms:play-services-base:10.0.1] C:\Users\EladJ\.android\build-cache\a6c788944ca53030b29c420ee53a74e7d633c4cf\output\AndroidManifest.xml:19:86-145
+		ADDED from [com.google.android.gms:play-services-base:11.0.4] C:\Users\EladJ\.android\build-cache\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\output\AndroidManifest.xml:19:86-145
 	android:name
-		ADDED from [com.google.android.gms:play-services-base:10.0.1] C:\Users\EladJ\.android\build-cache\a6c788944ca53030b29c420ee53a74e7d633c4cf\output\AndroidManifest.xml:19:19-85
+		ADDED from [com.google.android.gms:play-services-base:11.0.4] C:\Users\EladJ\.android\build-cache\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\output\AndroidManifest.xml:19:19-85
 uses-permission#android.permission.WAKE_LOCK
-ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:22:5-67
-MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] C:\Users\EladJ\.android\build-cache\2d70c670885d5426932622d565295690ae9183e8\output\AndroidManifest.xml:22:5-67
-MERGED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:21:5-67
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] C:\Users\EladJ\.android\build-cache\3cb8ecfcfd7a04ae48d2c9c98abbb9a1298830a1\output\AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:21:5-67
 	android:name
-		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:22:22-65
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:22:22-65
 receiver#com.google.android.gms.measurement.AppMeasurementReceiver
-ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:25:7-26:18
-MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] C:\Users\EladJ\.android\build-cache\2d70c670885d5426932622d565295690ae9183e8\output\AndroidManifest.xml:25:7-26:18
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:25:7-26:18
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] C:\Users\EladJ\.android\build-cache\3cb8ecfcfd7a04ae48d2c9c98abbb9a1298830a1\output\AndroidManifest.xml:25:7-26:18
 	android:enabled
-		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:25:90-112
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:25:90-112
 	android:exported
-		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:25:113-137
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:25:113-137
 	android:name
-		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:25:17-89
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:25:17-89
 receiver#com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver
-ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:27:7-31:18
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:27:7-31:18
 	android:enabled
-		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:27:162-184
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:27:162-184
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:27:185-208
 	android:permission
-		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:27:105-161
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:27:105-161
 	android:name
-		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:27:17-104
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:27:17-104
 intent-filter#com.android.vending.INSTALL_REFERRER
-ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:28:11-30:27
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:28:11-30:27
 action#com.android.vending.INSTALL_REFERRER
-ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:29:15-76
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:29:15-76
 	android:name
-		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:29:23-74
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:29:23-74
 service#com.google.android.gms.measurement.AppMeasurementService
-ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:32:7-137
-MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] C:\Users\EladJ\.android\build-cache\2d70c670885d5426932622d565295690ae9183e8\output\AndroidManifest.xml:27:7-137
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:32:7-137
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] C:\Users\EladJ\.android\build-cache\3cb8ecfcfd7a04ae48d2c9c98abbb9a1298830a1\output\AndroidManifest.xml:27:7-137
 	android:enabled
-		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:32:88-110
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:32:88-110
 	android:exported
-		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:32:111-135
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:32:111-135
 	android:name
-		ADDED from [com.google.firebase:firebase-analytics:10.0.1] C:\Users\EladJ\.android\build-cache\9a4fab64ff14af6698c1d80e095d5993fca3be9d\output\AndroidManifest.xml:32:16-87
-uses-permission#com.google.android.c2dm.permission.RECEIVE
-ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:22:5-81
-	android:name
-		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:22:22-79
-permission#${applicationId}.permission.C2D_MESSAGE
-ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:24:5-109
-	android:protectionLevel
-		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:24:72-107
-	android:name
-		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:24:17-71
-uses-permission#${applicationId}.permission.C2D_MESSAGE
-ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:26:5-78
-	android:name
-		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:26:22-76
-receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
-ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:30:9-36:20
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:32:16-87
+service#com.google.android.gms.measurement.AppMeasurementJobService
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:33:7-197
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:33:148-170
 	android:exported
-		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:30:85-108
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:33:171-195
 	android:permission
-		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:30:109-169
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:33:91-147
 	android:name
-		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:30:19-84
-intent-filter#${applicationId}+com.google.android.c2dm.intent.RECEIVE+com.google.android.c2dm.intent.REGISTRATION
-ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:31:13-35:29
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\EladJ\.android\build-cache\d061847d3aba51e3411b9562a05b8f277c45f8fa\output\AndroidManifest.xml:33:16-90
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:22:5-81
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:22:22-79
+permission#${applicationId}.permission.C2D_MESSAGE
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:24:5-109
+	android:protectionLevel
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:24:72-107
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:24:17-71
+uses-permission#${applicationId}.permission.C2D_MESSAGE
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:26:5-78
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:26:22-76
+receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:30:9-35:20
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:30:85-108
+	android:permission
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:30:109-169
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:30:19-84
+intent-filter#${applicationId}+com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:31:13-34:29
 action#com.google.android.c2dm.intent.RECEIVE
-ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:32:17-80
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:32:17-80
 	android:name
-		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:32:25-78
-action#com.google.android.c2dm.intent.REGISTRATION
-ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:33:17-85
-	android:name
-		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:33:25-83
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:32:25-78
 category#${applicationId}
-ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:34:17-60
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:33:17-60
 	android:name
-		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:34:27-58
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:33:27-58
 receiver#com.google.firebase.iid.FirebaseInstanceIdInternalReceiver
-ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:40:9-119
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:39:9-119
 	android:exported
-		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:40:93-117
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:39:93-117
 	android:name
-		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:40:19-92
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:39:19-92
 service#com.google.firebase.iid.FirebaseInstanceIdService
-ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:44:9-48:19
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:43:9-47:19
 	android:exported
-		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:44:83-106
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:43:83-106
 	android:name
-		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:44:18-82
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:43:18-82
 intent-filter#com.google.firebase.INSTANCE_ID_EVENT
-ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:45:13-47:29
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:44:13-46:29
 	android:priority
-		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:45:28-51
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:44:28-51
 action#com.google.firebase.INSTANCE_ID_EVENT
-ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:46:17-79
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:45:17-79
 	android:name
-		ADDED from [com.google.firebase:firebase-iid:10.0.1] C:\Users\EladJ\.android\build-cache\0c4893d2210dc1b1e4d86a513b51614f34b8cac5\output\AndroidManifest.xml:46:25-77
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\EladJ\.android\build-cache\f548fd2221d61f8194bd0602df6eac9753a47e48\output\AndroidManifest.xml:45:25-77
 provider#com.google.firebase.provider.FirebaseInitProvider
-ADDED from [com.google.firebase:firebase-common:10.0.1] C:\Users\EladJ\.android\build-cache\98634a46d5974018621c76fcca6863f8bb76f22b\output\AndroidManifest.xml:6:9-194
+ADDED from [com.google.firebase:firebase-common:11.0.4] C:\Users\EladJ\.android\build-cache\80b6b0edc0cd18cfca0970903086bfba6b41195b\output\AndroidManifest.xml:6:9-194
 	android:authorities
-		ADDED from [com.google.firebase:firebase-common:10.0.1] C:\Users\EladJ\.android\build-cache\98634a46d5974018621c76fcca6863f8bb76f22b\output\AndroidManifest.xml:6:19-78
+		ADDED from [com.google.firebase:firebase-common:11.0.4] C:\Users\EladJ\.android\build-cache\80b6b0edc0cd18cfca0970903086bfba6b41195b\output\AndroidManifest.xml:6:19-78
 	android:exported
-		ADDED from [com.google.firebase:firebase-common:10.0.1] C:\Users\EladJ\.android\build-cache\98634a46d5974018621c76fcca6863f8bb76f22b\output\AndroidManifest.xml:6:144-168
+		ADDED from [com.google.firebase:firebase-common:11.0.4] C:\Users\EladJ\.android\build-cache\80b6b0edc0cd18cfca0970903086bfba6b41195b\output\AndroidManifest.xml:6:144-168
 	android:initOrder
-		ADDED from [com.google.firebase:firebase-common:10.0.1] C:\Users\EladJ\.android\build-cache\98634a46d5974018621c76fcca6863f8bb76f22b\output\AndroidManifest.xml:6:169-192
+		ADDED from [com.google.firebase:firebase-common:11.0.4] C:\Users\EladJ\.android\build-cache\80b6b0edc0cd18cfca0970903086bfba6b41195b\output\AndroidManifest.xml:6:169-192
 	android:name
-		ADDED from [com.google.firebase:firebase-common:10.0.1] C:\Users\EladJ\.android\build-cache\98634a46d5974018621c76fcca6863f8bb76f22b\output\AndroidManifest.xml:6:79-143
+		ADDED from [com.google.firebase:firebase-common:11.0.4] C:\Users\EladJ\.android\build-cache\80b6b0edc0cd18cfca0970903086bfba6b41195b\output\AndroidManifest.xml:6:79-143
 meta-data#com.google.android.gms.version
-ADDED from [com.google.android.gms:play-services-basement:10.0.1] C:\Users\EladJ\.android\build-cache\a7dccc2363e1bef8559884a7f2d892b2c7af12f6\output\AndroidManifest.xml:20:9-121
+ADDED from [com.google.android.gms:play-services-basement:11.0.4] C:\Users\EladJ\.android\build-cache\e5233b24922426d3bb7a6799477a5cd2ac045de1\output\AndroidManifest.xml:20:9-121
 	android:value
-		ADDED from [com.google.android.gms:play-services-basement:10.0.1] C:\Users\EladJ\.android\build-cache\a7dccc2363e1bef8559884a7f2d892b2c7af12f6\output\AndroidManifest.xml:20:66-119
+		ADDED from [com.google.android.gms:play-services-basement:11.0.4] C:\Users\EladJ\.android\build-cache\e5233b24922426d3bb7a6799477a5cd2ac045de1\output\AndroidManifest.xml:20:66-119
 	android:name
-		ADDED from [com.google.android.gms:play-services-basement:10.0.1] C:\Users\EladJ\.android\build-cache\a7dccc2363e1bef8559884a7f2d892b2c7af12f6\output\AndroidManifest.xml:20:20-65
+		ADDED from [com.google.android.gms:play-services-basement:11.0.4] C:\Users\EladJ\.android\build-cache\e5233b24922426d3bb7a6799477a5cd2ac045de1\output\AndroidManifest.xml:20:20-65

@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 android:orientation="horizontal" android:layout_width="match_parent"
-android:layout_height="wrap_content">
+android:layout_height="50dp"
+android:gravity="center">
 <ImageView
-    android:layout_width="50dp"
-    android:layout_height="50dp"
+    android:layout_width="15dp"
+    android:layout_height="15dp"
     android:layout_margin="10dp"
-    android:src="@drawable/bakeitlogo"/>
+    android:src="@drawable/ic_expand_button"
+    android:rotation="270"/>
 
     <TextView
         android:id="@+id/arrow_popup_title"

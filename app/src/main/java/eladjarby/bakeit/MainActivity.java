@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,12 +14,28 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.location.places.Places;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
 import eladjarby.bakeit.Models.Model;
 import eladjarby.bakeit.Models.ModelFirebase;
 import eladjarby.bakeit.Models.User.UserFirebase;
+import eladjarby.bakeit.Util.HttpHandler;
 import eladjarby.bakeit.fragments.CreateEditFragment;
 import eladjarby.bakeit.fragments.FeedFragment;
 import eladjarby.bakeit.fragments.RecipeDetailsFragment;
@@ -28,16 +45,28 @@ public class MainActivity extends AppCompatActivity implements FeedFragment.OnFr
 ,CreateEditFragment.OnFragmentInteractionListener,
 RecipeDetailsFragment.OnFragmentInteractionListener,
 UserProfileFragment.OnFragmentInteractionListener{
+    private static String url = "http://api.geonames.org/searchJSON?username=bakeit&country=il&maxRows=1000&style=SHORT";
+    Set<String> citiesSet;
+    ArrayList<String> citiesList;
+    private ProgressDialog pDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FrameLayout layout_MainMenu = (FrameLayout) findViewById(R.id.main_fragment_container);
+        layout_MainMenu.getForeground().setAlpha(0);
+
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
+        citiesSet = new HashSet<String>();
+        citiesList = new ArrayList<String>();
+        new GetCities().execute();
         Model.instance.syncUser();
 
-        FeedFragment feedFragment = FeedFragment.newInstance("list","");
+        FeedFragment feedFragment = FeedFragment.newInstance();
         getFragmentManager().beginTransaction()
                 .replace(R.id.main_fragment_container, feedFragment)
                 .commit();
@@ -118,6 +147,85 @@ UserProfileFragment.OnFragmentInteractionListener{
         menuTitleBakeIt.setVisibility(View.VISIBLE);
         menuAdd.setVisibility(View.VISIBLE);
         menuProfile.setVisibility(View.VISIBLE);
+    }
+
+    private class GetCities extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Showing progress dialog
+            pDialog = new ProgressDialog(MainActivity.this);
+            pDialog.setMessage("Please wait...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            HttpHandler sh = new HttpHandler();
+
+            // Making a request to url and getting response
+            String jsonStr = sh.makeServiceCall(url);
+
+            Log.e("TAG", "Response from url: " + jsonStr);
+
+            if (jsonStr != null) {
+                try {
+                    JSONObject jsonObj = new JSONObject(jsonStr);
+
+                    // Getting JSON Array node
+                    JSONArray cities = jsonObj.getJSONArray("geonames");
+
+                    // looping through All Contacts
+                    for (int i = 0; i < cities.length(); i++) {
+                        JSONObject c = cities.getJSONObject(i);
+                        String name = c.getString("name");
+                        citiesSet.add(name);
+                    }
+                    citiesList.addAll(citiesSet);
+                } catch (final JSONException e) {
+                    Log.e("TAG", "Json parsing error: " + e.getMessage());
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(),
+                                    "Json parsing error: " + e.getMessage(),
+                                    Toast.LENGTH_LONG)
+                                    .show();
+                        }
+                    });
+
+                }
+            } else {
+                Log.e("TAG", "Couldn't get json from server.");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext(),
+                                "Couldn't get json from server. Check LogCat for possible errors!",
+                                Toast.LENGTH_LONG)
+                                .show();
+                    }
+                });
+
+            }
+
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            // Dismiss the progress dialog
+            if (pDialog.isShowing()) {
+                pDialog.dismiss();
+            }
+        }
+    }
+
+    public List<String> getCitiesList() {
+        return citiesList;
     }
 
 }
