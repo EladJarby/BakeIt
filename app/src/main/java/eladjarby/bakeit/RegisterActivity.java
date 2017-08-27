@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.media.ThumbnailUtils;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
@@ -20,14 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.places.AutocompleteFilter;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONArray;
@@ -46,17 +38,13 @@ import eladjarby.bakeit.Models.User.User;
 import eladjarby.bakeit.Models.User.UserFirebase;
 import eladjarby.bakeit.Util.HttpHandler;
 
-import static com.facebook.login.widget.ProfilePictureView.TAG;
 
 public class RegisterActivity extends Activity {
     private static final String JPEG = ".jpeg";
-    private FirebaseAuth mAuth;
     private EditText mUsername;
     private EditText mPassword;
     private Bitmap imageBitmap;
     public myProgressDialog mProgressDialog;
-    private EditText registerCity;
-
     private static String url = "http://api.geonames.org/searchJSON?username=bakeit&country=il&maxRows=1000&style=SHORT";
     Set<String> citiesSet;
     ArrayList<String> citiesList;
@@ -67,33 +55,32 @@ public class RegisterActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mProgressDialog = new myProgressDialog(this);
-        mAuth = FirebaseAuth.getInstance();
         mUsername = (EditText) findViewById(R.id.register_user);
         mPassword = (EditText) findViewById(R.id.register_password);
         final Button registerBtn = (Button) findViewById(R.id.register_btn);
         ImageView registerImage = (ImageView) findViewById(R.id.register_image);
-        registerCity = (EditText) findViewById(R.id.register_city);
-//        ImageView registerSearchFilter = (ImageView) findViewById(R.id.register_city_search_filter);
+        final TextView loginTV = (TextView) findViewById(R.id.register_loginBtn);
+        AutoCompleteTextView registerCity = (AutoCompleteTextView) findViewById(R.id.register_city);
+
         citiesSet = new HashSet<String>();
         citiesList = new ArrayList<String>();
+
         new GetCities().execute();
 
+        // Set array adapter for cities list.
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, getCitiesList());
-        AutoCompleteTextView registerCity = (AutoCompleteTextView) findViewById(R.id.register_city);
         registerCity.setAdapter(adapter);
-//        registerSearchFilter.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                searchGoogleTown();
-//            }
-//        });
+
+        // Catch the click on register image for take a new profile image.
         registerImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dispatchTakePictureIntent();
             }
         });
+
+        // Catch the click on register button to register a new user.
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,7 +88,7 @@ public class RegisterActivity extends Activity {
             }
         });
 
-        final TextView loginTV = (TextView) findViewById(R.id.register_loginBtn);
+        // Catch the click on login button to return to login activity.
         loginTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,27 +99,26 @@ public class RegisterActivity extends Activity {
 
     private void signUp(String email, String password) {
         Log.d("TAG", "signUp:" + email);
+        // Validate form before register a new user.
         if (!validateForm()) {
             return;
         }
 
         mProgressDialog.showProgressDialog();
 
+        // Register a new user in firebase auth , when complete add user to db with full details.
         UserFirebase.registerAccount(RegisterActivity.this, email, password, new BaseInterface.RegisterAccountCallBack() {
             @Override
             public void onComplete(FirebaseUser user, Task<Void> task) {
                 if (task.isSuccessful()) {
                     final User newUser = newUser(user.getUid());
                     if(imageBitmap != null) {
+                        // Set a random string for profile image.
                         Model.instance.saveImage(imageBitmap, user.getUid() + Model.instance.randomNumber() + JPEG, new BaseInterface.SaveImageListener() {
                             @Override
                             public void complete(String url) {
                                 newUser.setUserImage(url);
-                                UserFirebase.addDBUser(newUser);
-                                mProgressDialog.hideProgressDialog();
-                                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                finish();
+                                completeRegister(newUser);
                             }
 
                             @Override
@@ -142,10 +128,7 @@ public class RegisterActivity extends Activity {
                         });
                     } else {
                         UserFirebase.addDBUser(newUser);
-                        mProgressDialog.hideProgressDialog();
-                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                        completeRegister(newUser);
                     }
                 }
             }
@@ -158,6 +141,17 @@ public class RegisterActivity extends Activity {
         });
     }
 
+    /* Private function to complete register by given a user and add to firebase db
+       and high progress dialog when finish. */
+    private void completeRegister(User newUser) {
+        UserFirebase.addDBUser(newUser);
+        mProgressDialog.hideProgressDialog();
+        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    // Validate the registerion form for each input.
     private boolean validateForm() {
         boolean valid = true;
 
@@ -187,15 +181,18 @@ public class RegisterActivity extends Activity {
     }
 
 
+    // Register a new user with given auth user id.
     private User newUser(String userID) {
         String ID = userID;
         String userEmail = ((EditText) findViewById(R.id.register_user)).getText().toString();
-        String userImage = "https://firebasestorage.googleapis.com/v0/b/bakeit-f8116.appspot.com/o/avatar.png?alt=media&token=e3b93b4f-2fd8-4cdd-a03d-5d1116d1367f";
+        String userImage = "https://firebasestorage.googleapis.com/v0/b/bakeit-f8116.appspot.com/o/avatar.png?alt=media&token=e3b93b4f-2fd8-4cdd-a03d-5d1116d1367f"; // Default image.
         String userTown = ((EditText) findViewById(R.id.register_city)).getText().toString();
         String userFirstName = ((EditText) findViewById(R.id.register_firstName)).getText().toString();
         String userLastName = ((EditText) findViewById(R.id.register_lastName)).getText().toString();
         return new User(ID,userEmail,userTown,userImage,userFirstName,userLastName);
     }
+
+    // Catch back press and return to login activity.
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -206,6 +203,7 @@ public class RegisterActivity extends Activity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
+    // Picture intent for taking a picture for user profile image.
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -213,24 +211,8 @@ public class RegisterActivity extends Activity {
         }
     }
 
-//    int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2;
-//    private void searchGoogleTown() {
-//        AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
-//                .setCountry("IL")
-//                .setTypeFilter(AutocompleteFilter.TYPE_FILTER_CITIES)
-//                .build();
-//        try {
-//            Intent intent =
-//                    new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
-//                            .setFilter(typeFilter)
-//                            .build(this);
-//            startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
-//        } catch (GooglePlayServicesRepairableException e) {
-//            // TODO: Handle the error.
-//        } catch (GooglePlayServicesNotAvailableException e) {
-//            // TODO: Handle the error.
-//        }
-//    }
+
+    // When getting a result from picture intent , get the data and update the profile image.
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
@@ -242,28 +224,17 @@ public class RegisterActivity extends Activity {
             recipePhoto.setVisibility(View.VISIBLE);
             recipePhoto.setImageBitmap(imageBitmap);
         }
-//        if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
-//            if (resultCode == RESULT_OK) {
-//                Place place = PlaceAutocomplete.getPlace(this, data);
-//                registerCity.setText(place.getName());
-//            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
-//                Status status = PlaceAutocomplete.getStatus(this, data);
-//                // TODO: Handle the error.
-//                Log.i(TAG, status.getStatusMessage());
-//
-//            } else if (resultCode == RESULT_CANCELED) {
-//                // The user canceled the operation.
-//            }
-//        }
     }
 
 
+    // Make the profile image square
     public int getSquareCropDimensionForBitmap()
     {
         //use the smallest dimension of the image to crop to
         return Math.min(imageBitmap.getWidth(), imageBitmap.getHeight());
     }
 
+    // Get cities from json URL
     private class GetCities extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -272,6 +243,7 @@ public class RegisterActivity extends Activity {
             // Showing progress dialog
             pDialog = new ProgressDialog(RegisterActivity.this);
             pDialog.setMessage("Please wait...");
+            // Can't cancel the progress dialog till it finish.
             pDialog.setCancelable(false);
             pDialog.show();
 
@@ -329,6 +301,8 @@ public class RegisterActivity extends Activity {
 
             return null;
         }
+
+        // After execute is done , dismiss the progress dialog.
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
@@ -339,6 +313,7 @@ public class RegisterActivity extends Activity {
         }
     }
 
+    // Getter for getting cities list.
     public List<String> getCitiesList() {
         return citiesList;
     }

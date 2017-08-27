@@ -67,10 +67,6 @@ public class RecipeSql {
         db.insert(RECIPE_TABLE,RECIPE_ID,getRecipeValues(recipe));
     }
 
-//    public static void removeRecipe(SQLiteDatabase db , String recipeId) {
-//            db.delete(RECIPE_TABLE,"ID=?", new String[]{recipeId});
-//    }
-
     public static void updateRecipe(SQLiteDatabase db , Recipe recipe) {
         db.update(RECIPE_TABLE, getRecipeValues(recipe), "ID=?",new String[]{recipe.getID()});
     }

@@ -1,24 +1,17 @@
 package eladjarby.bakeit.fragments;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
@@ -42,14 +35,12 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -61,30 +52,16 @@ import eladjarby.bakeit.Models.User.UserFirebase;
 import eladjarby.bakeit.MyApplication;
 import eladjarby.bakeit.R;
 
-import static android.support.v7.content.res.AppCompatResources.getDrawable;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FeedFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link FeedFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FeedFragment extends Fragment {
     List<Recipe> recipeList = new LinkedList<Recipe>();
     RecipeListAdapter adapter = new RecipeListAdapter();
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     ListView list;
     private PopupWindow popWindow;
     private FrameLayout layout_MainMenu;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(Model.RecipeUpdateEvent event) {
-        //Toast.makeText(getActivity(),"got new recipe",Toast.LENGTH_SHORT).show();
         boolean exist = false;
         for(Recipe recipe: recipeList) {
             if(recipe.getID().equals(event.recipe.getID())) {
@@ -103,7 +80,6 @@ public class FeedFragment extends Fragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(Model.RecipeChangedEvent event) {
-        //Toast.makeText(getActivity(),"got new recipe",Toast.LENGTH_SHORT).show();
         int index = 0;
         for(index = 0; index < recipeList.size(); index++) {
             if(recipeList.get(index).getID().equals(event.recipe.getID())) {
@@ -118,32 +94,13 @@ public class FeedFragment extends Fragment {
             adapter.notifyDataSetChanged();
         }
     }
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void onMessageEvent(Model.RecipeRemoveEvent event) {
-//        //Toast.makeText(getActivity(),"got new recipe",Toast.LENGTH_SHORT).show();
-//        boolean exist = false;
-//        Recipe recipe = null;
-//        for(Recipe r: recipeList) {
-//            if(r.getID().equals(event.recipeId)){
-//                 recipe = r;
-//                exist = true;
-//                break;
-//            }
-//        }
-//        if(exist && recipe != null) {
-//            recipeList.remove(recipe);
-//            adapter.notifyDataSetChanged();
-//        }
-//    }
+
     private OnFragmentInteractionListener mListener;
 
-    public FeedFragment() {
-        // Required empty public constructor
-    }
-    // TODO: Rename and change types and number of parameters
+    public FeedFragment() { }
+
     public static FeedFragment newInstance() {
-        FeedFragment fragment = new FeedFragment();
-        return fragment;
+        return new FeedFragment();
     }
 
     @Override
@@ -216,16 +173,6 @@ public class FeedFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         void onItemSelected(String recipeId);
         void addRecipe();
@@ -243,17 +190,18 @@ public class FeedFragment extends Fragment {
         }
     }
 
-    static class ViewHolder {
-        public ImageView recipeAuthorImage;
-        public TextView recipeTitle;
-        public TextView recipeDate;
-        public TextView recipeDescription;
-        public ImageView recipeImage;
-        public TextView recipeLikes;
-        public ImageView recipeArrow;
-        public ImageView likeImage;
+    private static class ViewHolder {
+        ImageView recipeAuthorImage;
+        TextView recipeTitle;
+        TextView recipeDate;
+        TextView recipeDescription;
+        ImageView recipeImage;
+        TextView recipeLikes;
+        ImageView recipeArrow;
+        ImageView likeImage;
     }
-    class RecipeListAdapter extends BaseAdapter {
+
+    private class RecipeListAdapter extends BaseAdapter {
 
         ViewHolder holder;
         @Override

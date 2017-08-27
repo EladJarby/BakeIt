@@ -32,6 +32,10 @@
         "source": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\src\\main\\res\\drawable-xxxhdpi\\photo.png"
     },
     {
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi\\ic_launcher.png",
+        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_launcher.png"
+    },
+    {
         "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi\\camera.png",
         "source": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\src\\main\\res\\drawable-xxxhdpi\\camera.png"
     },

@@ -30,7 +30,6 @@ public class UserFirebase {
     private static DatabaseReference myRef = database.getReference(USERS_TABLE);
 
     public static void registerAccount(RegisterActivity registerActivity, final String email, String password, final BaseInterface.RegisterAccountCallBack callBack) {
-        // [START sign_in_with_email]
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(registerActivity, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -60,7 +59,6 @@ public class UserFirebase {
                         }
                     }
                 });
-        // [END sign_in_with_email]
     }
 
     public static void logoutAccount() {
@@ -80,7 +78,6 @@ public class UserFirebase {
                         } else {
                             callback.onFailure("Failed to login");
                         }
-                        // [END_EXCLUDE]
                     }
                 });
     }
@@ -111,5 +108,9 @@ public class UserFirebase {
 
             }
         });
+    }
+
+    public static FirebaseUser getCurrentUser() {
+        return mAuth.getCurrentUser();
     }
 }

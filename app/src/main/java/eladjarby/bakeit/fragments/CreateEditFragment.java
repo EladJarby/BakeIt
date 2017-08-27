@@ -1,24 +1,20 @@
 package eladjarby.bakeit.fragments;
 
 import android.Manifest;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,17 +31,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
-import com.google.android.gms.location.places.ui.PlaceSelectionListener;
-
-import org.greenrobot.eventbus.EventBus;
-import org.w3c.dom.Text;
-
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.sql.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,31 +44,15 @@ import eladjarby.bakeit.MainActivity;
 import eladjarby.bakeit.Models.BaseInterface;
 import eladjarby.bakeit.Models.Model;
 import eladjarby.bakeit.Models.ModelFiles;
-import eladjarby.bakeit.Models.ModelFirebase;
 import eladjarby.bakeit.Models.Recipe.Recipe;
-import eladjarby.bakeit.Models.User.User;
-import eladjarby.bakeit.Models.User.UserFirebase;
 import eladjarby.bakeit.R;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
-import static com.facebook.login.widget.ProfilePictureView.TAG;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CreateEditFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link CreateEditFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class CreateEditFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    // TODO: Rename and change types of parameters
-    final static int RESAULT_SUCCESS = 0;
-    final static int RESAULT_FAIL = 1;
     private static final String JPEG = ".jpeg";
     private String recipeId;
     private String fragMode;
@@ -93,12 +64,9 @@ public class CreateEditFragment extends Fragment {
     IngredientsListAdapter adapter = new IngredientsListAdapter();
     private OnFragmentInteractionListener mListener;
     private EditText recipeTitle,recipeIngredients,recipeTime,recipeInstructions;
-    private ImageView recipeImage;
     private ListView ingredientsListLV;
 
-    public CreateEditFragment() {
-        // Required empty public constructor
-    }
+    public CreateEditFragment() {}
 
     public static CreateEditFragment newInstance(String param1,String param2) {
         CreateEditFragment fragment = new CreateEditFragment();
@@ -148,34 +116,16 @@ public class CreateEditFragment extends Fragment {
                 }
             }
         });
-//        recipeIngredients.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if(hasFocus && ((EditText)v).getText().length() == 0) {
-//                    recipeIngredients.setText("* ");
-//                    recipeIngredients.setSelection(recipeIngredients.getText().length());
-//                }
-//            }
-//        });
-//        recipeIngredients.setOnKeyListener(new View.OnKeyListener() {
-//            @Override
-//            public boolean onKey(View v, int keyCode, KeyEvent event) {
-//                if(keyCode == event.KEYCODE_ENTER && event.getAction() != event.ACTION_DOWN) {
-//                    recipeIngredients.setText(recipeIngredients.getText() + "* ");
-//                    recipeIngredients.setSelection(recipeIngredients.getText().length());
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
 
         recipeTime = (EditText) contentView.findViewById(R.id.recipeTime);
         recipeInstructions = (EditText) contentView.findViewById(R.id.recipeInstructions);
-        recipeImage = (ImageView) contentView.findViewById(R.id.recipePhoto);
+        ImageView recipeImage = (ImageView) contentView.findViewById(R.id.recipePhoto);
 
         //Menu
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         ImageView menuAdd = (ImageView) getActivity().findViewById(R.id.menu_add);
         ImageView menuProfile = (ImageView) getActivity().findViewById(R.id.menu_profile);
@@ -370,17 +320,13 @@ public class CreateEditFragment extends Fragment {
         }
     }
 
-
-
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
 
-    public interface OnFragmentInteractionListener {
-
-    }
+    public interface OnFragmentInteractionListener {}
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_IMAGE_GALLERY = 2;
@@ -462,9 +408,9 @@ public class CreateEditFragment extends Fragment {
     }
 
 
-    static class ViewHolder {
-        public TextView ingredientName;
-        public ImageView deleteIngredient;
+    private static class ViewHolder {
+        TextView ingredientName;
+        ImageView deleteIngredient;
     }
     private class IngredientsListAdapter extends BaseAdapter {
         @Override
@@ -493,7 +439,8 @@ public class CreateEditFragment extends Fragment {
                 holder.deleteIngredient.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ingredientsList.remove(position);
+                        int pos = (int)holder.ingredientName.getTag();
+                        ingredientsList.remove(pos);
                         adapter.notifyDataSetChanged();
                         setListViewHeightBasedOnChildren(ingredientsListLV);
                     }
@@ -502,6 +449,7 @@ public class CreateEditFragment extends Fragment {
             }
             ViewHolder holder = (ViewHolder) convertView.getTag();
             holder.ingredientName.setText(ingredientsList.get(position));
+            holder.ingredientName.setTag(position);
             return convertView;
         }
     }

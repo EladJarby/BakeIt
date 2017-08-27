@@ -15,7 +15,7 @@ public class SplashActivity extends Activity {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
-                /* Create an Intent that will start the Menu-Activity. */
+                // Main intent that will be redirect from splash screen after delay (2000).
                 Intent mainIntent = new Intent(SplashActivity.this,LoginActivity.class);
                 startActivity(mainIntent);
                 finish();

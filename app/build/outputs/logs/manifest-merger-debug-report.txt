@@ -39,7 +39,7 @@ ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:8:5-81
 		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:8:22-78
 application
 ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:10:5-58:19
-MERGED from [com.facebook.android:facebook-android-sdk:4.25.0] C:\Users\EladJ\.android\build-cache\ed0861a2e3521ea67b23d62958af941ae88e6882\output\AndroidManifest.xml:28:5-48:19
+MERGED from [com.facebook.android:facebook-android-sdk:4.26.0] C:\Users\EladJ\.android\build-cache\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\output\AndroidManifest.xml:28:5-48:19
 MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\EladJ\.android\build-cache\899605adf694fcabfddbbe602708fb7060be7134\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\EladJ\.android\build-cache\cc628ab33f98e36d9cbe6f1adf1de759a8e49549\output\AndroidManifest.xml:26:5-20
 MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\EladJ\.android\build-cache\d921e277d2f8e49ed3405d9ba5eaf21c733a2751\output\AndroidManifest.xml:26:5-20
@@ -68,11 +68,11 @@ MERGED from [com.android.support:support-compat:25.3.1] C:\Users\EladJ\.android\
 	android:supportsRtl
 		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:16:9-36
 	android:roundIcon
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:15:9-54
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:15:9-50
 	android:allowBackup
 		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:12:9-35
 	android:icon
-		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:13:9-43
+		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:13:9-45
 	android:theme
 		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:17:9-65
 	android:name
@@ -97,13 +97,13 @@ ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:24:9-7
 		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:24:20-53
 activity#com.facebook.FacebookActivity
 ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:25:9-28:48
-MERGED from [com.facebook.android:facebook-android-sdk:4.25.0] C:\Users\EladJ\.android\build-cache\ed0861a2e3521ea67b23d62958af941ae88e6882\output\AndroidManifest.xml:29:9-32:66
+MERGED from [com.facebook.android:facebook-android-sdk:4.26.0] C:\Users\EladJ\.android\build-cache\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\output\AndroidManifest.xml:29:9-32:66
 	android:label
 		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:28:13-45
 	android:configChanges
 		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:27:13-96
 	android:theme
-		ADDED from [com.facebook.android:facebook-android-sdk:4.25.0] C:\Users\EladJ\.android\build-cache\ed0861a2e3521ea67b23d62958af941ae88e6882\output\AndroidManifest.xml:32:13-63
+		ADDED from [com.facebook.android:facebook-android-sdk:4.26.0] C:\Users\EladJ\.android\build-cache\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\output\AndroidManifest.xml:32:13-63
 	android:name
 		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:26:13-57
 activity#com.facebook.CustomTabActivity
@@ -166,7 +166,7 @@ ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:56:9-5
 		ADDED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml:56:19-47
 uses-sdk
 INJECTED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-MERGED from [com.facebook.android:facebook-android-sdk:4.25.0] C:\Users\EladJ\.android\build-cache\ed0861a2e3521ea67b23d62958af941ae88e6882\output\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-android-sdk:4.26.0] C:\Users\EladJ\.android\build-cache\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\output\AndroidManifest.xml:24:5-26:41
 MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\EladJ\.android\build-cache\899605adf694fcabfddbbe602708fb7060be7134\output\AndroidManifest.xml:21:5-23:78
 MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\EladJ\.android\build-cache\cc628ab33f98e36d9cbe6f1adf1de759a8e49549\output\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\EladJ\.android\build-cache\d921e277d2f8e49ed3405d9ba5eaf21c733a2751\output\AndroidManifest.xml:20:5-43
@@ -203,17 +203,17 @@ MERGED from [com.android.support:support-compat:25.3.1] C:\Users\EladJ\.android\
 		INJECTED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\EladJ\Desktop\BakeIt\app\src\main\AndroidManifest.xml
 activity#com.facebook.CustomTabMainActivity
-ADDED from [com.facebook.android:facebook-android-sdk:4.25.0] C:\Users\EladJ\.android\build-cache\ed0861a2e3521ea67b23d62958af941ae88e6882\output\AndroidManifest.xml:33:9-71
+ADDED from [com.facebook.android:facebook-android-sdk:4.26.0] C:\Users\EladJ\.android\build-cache\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\output\AndroidManifest.xml:33:9-71
 	android:name
-		ADDED from [com.facebook.android:facebook-android-sdk:4.25.0] C:\Users\EladJ\.android\build-cache\ed0861a2e3521ea67b23d62958af941ae88e6882\output\AndroidManifest.xml:33:19-68
+		ADDED from [com.facebook.android:facebook-android-sdk:4.26.0] C:\Users\EladJ\.android\build-cache\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\output\AndroidManifest.xml:33:19-68
 provider#com.facebook.internal.FacebookInitProvider
-ADDED from [com.facebook.android:facebook-android-sdk:4.25.0] C:\Users\EladJ\.android\build-cache\ed0861a2e3521ea67b23d62958af941ae88e6882\output\AndroidManifest.xml:44:9-47:40
+ADDED from [com.facebook.android:facebook-android-sdk:4.26.0] C:\Users\EladJ\.android\build-cache\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\output\AndroidManifest.xml:44:9-47:40
 	android:authorities
-		ADDED from [com.facebook.android:facebook-android-sdk:4.25.0] C:\Users\EladJ\.android\build-cache\ed0861a2e3521ea67b23d62958af941ae88e6882\output\AndroidManifest.xml:46:13-72
+		ADDED from [com.facebook.android:facebook-android-sdk:4.26.0] C:\Users\EladJ\.android\build-cache\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\output\AndroidManifest.xml:46:13-72
 	android:exported
-		ADDED from [com.facebook.android:facebook-android-sdk:4.25.0] C:\Users\EladJ\.android\build-cache\ed0861a2e3521ea67b23d62958af941ae88e6882\output\AndroidManifest.xml:47:13-37
+		ADDED from [com.facebook.android:facebook-android-sdk:4.26.0] C:\Users\EladJ\.android\build-cache\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\output\AndroidManifest.xml:47:13-37
 	android:name
-		ADDED from [com.facebook.android:facebook-android-sdk:4.25.0] C:\Users\EladJ\.android\build-cache\ed0861a2e3521ea67b23d62958af941ae88e6882\output\AndroidManifest.xml:45:13-70
+		ADDED from [com.facebook.android:facebook-android-sdk:4.26.0] C:\Users\EladJ\.android\build-cache\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\output\AndroidManifest.xml:45:13-70
 meta-data#android.support.VERSION
 ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\EladJ\.android\build-cache\899605adf694fcabfddbbe602708fb7060be7134\output\AndroidManifest.xml:25:5-27:34
 MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\EladJ\.android\build-cache\cc628ab33f98e36d9cbe6f1adf1de759a8e49549\output\AndroidManifest.xml:22:5-24:34

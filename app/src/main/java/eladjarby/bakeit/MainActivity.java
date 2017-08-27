@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements FeedFragment.OnFr
 ,CreateEditFragment.OnFragmentInteractionListener,
 RecipeDetailsFragment.OnFragmentInteractionListener,
 UserProfileFragment.OnFragmentInteractionListener{
+
     private static String url = "http://api.geonames.org/searchJSON?username=bakeit&country=il&maxRows=1000&style=SHORT";
     Set<String> citiesSet;
     ArrayList<String> citiesList;

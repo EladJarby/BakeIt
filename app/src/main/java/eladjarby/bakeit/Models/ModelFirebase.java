@@ -22,14 +22,13 @@ import eladjarby.bakeit.Models.User.UserFirebase;
  */
 
 public class ModelFirebase {
-    private FirebaseAuth mAuth;
-    private EditText mUsername;
-    private EditText mPassword;
 
+    // Get the current user id.
     public String getCurrentUserId() {
         return UserFirebase.getCurrentUserId();
     }
 
+    // Save image on firebase storage
     public void saveImage(Bitmap imageBmp, String name, final BaseInterface.SaveImageListener listener){
         FirebaseStorage storage = FirebaseStorage.getInstance();
 
@@ -55,6 +54,7 @@ public class ModelFirebase {
     }
 
 
+    // Get image from firebase storage.
     public void getImage(String url, final BaseInterface.GetImageListener listener){
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference httpsReference = storage.getReferenceFromUrl(url);

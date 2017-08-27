@@ -11,7 +11,6 @@ import eladjarby.bakeit.R;
 
 public class myProgressDialog {
     private ProgressDialog mProgressDialog;
-    private Context context;
 
     public myProgressDialog(Context context) {
         if (mProgressDialog == null) {

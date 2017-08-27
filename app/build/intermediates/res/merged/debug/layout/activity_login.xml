@@ -48,13 +48,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/login_forgetBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
-                android:layout_weight="1"
-                android:text="Forget password?" />
+            <!--<TextView-->
+                <!--android:id="@+id/login_forgetBtn"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="3dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="Forget password?" />-->
 
             <TextView
                 android:id="@+id/login_registerBtn"

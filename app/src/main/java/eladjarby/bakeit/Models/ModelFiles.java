@@ -23,8 +23,11 @@ import eladjarby.bakeit.MyApplication;
  */
 
 public class ModelFiles {
+
+    // Save image to gallery.
     public static void saveImageToFile(Bitmap imageBitmap, String imageFileName){
         try {
+            // Get the gallery path and BakeIt folder in gallery.
             String path = Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_PICTURES) + File.separator + "BakeIt";
             File dir = new File(path);
@@ -46,8 +49,8 @@ public class ModelFiles {
         }
     }
 
+    // Add the picture to the gallery so we dont need to manage the cache size
     private static void addPicureToGallery(File imageFile){
-        //add the picture to the gallery so we dont need to manage the cache size
         Intent mediaScanIntent = new
                 Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         Uri contentUri = Uri.fromFile(imageFile);
@@ -56,6 +59,7 @@ public class ModelFiles {
     }
 
 
+ // Load image from gallery async.
     public static void loadImageFromFileAsynch(String imageFileName,
                                         final BaseInterface.LoadImageFromFileAsynch callback) {
         AsyncTask<String,String,Bitmap> task = new AsyncTask<String,String,Bitmap>(){
@@ -73,7 +77,7 @@ public class ModelFiles {
         task.execute(imageFileName);
     }
 
-
+    // Load image from gallery
     public static Bitmap loadImageFromFile(String imageFileName){
         Bitmap bitmap = null;
         try {

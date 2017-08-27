@@ -4,6 +4,10 @@
         "source": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_expand_button.png"
     },
     {
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_launcher.png",
+        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
         "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_plus_green_24dp.png",
         "source": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_plus_green_24dp.png"
     },
