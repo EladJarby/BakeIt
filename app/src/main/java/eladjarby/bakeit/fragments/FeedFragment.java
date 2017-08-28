@@ -60,9 +60,11 @@ public class FeedFragment extends Fragment {
     private PopupWindow popWindow;
     private FrameLayout layout_MainMenu;
 
+    // Subscribe to recipe updates (new recipe).
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(Model.RecipeUpdateEvent event) {
         boolean exist = false;
+        // Check if recipe already exist.
         for(Recipe recipe: recipeList) {
             if(recipe.getID().equals(event.recipe.getID())) {
                 recipe = event.recipe;
@@ -70,27 +72,34 @@ public class FeedFragment extends Fragment {
                 break;
             }
         }
+        // If recipe not exist , so add recipe to list.
         if(!exist) {
             if(event.recipe.getRecipeIsRemoved() == 0) {
                 recipeList.add(0, event.recipe);
             }
+            // Notify about change.
             adapter.notifyDataSetChanged();
         }
     }
 
+    // Subscribe if recipe changed (update/delete)
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(Model.RecipeChangedEvent event) {
         int index = 0;
+        // Get the index for recipe in the existed list.
         for(index = 0; index < recipeList.size(); index++) {
             if(recipeList.get(index).getID().equals(event.recipe.getID())) {
                 break;
             }
         }
         if(index < recipeList.size()) {
+            // Change existed recipe to updated recipe.
             recipeList.set(index,event.recipe);
+            // Check if recipe is with remove flag , if it does , so remove from list.
             if(event.recipe.getRecipeIsRemoved() == 1) {
                 recipeList.remove(index);
             }
+            // Notify about change.
             adapter.notifyDataSetChanged();
         }
     }
@@ -105,6 +114,7 @@ public class FeedFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        // Register to updates from EventBus.
         EventBus.getDefault().register(this);
         super.onCreate(savedInstanceState);
     }
@@ -112,6 +122,7 @@ public class FeedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Check permission.
         checkPermission();
         // Inflate the layout for this fragment
         View contentView = inflater.inflate(R.layout.fragment_feed, container, false);
@@ -123,6 +134,7 @@ public class FeedFragment extends Fragment {
 
         list = (ListView) contentView.findViewById(R.id.recipeList);
 
+        // Get recipe list and notify about change in the list.
         Model.instance.getRecipeList(new BaseInterface.GetAllRecipesCallback() {
             @Override
             public void onComplete(List<Recipe> list) {
@@ -130,18 +142,21 @@ public class FeedFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
+        // Catch click on add button , switching fragments to add recipe.
         menuAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.addRecipe();
             }
         });
+        // Catch click on profile button , switching fragments to user profile.
         menuProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.userProfile();
             }
         });
+        // Set custom adapter.
         list.setAdapter(adapter);
         return contentView;
     }
@@ -180,6 +195,7 @@ public class FeedFragment extends Fragment {
         void userProfile();
     }
 
+    // Check permissions.
     private void checkPermission() {
         boolean hasPermission = (ContextCompat.checkSelfPermission(getActivity(),
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
@@ -190,6 +206,7 @@ public class FeedFragment extends Fragment {
         }
     }
 
+    // View holder.
     private static class ViewHolder {
         ImageView recipeAuthorImage;
         TextView recipeTitle;
@@ -222,8 +239,11 @@ public class FeedFragment extends Fragment {
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             if(convertView == null) {
+                // inflate each row to feed list.
                 convertView = getActivity().getLayoutInflater().inflate(R.layout.feed_list_row,null);
                 final ViewHolder holder = new ViewHolder();
+
+                // Set all ids to holder.
                 holder.recipeAuthorImage = (ImageView) convertView.findViewById(R.id.strow_authorImage);
                 holder.recipeTitle = (TextView) convertView.findViewById(R.id.strow_header);
                 holder.recipeDescription = (TextView) convertView.findViewById(R.id.strow_description);
@@ -232,17 +252,22 @@ public class FeedFragment extends Fragment {
                 holder.recipeImage = (ImageView) convertView.findViewById(R.id.strow_image);
                 holder.recipeArrow = (ImageView) convertView.findViewById(R.id.strow_arrow);
                 holder.likeImage = (ImageView) convertView.findViewById(R.id.strow_likeImage);
+
+                // Catch click on recipe likes , add / remove like for every click
                 holder.recipeLikes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Problem could happend: will raise likes every click
+                        // Set position with tag.
                         int pos = (int)holder.recipeLikes.getTag();
+                        // Get recipe with given position
                         Recipe recipe = recipeList.get(pos);
                         Model.instance.changeLike(recipe);
+                        // Set animation for like heart image.
                         Animation pulse = AnimationUtils.loadAnimation(getActivity(), R.anim.pulse);
                         holder.likeImage.setAnimation(pulse);
                     }
                 });
+                // Catch click on recipe arrow to edit/remove recipe.
                 holder.recipeArrow.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -250,6 +275,7 @@ public class FeedFragment extends Fragment {
                         onShowPopup(v,pos);
                     }
                 });
+                //Catch click on recipe image to show details about recipe.
                 holder.recipeImage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -259,18 +285,28 @@ public class FeedFragment extends Fragment {
                 });
                 convertView.setTag(holder);
             }
+
+            // Get recipe by position.
             final Recipe recipe = recipeList.get(position);
             final ViewHolder holder = (ViewHolder) convertView.getTag();
+
+            //Set spinners
             final ProgressBar authorProgressBar = ((ProgressBar) convertView.findViewById(R.id.authorProgressBar));
             final ProgressBar recipeProgressBar = ((ProgressBar) convertView.findViewById(R.id.recipeProgressBar));
             authorProgressBar.setVisibility(View.VISIBLE);
             recipeProgressBar.setVisibility(View.GONE);
+
+            // Get all recipe details.
             holder.recipeDescription.setText(recipe.getRecipeTitle());
+
+            // Check if recipe is related to user , if it doesnt, so dont show arrow for this recipe.
             if(UserFirebase.getCurrentUserId().equals(recipe.getRecipeAuthorId())) {
                 holder.recipeArrow.setVisibility(View.VISIBLE);
             } else {
                 holder.recipeArrow.setVisibility(View.INVISIBLE);
             }
+
+            // Set style with spannable for header.
             String userName = recipe.getRecipeAuthorName();
             String recipeHeader = " posted a recipe on ";
             String category = recipe.getRecipeCategory();
@@ -282,16 +318,18 @@ public class FeedFragment extends Fragment {
             sb.setSpan(new StyleSpan(Typeface.BOLD), finalString.indexOf(category),finalString.indexOf(category)+ category.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             sb.setSpan(new RelativeSizeSpan(0.8f), finalString.indexOf(category),finalString.indexOf(category)+ category.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             holder.recipeTitle.setText(sb, TextView.BufferType.SPANNABLE);
+
+            // Get user image.
             UserFirebase.getUser(recipe.getRecipeAuthorId(), new BaseInterface.GetUserCallback() {
                 @Override
                 public void onComplete(final User user) {
                     final String userImageUrl = user.getUserImage();
+                    // Boolean to check if image updated.
                     boolean authorImageUpdated = false;
                     if(holder.recipeAuthorImage.getTag() == null || !holder.recipeAuthorImage.getTag().equals(userImageUrl)) {
                         holder.recipeAuthorImage.setTag(userImageUrl);
                         authorImageUpdated = true;
                     }
-                        //recipeAuthorImage.setImageDrawable(getDrawable(getActivity(), R.drawable.bakeitlogo));
                     if (userImageUrl != null && !userImageUrl.isEmpty() && !userImageUrl.equals("") && authorImageUpdated) {
                         holder.recipeAuthorImage.setImageDrawable(null);
                         authorImageUpdated = false;
@@ -306,7 +344,6 @@ public class FeedFragment extends Fragment {
 
                             @Override
                             public void onFail() {
-
                             }
                         });
                     }
@@ -315,9 +352,10 @@ public class FeedFragment extends Fragment {
 
                 @Override
                 public void onCancel() {
-
                 }
             });
+
+            // Boolean to check if image updated.
             boolean recipeImageUpdated = false;
             if(holder.recipeImage.getTag() == null || !holder.recipeImage.getTag().equals(recipe.getRecipeImage())) {
                 holder.recipeImage.setTag(recipe.getRecipeImage());
@@ -340,7 +378,6 @@ public class FeedFragment extends Fragment {
 
                     @Override
                     public void onFail() {
-
                     }
                 });
             }
@@ -351,7 +388,7 @@ public class FeedFragment extends Fragment {
         }
     }
 
-
+    // Show popup after pressing on arrow to edit/delete recipe.
     public void onShowPopup(View v,int position){
 
         LayoutInflater layoutInflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -373,14 +410,16 @@ public class FeedFragment extends Fragment {
 
         // set dim when popup window show
         layout_MainMenu.getForeground().setAlpha(50);
+
         // set height depends on the device size
         popWindow = new PopupWindow(inflatedView, size.x, WindowManager.LayoutParams.WRAP_CONTENT, true );
 
-        // make it focusable to show the keyboard to enter in `EditText`
         popWindow.setFocusable(true);
+
         // make it outside touchable to dismiss the popup window
         popWindow.setOutsideTouchable(true);
 
+        // set animation to popup.
         popWindow.setAnimationStyle(R.style.AnimationPopup);
         popWindow.setBackgroundDrawable(new ColorDrawable(
                 android.graphics.Color.TRANSPARENT));
@@ -392,21 +431,32 @@ public class FeedFragment extends Fragment {
                 layout_MainMenu.getForeground().setAlpha(0);
             }
         });
+
         // show the popup at bottom of the screen and set some margin at bottom ie,
         popWindow.showAtLocation(v, Gravity.BOTTOM, 0,0);
     }
 
+    // Set list for edit/remove popup
     void setSimpleList(ListView listView, final int positionList){
 
         final ArrayList<String> popupList = new ArrayList<String>();
 
         popupList.add("Edit recipe");
         popupList.add("Delete");
+
+        // Set array adapter.
         listView.setAdapter(new ArrayAdapter<String>(getActivity(),
                 R.layout.arrow_popup_row, R.id.arrow_popup_title,popupList));
+
+        // Catch click on edit/delete recipe.
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                /*
+                 If position = 1 (remove) , so remove recipe by setting 1 to 'recipeIsRemove',
+                 Else position = 0 (edit) , edit recipe.
+                  */
+
                 if(position == 1) {
                     Log.d("TAG","" + position);
                     Model.instance.removeRecipe(recipeList.get(positionList).getID(), new BaseInterface.GetRecipeCallback() {
@@ -422,13 +472,17 @@ public class FeedFragment extends Fragment {
                 } else if(position == 0) {
                     mListener.editRecipe(recipeList.get(positionList).getID());
                 }
+                // Dismiss popup after clicking on option.
                 popWindow.dismiss();
+                // Cancel dim.
                 layout_MainMenu.getForeground().setAlpha(0);
             }
         });
     }
+
     @Override
     public void onDestroy() {
+        // Unregister for new updates from Eventbus.
         EventBus.getDefault().unregister(this);
         super.onDestroy();
     }

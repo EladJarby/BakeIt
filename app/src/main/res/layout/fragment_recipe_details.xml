@@ -18,9 +18,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                // this is your first layout to put the big image
-                // use src or backgroud image as per requirement
-
                 <ImageView
                     android:id="@+id/details_image"
                     android:src="@drawable/bakeitlogo"
@@ -42,7 +39,6 @@
 
             </LinearLayout>
 
-            // This is the imageview which overlay the first LinearLayout
             <ImageView
                 android:id="@+id/details_author_image"
                 android:layout_width="50dp"

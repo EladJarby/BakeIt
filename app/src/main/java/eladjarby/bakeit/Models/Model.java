@@ -24,17 +24,20 @@ import static eladjarby.bakeit.Models.ModelFiles.saveImageToFile;
  */
 
 public class Model {
+    // Create a new model , Singleton.
     public final static Model instance = new Model();
     private ModelFirebase modelFirebase;
     private ModelSql modelSql;
     private User currentUser;
     private static final String RECIPE_LAST_UPDATE_DATE = "recipeLastUpdateDate";
 
+    // Constructor
     private Model() {
         modelSql = new ModelSql(MyApplication.getMyContext());
         modelFirebase = new ModelFirebase();
     }
 
+    // Sync user when user get to main activity.
     public void syncUser() {
         UserFirebase.getUser(UserFirebase.getCurrentUserId(), new BaseInterface.GetUserCallback() {
             @Override
@@ -50,59 +53,54 @@ public class Model {
         });
     }
 
+    // When recipe updated.
     public class RecipeUpdateEvent {
-
         public final Recipe recipe;
-
         public RecipeUpdateEvent(Recipe recipe) {
             this.recipe = recipe;
         }
     }
 
+    // When recipe changed.
     public class RecipeChangedEvent {
-
         public final Recipe recipe;
-
         public RecipeChangedEvent(Recipe recipe) {
             this.recipe = recipe;
         }
     }
 
-    public class RecipeRemoveEvent {
-
-        public final String recipeId;
-
-        public RecipeRemoveEvent(String recipeId) {
-            this.recipeId = recipeId;
-        }
-    }
+    // Get recipe list
     public void getRecipeList(BaseInterface.GetAllRecipesCallback callback) {
         callback.onComplete(RecipeSql.getRecipeList(modelSql.getReadableDatabase()));
     }
 
+    // Get current user id
     public String getCurrentUserId() {
         return modelFirebase.getCurrentUserId();
     }
 
+    // Get current user.
     public User getCurrentUser() {
         return currentUser;
     }
     public Recipe getRecipe(String recipeId) {
         return RecipeSql.getRecipe(modelSql.getReadableDatabase(),recipeId);
     }
+
+    // Add recipe function.
     public void addRecipe(Recipe recipe) {
-        //RecipeSql.addRecipe(modelSql.getWritableDatabase(),recipe);
         RecipeFirebase.addRecipe(recipe);
     }
 
+    // Edit recipe function.
     public void editRecipe(Recipe recipe) {
         RecipeSql.updateRecipe(modelSql.getWritableDatabase(),recipe);
         RecipeFirebase.updateRecipe(recipe);
     }
 
+    // Remove recipe function.
     public void removeRecipe(final String recipeId , final BaseInterface.GetRecipeCallback callback) {
         final Recipe recipe = Model.instance.getRecipe(recipeId);
-        //RecipeSql.removeRecipe(modelSql.getWritableDatabase(),recipeId);
         RecipeFirebase.removeRecipe(recipe, new BaseInterface.GetRecipeCallback() {
             @Override
             public void onComplete() {
@@ -115,32 +113,45 @@ public class Model {
         });
     }
 
+    // Randomize a random number.
     public String randomNumber() {
         Random r = new Random();
         return "" + System.currentTimeMillis() + r.nextInt(10000);
     }
 
+    /*
+    Sync and register new updates , each time user get to main activity,
+    User get the delta between last update date(from his user) to last update date on firebase,
+    Because of that , he get all the new recipes.
+     */
     private void syncAndRegisterRecipeUpedates() {
+        // Get the shared preference.
         SharedPreferences pref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
+        // Get the last recipe date , default on beginning: 0.
         final long lastUpdateDate = pref.getLong(RECIPE_LAST_UPDATE_DATE, 0);
         Log.d("TAG","lastUpdateDate: " + lastUpdateDate);
 
         RecipeFirebase.uploadRecipeUpdates(lastUpdateDate, new BaseInterface.RecipeUpdates() {
+            // Each time child updated/changed , this function called.
             @Override
             public void onRecipeUpdate(Recipe recipe) {
                 boolean isChanged = false;
+                // Check if recipe is exist in sql lite, if it doesnt , so add recipe to sql lite , if is already existed , so update recipe.
                 if(RecipeSql.getRecipe(modelSql.getReadableDatabase(),recipe.getID()) == null) {
                     RecipeSql.addRecipe(modelSql.getWritableDatabase(), recipe);
                 } else {
                     RecipeSql.updateRecipe(modelSql.getWritableDatabase(),recipe);
                     isChanged = true;
                 }
+                // Get the last recipe date , default on beginning: 0.
                 SharedPreferences pref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
                 final long lastUpdateDate = pref.getLong(RECIPE_LAST_UPDATE_DATE, 0);
+                // Check if the recipe date is newer then in shared preferences, if it does , so update the newer to be in shared prefernces for next update.
                 if(lastUpdateDate < recipe.getRecipeLastUpdateDate()) {
                     SharedPreferences.Editor prefEditor = MyApplication.getMyContext().getSharedPreferences("TAG" ,Context.MODE_PRIVATE).edit();
                     prefEditor.putLong(RECIPE_LAST_UPDATE_DATE,recipe.getRecipeLastUpdateDate()).apply();
                 }
+                // check if recipe new or updated and send an event.
                 if(!isChanged) {
                     EventBus.getDefault().post(new RecipeUpdateEvent(recipe));
                 } else {
@@ -151,6 +162,7 @@ public class Model {
         });
     }
 
+    // Save image in firebase.
     public void saveImage(final Bitmap imageBmp, final String name, final BaseInterface.SaveImageListener listener) {
         modelFirebase.saveImage(imageBmp, name, new BaseInterface.SaveImageListener() {
             @Override
@@ -167,6 +179,7 @@ public class Model {
         });
     }
 
+    // Get image from local storage , if its not exist , so get the image from firebase.
     public void getImage(final String url, final BaseInterface.GetImageListener listener) {
         //check if image exsist localy
         final String fileName = URLUtil.guessFileName(url, null, null);
@@ -198,6 +211,7 @@ public class Model {
         });
     }
 
+    // Change likes in firebase for each recipe.
     public void changeLike(final Recipe recipe) {
         RecipeFirebase.changeLike(recipe,new BaseInterface.GetLikesCallback() {
 

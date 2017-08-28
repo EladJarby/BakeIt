@@ -12,9 +12,11 @@ public class User {
     private String userFirstName;
     private String userLastName;
 
+    // Default constructor
     public User() {
     }
 
+    // Constructor
     public User(String ID, String userEmail, String userTown, String userImage, String userFirstName, String userLastName) {
         this.ID = ID;
         this.userEmail = userEmail;
@@ -24,6 +26,9 @@ public class User {
         this.userLastName = userLastName;
     }
 
+    /*
+    Getters and setters.
+     */
     public String getID() {
         return ID;
     }

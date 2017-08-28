@@ -27,6 +27,7 @@ public class RecipeSql {
     private static final String RECIPE_LAST_UPDATE_DATE = "recipeLastUpdateDate";
     private static final String RECIPE_IS_REMOVED = "recipeIsRemoved";
 
+    // Create a new recipe on sql lite.
     public static void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + RECIPE_TABLE + "(" +
                 RECIPE_ID + " TEXT PRIMARY KEY, " +
@@ -44,11 +45,13 @@ public class RecipeSql {
                 RECIPE_IS_REMOVED + " NUMBER );");
     }
 
+    // If sql lite db is upgraded , onUpgrade is executed.
     public static void onUpgrade(SQLiteDatabase db , int oldVersion , int newVersion) {
         db.execSQL("drop " + RECIPE_TABLE);
         onCreate(db);
     }
 
+    // Get recipe list from sql lite.
     public static List<Recipe> getRecipeList(SQLiteDatabase db) {
         Cursor cursor = db.query(RECIPE_TABLE , null , null , null , null , null , null);
         List<Recipe> recipeList = new LinkedList<Recipe>();
@@ -63,14 +66,17 @@ public class RecipeSql {
         return recipeList;
     }
 
+    // Add a new recipe to sql lite.
     public static void addRecipe(SQLiteDatabase db , Recipe recipe) {
         db.insert(RECIPE_TABLE,RECIPE_ID,getRecipeValues(recipe));
     }
 
+    // Update a new recipe to sql lite.
     public static void updateRecipe(SQLiteDatabase db , Recipe recipe) {
         db.update(RECIPE_TABLE, getRecipeValues(recipe), "ID=?",new String[]{recipe.getID()});
     }
 
+    // Get a specific recipe by his id.
     public static Recipe getRecipe (SQLiteDatabase db , String recipeId) {
         Cursor cursor = db.query(RECIPE_TABLE,null,"ID=?", new String[]{recipeId}, null, null, null);
         if(cursor.moveToFirst()) {
@@ -83,6 +89,7 @@ public class RecipeSql {
         }
     }
 
+    // Get recipe values.
     private static ContentValues getRecipeValues(Recipe recipe) {
         ContentValues values = new ContentValues();
         values.put(RECIPE_ID,recipe.getID());
@@ -101,6 +108,7 @@ public class RecipeSql {
         return values;
     }
 
+    // Get recipe from sql lite.
     private static Recipe getSQLRecipe(Cursor cursor) {
         int recipeIdIndex = cursor.getColumnIndex(RECIPE_ID);
         int recipeAuthorIdIndex = cursor.getColumnIndex(RECIPE_AUTHOR_ID);
@@ -129,7 +137,6 @@ public class RecipeSql {
                 cursor.getString(recipeDateIndex),
                 cursor.getLong(recipeLastUpdateIndex),
                 Integer.parseInt(cursor.getString(recipeIsRemoved)));
-
         return recipe;
     }
 }

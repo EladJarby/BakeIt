@@ -15,6 +15,7 @@ import eladjarby.bakeit.Models.User.User;
  * Created by EladJ on 13/07/2017.
  */
 
+// Base interface that allocated all callback that needed.
 public interface BaseInterface {
     interface RegisterAccountCallBack {
         void onComplete(FirebaseUser user, Task<Void> task);

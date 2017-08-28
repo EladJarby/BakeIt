@@ -22,9 +22,11 @@ public class Recipe {
     private long recipeLastUpdateDate = 0;
     private Integer recipeIsRemoved = 0;
 
+    // Default constructor
     public Recipe() {
     }
 
+    // Constructor
     public Recipe(String ID, String recipeAuthorId,String recipeAuthorName, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes, String recipeDate, Integer recipeIsRemoved) {
         this.ID = ID;
         this.recipeAuthorId = recipeAuthorId;
@@ -40,6 +42,7 @@ public class Recipe {
         this.recipeIsRemoved = recipeIsRemoved;
     }
 
+    // Constructor for sql lite.
     public Recipe(String ID, String recipeAuthorId,String recipeAuthorName, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes, String recipeDate, long recipeLastUpdateDate, Integer recipeIsRemoved) {
         this.ID = ID;
         this.recipeAuthorId = recipeAuthorId;
@@ -56,6 +59,9 @@ public class Recipe {
         this.recipeIsRemoved = recipeIsRemoved;
     }
 
+    /*
+    Getters and setters.
+     */
     public String getRecipeDate() {
         return recipeDate;
     }

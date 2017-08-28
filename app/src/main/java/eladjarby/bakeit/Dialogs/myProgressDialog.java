@@ -12,6 +12,7 @@ import eladjarby.bakeit.R;
 public class myProgressDialog {
     private ProgressDialog mProgressDialog;
 
+    // Constructor for progress dialog.
     public myProgressDialog(Context context) {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(context);
@@ -21,10 +22,12 @@ public class myProgressDialog {
 
     }
 
+    // Show progress dialog.
     public void showProgressDialog() {
         mProgressDialog.show();
     }
 
+    // Hide progress dialog.
     public void hideProgressDialog() {
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();

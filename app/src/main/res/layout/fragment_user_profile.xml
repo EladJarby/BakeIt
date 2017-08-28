@@ -61,19 +61,6 @@
                     android:ellipsize="start"
                     android:hint="City"
                     android:inputType="text" />
-                <!--<EditText-->
-                    <!--android:id="@+id/profile_city"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:ellipsize="start"-->
-                    <!--android:hint="City"-->
-                    <!--android:inputType="text" />-->
-                <!--<ImageView-->
-                    <!--android:id="@+id/profile_city_search_filter"-->
-                    <!--android:layout_width="30dp"-->
-                    <!--android:layout_height="30dp"-->
-                    <!--android:src="@drawable/ic_search_black_24dp"/>-->
             </LinearLayout>
 
             <LinearLayout

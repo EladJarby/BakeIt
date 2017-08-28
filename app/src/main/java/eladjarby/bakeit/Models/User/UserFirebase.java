@@ -29,14 +29,16 @@ public class UserFirebase {
     private static final String USERS_TABLE = "Users";
     private static DatabaseReference myRef = database.getReference(USERS_TABLE);
 
+    // Register a new account in firebase auth (email and password).
     public static void registerAccount(RegisterActivity registerActivity, final String email, String password, final BaseInterface.RegisterAccountCallBack callBack) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(registerActivity, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        // If user is registered successfuly.
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             Log.d("TAG", "createUserWithEmail:success");
+                            // Get the current user.
                             final FirebaseUser user = mAuth.getCurrentUser();
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                     .setDisplayName(email)
@@ -61,10 +63,12 @@ public class UserFirebase {
                 });
     }
 
+    // Logout current user.
     public static void logoutAccount() {
         mAuth.signOut();
     }
 
+    // Login with username and password that stored in firebase auth.
     public static void loginAccount(LoginActivity loginActivity , String email , String password , final BaseInterface.LoginAccountCallBack callback) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(loginActivity, new OnCompleteListener<AuthResult>() {
@@ -81,11 +85,13 @@ public class UserFirebase {
                     }
                 });
     }
-    public static void
-    addDBUser(User user) {
+
+    // Add/Update user to db with full details (id,email,first name, user image , last name , user town).
+    public static void addDBUser(User user) {
         myRef.child("" + user.getID()).setValue(user);
     }
 
+    // Get current user id from firebase auth.
     public static String getCurrentUserId() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if(currentUser != null) {
@@ -95,6 +101,7 @@ public class UserFirebase {
         }
     }
 
+    // Get current user from firebase db (User object).
     public static void getUser(String userId , final BaseInterface.GetUserCallback callback) {
         myRef.child(userId).addValueEventListener(new ValueEventListener() {
             @Override
@@ -110,6 +117,7 @@ public class UserFirebase {
         });
     }
 
+    // Get current Firebase user.
     public static FirebaseUser getCurrentUser() {
         return mAuth.getCurrentUser();
     }

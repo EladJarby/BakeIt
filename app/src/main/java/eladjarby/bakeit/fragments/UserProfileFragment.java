@@ -1,18 +1,16 @@
 package eladjarby.bakeit.fragments;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
-import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,13 +23,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.places.AutocompleteFilter;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlaceAutocomplete;
-
 import eladjarby.bakeit.Dialogs.myProgressDialog;
 import eladjarby.bakeit.MainActivity;
 import eladjarby.bakeit.Models.BaseInterface;
@@ -42,16 +33,7 @@ import eladjarby.bakeit.Models.User.UserFirebase;
 import eladjarby.bakeit.R;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
-import static com.facebook.login.widget.ProfilePictureView.TAG;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link UserProfileFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link UserProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class UserProfileFragment extends Fragment {
     private static final String JPEG = ".jpeg";
     View contentView;
@@ -61,10 +43,9 @@ public class UserProfileFragment extends Fragment {
     private myProgressDialog mProgressDialog;
     private EditText profileCity;
 
-    public UserProfileFragment() {
-        // Required empty public constructor
-    }
+    public UserProfileFragment() {}
 
+    // New instance for user profile.
     public static UserProfileFragment newInstance() {
         UserProfileFragment fragment = new UserProfileFragment();
         return fragment;
@@ -78,12 +59,19 @@ public class UserProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        // Inflate the layout for this fragment
         contentView = inflater.inflate(R.layout.fragment_user_profile, container, false);
 
-        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
         mProgressDialog = new myProgressDialog(getActivity());
+
+        // Get the action bar from activity.
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+        // Set menu
         ImageView menuAdd = (ImageView) getActivity().findViewById(R.id.menu_add);
         ImageView menuProfile = (ImageView) getActivity().findViewById(R.id.menu_profile);
         TextView menuTitle = (TextView) getActivity().findViewById(R.id.menu_title);
@@ -94,37 +82,40 @@ public class UserProfileFragment extends Fragment {
         menuProfile.setVisibility(View.GONE);
         menuTitle.setText("User Details");
 
+        // Get logged in current user
         user = Model.instance.getCurrentUser();
+        // Get all user details to set input fields.
         getUserDetails();
+
         Button updateBtn = (Button) contentView.findViewById(R.id.profile_update_btn);
         ImageView profileImage = (ImageView) contentView.findViewById(R.id.profile_image);
         Button logoutBtn = (Button) contentView.findViewById(R.id.profile_logout);
+
+        // Set array adapter for cities autocomplete.
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_dropdown_item_1line, ((MainActivity) getActivity()).getCitiesList());
         AutoCompleteTextView profileCity = (AutoCompleteTextView) contentView.findViewById(R.id.profile_city);
         profileCity.setAdapter(adapter);
-//        ImageView registerSearchFilter = (ImageView) contentView.findViewById(R.id.profile_city_search_filter);
-//        registerSearchFilter.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                searchGoogleTown();
-//            }
-//        });
+
+        // Catch click on profile image for take a new profile image.
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dispatchTakePictureIntent();
             }
         });
+        // Catch click on log out button , to log out from app.
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.logout();
             }
         });
+        // Catch click on update button , to update the user details.
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Close keyboard.
                 InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
                 mProgressDialog.showProgressDialog();
@@ -134,6 +125,7 @@ public class UserProfileFragment extends Fragment {
                         @Override
                         public void complete(String url) {
                             user.setUserImage(url);
+                            // Update user details.
                             UserFirebase.addDBUser(user);
                             ((MainActivity)getActivity()).showMenu();
                             mProgressDialog.hideProgressDialog();
@@ -142,10 +134,10 @@ public class UserProfileFragment extends Fragment {
 
                         @Override
                         public void fail() {
-
                         }
                     });
                 } else {
+                    // Update user details.
                     UserFirebase.addDBUser(user);
                     ((MainActivity)getActivity()).showMenu();
                     mProgressDialog.hideProgressDialog();
@@ -187,6 +179,7 @@ public class UserProfileFragment extends Fragment {
         void logout();
     }
 
+    // Update user with new details.
     private User updateUser() {
         String userId = null;
         String userEmail = null;
@@ -200,6 +193,8 @@ public class UserProfileFragment extends Fragment {
         return new User(userId,userEmail,userCity,userImage,userFirstName,userLastName);
 
     }
+
+    // Get user details to fill the input fields and images.
     private void getUserDetails() {
         EditText profileFirstName = (EditText) contentView.findViewById(R.id.profile_firstName);
         EditText profileLastName = (EditText) contentView.findViewById(R.id.profile_lastName);
@@ -216,6 +211,7 @@ public class UserProfileFragment extends Fragment {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
+    // An intent to take a picture.
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
@@ -223,24 +219,7 @@ public class UserProfileFragment extends Fragment {
         }
     }
 
-//    int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2;
-//    private void searchGoogleTown() {
-//        AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
-//                .setCountry("IL")
-//                .setTypeFilter(AutocompleteFilter.TYPE_FILTER_CITIES)
-//                .build();
-//        try {
-//            Intent intent =
-//                    new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
-//                            .setFilter(typeFilter)
-//                            .build(getActivity());
-//            startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
-//        } catch (GooglePlayServicesRepairableException e) {
-//            // TODO: Handle the error.
-//        } catch (GooglePlayServicesNotAvailableException e) {
-//            // TODO: Handle the error.
-//        }
-//    }
+    // Get the result from camera and set the image.
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == getActivity().RESULT_OK) {
@@ -251,22 +230,9 @@ public class UserProfileFragment extends Fragment {
             ImageView userImage = (ImageView) contentView.findViewById(R.id.profile_image);
             userImage.setImageBitmap(imageBitmap);
         }
-//        if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
-//            if (resultCode == getActivity().RESULT_OK) {
-//                Place place = PlaceAutocomplete.getPlace(getActivity(), data);
-//                profileCity.setText(place.getName());
-//            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
-//                Status status = PlaceAutocomplete.getStatus(getActivity(), data);
-//                // TODO: Handle the error.
-//                Log.i(TAG, status.getStatusMessage());
-//
-//            } else if (resultCode == getActivity().RESULT_CANCELED) {
-//                // The user canceled the operation.
-//            }
-//        }
     }
 
-
+    // Get square cropped image.
     public int getSquareCropDimensionForBitmap()
     {
         //use the smallest dimension of the image to crop to

@@ -89,27 +89,38 @@ public class CreateEditFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Check permission before continue.
         checkCameraPermission();
         mProgressDialog = new myProgressDialog(getActivity());
+        // Inflate the layout for this fragment
         contentView = inflater.inflate(R.layout.fragment_create_edit, container, false);
+
         Spinner categoryDropdown = (Spinner) contentView.findViewById(R.id.recipeCategory);
+        // Set the categories in dropdown.
         String[] items = new String[]{"Browines","Cakes","Loaves","Cupcakes & Muffins","Gluten free"};
+        // Create and set the array adapter for category dropdown.
         ArrayAdapter<String> dropdownAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,items);
         categoryDropdown.setAdapter(dropdownAdapter);
+
         Button saveButton = (Button) contentView.findViewById(R.id.saveButton);
         recipeTitle = (EditText) contentView.findViewById(R.id.recipeName);
         recipeIngredients = (EditText) contentView.findViewById(R.id.recipeIngredients);
         ImageView recipeAddIngredient = (ImageView) contentView.findViewById(R.id.recipeAddIngredient);
         ingredientsListLV = (ListView) contentView.findViewById(R.id.recipeIngredientsList);
+        // Set a custom adapter fron ingredients list view.
         ingredientsListLV.setAdapter(adapter);
+        // Catch click on add ingredient button to add a new ingredient to the list.
         recipeAddIngredient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Validation to check if ingredient have at least 1 character.
                 if(!recipeIngredients.getText().toString().isEmpty()) {
                     ingredientsList.add(recipeIngredients.getText().toString());
+                    // Initialize for next ingredient
                     recipeIngredients.setText("");
+                    // Notify about change.
                     adapter.notifyDataSetChanged();
+                    // Set the height after updating the list.
                     setListViewHeightBasedOnChildren(ingredientsListLV);
                 } else {
                     recipeIngredients.setError("At least 1 character.");
@@ -121,12 +132,13 @@ public class CreateEditFragment extends Fragment {
         recipeInstructions = (EditText) contentView.findViewById(R.id.recipeInstructions);
         ImageView recipeImage = (ImageView) contentView.findViewById(R.id.recipePhoto);
 
-        //Menu
+        // Get the action bar from activity.
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        // Set menu
         ImageView menuAdd = (ImageView) getActivity().findViewById(R.id.menu_add);
         ImageView menuProfile = (ImageView) getActivity().findViewById(R.id.menu_profile);
         TextView menuTitle = (TextView) getActivity().findViewById(R.id.menu_title);
@@ -136,28 +148,33 @@ public class CreateEditFragment extends Fragment {
         menuAdd.setVisibility(View.GONE);
         menuProfile.setVisibility(View.GONE);
 
+        // Switch case to check if we are on 'create mode' or 'edit mode'.
         switch (fragMode) {
             case "Create":
-                // Make back button enable on actionbar.
+                // Set the title to create recipe.
                 menuTitle.setText("Create recipe");
                 ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Home");
                 recipeImage.setVisibility(View.GONE);
                 saveButton.setText("Upload recipe");
+                // Catch click on save button to create a new recipe.
                 saveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        // Validate the form before create a new recipe.
                         if (!validateForm()) {
                             return;
                         }
-                        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+                        closeKeyboard();
                         mProgressDialog.showProgressDialog();
+                        // Create a new recipe and get a refernce.
                         final Recipe recipe = createRecipe();
+                        // Save image and save recipe.
                         if(imageBitmap != null) {
                             Model.instance.saveImage(imageBitmap, recipe.getID() + Model.instance.randomNumber() + JPEG, new BaseInterface.SaveImageListener() {
                                 @Override
                                 public void complete(String url) {
                                     recipe.setRecipeImage(url);
+                                    // Add recipe to firebase.
                                     Model.instance.addRecipe(recipe);
                                     mProgressDialog.hideProgressDialog();
                                     ((MainActivity)getActivity()).showMenu();
@@ -166,10 +183,10 @@ public class CreateEditFragment extends Fragment {
 
                                 @Override
                                 public void fail() {
-
                                 }
                             });
                         } else {
+                            // Add recipe to firebase.
                             Model.instance.addRecipe(recipe);
                             mProgressDialog.hideProgressDialog();
                             ((MainActivity)getActivity()).showMenu();
@@ -179,25 +196,29 @@ public class CreateEditFragment extends Fragment {
                 });
                 break;
             case "Edit":
+                // Set the title to edit recipe.
                 menuTitle.setText("Edit recipe");
                 getRecipeData(Model.instance.getRecipe(recipeId));
                 recipeImage.setVisibility(View.VISIBLE);
                 saveButton.setText("Edit recipe");
+                // Catch click on save button to edit existed recipe.
                 saveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        // Validate the form before create a new recipe.
                         if (!validateForm()) {
                             return;
                         }
-                        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+                        closeKeyboard();
                         mProgressDialog.showProgressDialog();
+                        // Create recipe with new details.
                         final Recipe recipe = createRecipe();
                         if(imageBitmap != null) {
                             Model.instance.saveImage(imageBitmap, recipe.getID() + Model.instance.randomNumber() + JPEG, new BaseInterface.SaveImageListener() {
                                 @Override
                                 public void complete(String url) {
                                     recipe.setRecipeImage(url);
+                                    //Update recipe on firebase.
                                     Model.instance.editRecipe(recipe);
                                     mProgressDialog.hideProgressDialog();
                                     ((MainActivity)getActivity()).showMenu();
@@ -206,10 +227,10 @@ public class CreateEditFragment extends Fragment {
 
                                 @Override
                                 public void fail() {
-
                                 }
                             });
                         } else {
+                            //Update recipe on firebase.
                             Model.instance.addRecipe(recipe);
                             mProgressDialog.hideProgressDialog();
                             ((MainActivity)getActivity()).showMenu();
@@ -220,6 +241,7 @@ public class CreateEditFragment extends Fragment {
                 break;
         }
         imageCapture = (ImageView) contentView.findViewById(R.id.imageCapture);
+        // Catch click on image capture for take a new recipe image.
         imageCapture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -227,6 +249,7 @@ public class CreateEditFragment extends Fragment {
             }
         });
         ImageView imageGallery = (ImageView) contentView.findViewById(R.id.imageGallery);
+        // Catch click on gallery image to grab image from gallery.
         imageGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -237,6 +260,13 @@ public class CreateEditFragment extends Fragment {
         return contentView;
     }
 
+    // Close keyboard.
+    private void closeKeyboard() {
+        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+    }
+
+    // Create a new recipe
     private Recipe createRecipe() {
         String recipeId = null;
         String recipeImage = null;
@@ -244,20 +274,29 @@ public class CreateEditFragment extends Fragment {
         String recipeIngredients = "";
         String recipeTitle = ((EditText) contentView.findViewById(R.id.recipeName)).getText().toString();
 
+        // Get the ingredients list and transfer each line to one string with bullets.
         for(int i=0; i < ingredientsList.size()-1; i++) {
             recipeIngredients = recipeIngredients + "\u2022 " + ingredientsList.get(i).toString() + "\n";
         }
         recipeIngredients = recipeIngredients + "\u2022 " + ingredientsList.get(ingredientsList.size()-1).toString();
 
+        // Get instructions from input
         String recipeInstructions = ((EditText) contentView.findViewById(R.id.recipeInstructions)).getText().toString();
+        // Get category from dropdown.
         String recipeCategory = ((Spinner) contentView.findViewById(R.id.recipeCategory)).getSelectedItem().toString();
+
+        // Switch case to check if we are on 'create mode' or 'edit mode'.
         switch (fragMode) {
             case "Create":
+                // Get random recipe id.
                 recipeId = Model.instance.getCurrentUserId() + Model.instance.randomNumber();
+                // Set default image.
                 recipeImage = "https://firebasestorage.googleapis.com/v0/b/bakeit-f8116.appspot.com/o/noimage.png?alt=media&token=9ec9fdea-b5d4-480f-b8af-3c3f12c70aef";
+                // Set likes to 0.
                 recipeLikes = 0;
                 break;
             case "Edit":
+                // Get existed recipe id.
                 recipeId = this.recipeId;
                 Recipe recipe = Model.instance.getRecipe(recipeId);
                 recipeImage = recipe.getRecipeImage();
@@ -267,10 +306,12 @@ public class CreateEditFragment extends Fragment {
         int recipeIsRemoved = 0;
         int recipeTime = Integer.parseInt(((EditText) contentView.findViewById(R.id.recipeTime)).getText().toString());
         String userFullName = Model.instance.getCurrentUser().getUserFirstName() + " " + Model.instance.getCurrentUser().getUserLastName();
+        // Get current time on format: d MMM yyyy at H:mm , for example: 28 Aug 2017 at 21:30.
         String currentTime = new SimpleDateFormat("d MMM yyyy", Locale.ENGLISH).format(new Date()) + " at " + new SimpleDateFormat("H:mm").format(new Date());
         return new Recipe(recipeId,Model.instance.getCurrentUserId(), userFullName ,recipeTitle,recipeCategory,recipeInstructions,recipeIngredients,recipeTime,recipeImage,recipeLikes,currentTime,recipeIsRemoved);
     }
 
+    // Validate form function , to check all inputs.
     private boolean validateForm() {
         boolean valid = true;
 
@@ -331,11 +372,14 @@ public class CreateEditFragment extends Fragment {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_IMAGE_GALLERY = 2;
 
+    // An intent to get a picture from gallery.
     private void takePictureFromGallery() {
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
         startActivityForResult(photoPickerIntent, REQUEST_IMAGE_GALLERY);
     }
+
+    // An intent to take a picture from camera.
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
@@ -343,6 +387,7 @@ public class CreateEditFragment extends Fragment {
         }
     }
 
+    // Get the result from camera / gallery and set the image.
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == getActivity().RESULT_OK) {
@@ -368,6 +413,7 @@ public class CreateEditFragment extends Fragment {
         }
     }
 
+    // Check camera permission.
     private void checkCameraPermission() {
         boolean hasPermission = (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED);
@@ -377,12 +423,15 @@ public class CreateEditFragment extends Fragment {
         }
     }
 
+    // Get recipe data (on edit mode) to set all inputs with existed data.
     private void getRecipeData(Recipe recipe) {
         ((EditText)contentView.findViewById(R.id.recipeName)).setText(recipe.getRecipeTitle());
-        //((EditText)contentView.findViewById(R.id.recipeIngredients)).setText(recipe.getRecipeIngredients());
         String recipeIngredients = recipe.getRecipeIngredients();
+        // Remove all bullets
         recipeIngredients = recipeIngredients.replace("\u2022 ","");
+        // Set a new array list that splitted with '\n'.
         ingredientsList = new ArrayList<String>(Arrays.asList(recipeIngredients.split("\n")));
+        // Set the view list height based on children.
         setListViewHeightBasedOnChildren(ingredientsListLV);
         ((EditText)contentView.findViewById(R.id.recipeTime)).setText("" + recipe.getRecipeTime());
         ((EditText)contentView.findViewById(R.id.recipeInstructions)).setText(recipe.getRecipeInstructions());
@@ -395,9 +444,9 @@ public class CreateEditFragment extends Fragment {
         }
     }
 
+    // Get spinner index to set the selection on spinner dropdown.
     private int getSpinnerIndex(Spinner spinner, String value) {
         int index = 0;
-
         for (int i=0;i<spinner.getCount();i++){
             if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(value)){
                 index = i;
@@ -408,10 +457,13 @@ public class CreateEditFragment extends Fragment {
     }
 
 
+    // View holder.
     private static class ViewHolder {
         TextView ingredientName;
         ImageView deleteIngredient;
     }
+
+    // Custom adapter for ingredients list.
     private class IngredientsListAdapter extends BaseAdapter {
         @Override
         public int getCount() {
@@ -432,35 +484,47 @@ public class CreateEditFragment extends Fragment {
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             if(convertView == null) {
+                // inflate each row for list.
                 convertView = getActivity().getLayoutInflater().inflate(R.layout.ingredients_list_row,parent,false);
                 final ViewHolder holder = new ViewHolder();
+
+                // Set all ids to holder.
                 holder.ingredientName = (TextView) convertView.findViewById(R.id.ingredient_name);
                 holder.deleteIngredient = (ImageView) convertView.findViewById(R.id.ingredient_delete);
+
                 holder.deleteIngredient.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        // Set the position by tag.
                         int pos = (int)holder.ingredientName.getTag();
+                        // Remove ingredient from the list by position
                         ingredientsList.remove(pos);
+                        // Notify about change.
                         adapter.notifyDataSetChanged();
+                        // Set new height after removing ingredient.
                         setListViewHeightBasedOnChildren(ingredientsListLV);
                     }
                 });
+                // Set view holder tag.
                 convertView.setTag(holder);
             }
+            // Get view holder tag.
             ViewHolder holder = (ViewHolder) convertView.getTag();
+            // Set text by list.
             holder.ingredientName.setText(ingredientsList.get(position));
+            // Set position tag to ingredient name to remember the position when deleting.
             holder.ingredientName.setTag(position);
             return convertView;
         }
     }
 
+    // Change the height of list view when adding/removing ingredient.
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) {
             // pre-condition
             return;
         }
-
         int totalHeight = 0;
         for (int i = 0; i < listAdapter.getCount(); i++) {
             View listItem = listAdapter.getView(i, null, listView);

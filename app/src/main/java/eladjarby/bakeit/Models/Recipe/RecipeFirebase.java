@@ -42,6 +42,7 @@ public class RecipeFirebase {
     private static FirebaseDatabase db = FirebaseDatabase.getInstance();
     private static DatabaseReference myRef = db.getReference(RECIPE_TABLE);
 
+    // Add recipe to firebase.
     public static void addRecipe(Recipe recipe) {
         Map<String,Object> values = new HashMap<String , Object>();
         values.put(RECIPE_ID,recipe.getID());
@@ -61,17 +62,18 @@ public class RecipeFirebase {
         myRef.child("" + recipe.getID()).setValue(values);
     }
 
+    // Update recipe
     public static void updateRecipe(Recipe recipe) {
         addRecipe(recipe);
     }
 
+    // Remove recipe by updating a value from 0 to 1 in db (recipeIsRemoved).
     public static void removeRecipe(final Recipe recipe , final BaseInterface.GetRecipeCallback callback) {
         recipe.setRecipeIsRemoved(1);
         addRecipe(recipe);
         myRef.child(recipe.getID()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //dataSnapshot.getRef().setValue(recipe);
                 callback.onComplete();
             }
 
@@ -81,6 +83,7 @@ public class RecipeFirebase {
         });
     }
 
+    // Get updates from firebase if added / changed / removed / moved.
     public static void uploadRecipeUpdates(long lastUpdateDate, final BaseInterface.RecipeUpdates callback) {
         myRef.orderByChild(RECIPE_LAST_UPDATE_DATE).startAt(lastUpdateDate).addChildEventListener(new ChildEventListener() {
             @Override
@@ -117,6 +120,7 @@ public class RecipeFirebase {
         });
     }
 
+    // Change like list in firebase for each recipe.
     public static void changeLike(Recipe recipe, final BaseInterface.GetLikesCallback callback) {
         myRef.child(recipe.getID()).runTransaction(new Transaction.Handler() {
             @Override

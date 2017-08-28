@@ -1,63 +1,42 @@
 package eladjarby.bakeit.fragments;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
 import android.graphics.Shader;
-import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.URLUtil;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import eladjarby.bakeit.Models.BaseInterface;
 import eladjarby.bakeit.Models.Model;
 import eladjarby.bakeit.Models.ModelFiles;
 import eladjarby.bakeit.Models.Recipe.Recipe;
-import eladjarby.bakeit.Models.Recipe.RecipeSql;
 import eladjarby.bakeit.Models.User.User;
 import eladjarby.bakeit.Models.User.UserFirebase;
 import eladjarby.bakeit.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link RecipeDetailsFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link RecipeDetailsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class RecipeDetailsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
 
-    // TODO: Rename and change types of parameters
     private String recipeId;
 
     private OnFragmentInteractionListener mListener;
 
-    public RecipeDetailsFragment() {
-        // Required empty public constructor
-    }
+    public RecipeDetailsFragment() {}
 
-    // TODO: Rename and change types and number of parameters
+    // New instance for recipe details.
     public static RecipeDetailsFragment newInstance(String recipeId) {
         RecipeDetailsFragment fragment = new RecipeDetailsFragment();
         Bundle args = new Bundle();
@@ -78,11 +57,13 @@ public class RecipeDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        // Get the action bar from activity.
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        // Set menu.
         ImageView menuAdd = (ImageView) getActivity().findViewById(R.id.menu_add);
         ImageView menuProfile = (ImageView) getActivity().findViewById(R.id.menu_profile);
         TextView menuTitle = (TextView) getActivity().findViewById(R.id.menu_title);
@@ -92,7 +73,11 @@ public class RecipeDetailsFragment extends Fragment {
         menuAdd.setVisibility(View.GONE);
         menuProfile.setVisibility(View.GONE);
         menuTitle.setText("Recipe details");
+
+        // Inflate the layout for this fragment
         final View contentView = inflater.inflate(R.layout.fragment_recipe_details, container, false);
+
+        // Get the details to fill all the fields.
         final Recipe recipe = Model.instance.getRecipe(recipeId);
         ((TextView)contentView.findViewById(R.id.details_title)).setText(recipe.getRecipeTitle());
         ((TextView)contentView.findViewById(R.id.details_ingredients)).setText(recipe.getRecipeIngredients());
@@ -110,7 +95,6 @@ public class RecipeDetailsFragment extends Fragment {
                     ((ImageView) contentView.findViewById(R.id.details_author_image)).setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.bakeitlogo));
                 }
             }
-
             @Override
             public void onCancel() {
 
@@ -146,6 +130,7 @@ public class RecipeDetailsFragment extends Fragment {
         // TODO: Update argument type and name
     }
 
+    // Get cropped circle bitmap of user image.
     public Bitmap getCroppedBitmap(Bitmap bitmap,int borderWidth) {
         final int width = bitmap.getWidth() + borderWidth;
         final int height = bitmap.getHeight() + borderWidth;

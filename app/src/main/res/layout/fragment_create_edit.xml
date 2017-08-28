@@ -185,5 +185,4 @@
                 android:text="Upload recipe"/>
         </LinearLayout>
     </LinearLayout>
-
 </ScrollView>
