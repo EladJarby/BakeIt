@@ -56,6 +56,15 @@
         <dex dex="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8018d4f94914ca454a425738ffa58155d2588c91\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="C:\Users\EladJ\.gradle\caches\modules-2\files-2.1\com.google.zxing\core\3.3.0\73c49077166faa4c3c0059c5f583d1d7bd1475fe\core-3.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="73c49077166faa4c3c0059c5f583d1d7bd1475fe">
+        <dex dex="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\pre-dexed\release\core-3.3.0_b8ffc079951193ff44b167f5f56b0965f3650bcc.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="C:\Users\EladJ\.android\build-cache\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\output\jars\classes.jar"
         jumboMode="true"
@@ -72,6 +81,15 @@
         revision="25.0.3"
         sha1="ed87ccdcb70c17d71ba4e6e4ac16afa62d3c49fb">
         <dex dex="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_76babce2027b87f503212a55940033e8006a6f18\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\EladJ\.android\build-cache\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="e09663005d70dcedff0bb77211b9ac52d8b69421">
+        <dex dex="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\pre-dexed\release\classes_3a90a5278cbc3158e87ccbf993de7def98abc580.jar" />
     </item>
     <item
         is-multidex="false"
@@ -252,15 +270,6 @@
         revision="25.0.3"
         sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
         <dex dex="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\pre-dexed\release\eventbus-3.0.0_fe3702672671f22fa61db8cf7ce88dac164f3c4f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\EladJ\.android\build-cache\ed0861a2e3521ea67b23d62958af941ae88e6882\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="474cccf169297d49fff89fd35b7634a7a9d1031c">
-        <dex dex="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\pre-dexed\release\classes_e3f2fff66a8cfc1e1877eb5481f74b363e3412dd.jar" />
     </item>
     <item
         is-multidex="true"
