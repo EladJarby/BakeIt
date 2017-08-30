@@ -67,6 +67,7 @@
                     android:layout_width="30sp"
                     android:layout_height="30sp"
                     android:layout_marginTop="5dp"
+                    android:visibility="gone"
                     android:src="@drawable/ic_plus_green_24dp" />
             </LinearLayout>
 

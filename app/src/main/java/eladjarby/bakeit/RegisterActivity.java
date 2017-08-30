@@ -43,6 +43,9 @@ public class RegisterActivity extends Activity {
     private static final String JPEG = ".jpeg";
     private EditText mUsername;
     private EditText mPassword;
+    private EditText mFirstName;
+    private EditText mLastName;
+    private AutoCompleteTextView registerCity;
     private Bitmap imageBitmap;
     public myProgressDialog mProgressDialog;
     private static String url = "http://api.geonames.org/searchJSON?username=bakeit&country=il&maxRows=1000&style=SHORT";
@@ -57,10 +60,13 @@ public class RegisterActivity extends Activity {
         mProgressDialog = new myProgressDialog(this);
         mUsername = (EditText) findViewById(R.id.register_user);
         mPassword = (EditText) findViewById(R.id.register_password);
+        mFirstName = (EditText) findViewById(R.id.register_firstName);
+        mLastName = (EditText) findViewById(R.id.register_lastName);
+
         final Button registerBtn = (Button) findViewById(R.id.register_btn);
         ImageView registerImage = (ImageView) findViewById(R.id.register_image);
         final TextView loginTV = (TextView) findViewById(R.id.register_loginBtn);
-        AutoCompleteTextView registerCity = (AutoCompleteTextView) findViewById(R.id.register_city);
+        registerCity = (AutoCompleteTextView) findViewById(R.id.register_city);
 
         citiesSet = new HashSet<String>();
         citiesList = new ArrayList<String>();
@@ -155,27 +161,59 @@ public class RegisterActivity extends Activity {
     private boolean validateForm() {
         boolean valid = true;
 
+        String city = registerCity.getText().toString();
+        if (TextUtils.isEmpty(city)) {
+            registerCity.requestFocus();
+            registerCity.setError("Required.");
+            valid = false;
+        }else {
+            registerCity.setError(null);
+        }
+
+        String lastName = mLastName.getText().toString();
+        if (TextUtils.isEmpty(lastName)) {
+            mLastName.requestFocus();
+            mLastName.setError("Required.");
+            valid = false;
+        }else {
+            mLastName.setError(null);
+        }
+
+        String firstName = mFirstName.getText().toString();
+        if (TextUtils.isEmpty(firstName)) {
+            mFirstName.requestFocus();
+            mFirstName.setError("Required.");
+            valid = false;
+        }else {
+            mFirstName.setError(null);
+        }
+
+        String password = mPassword.getText().toString();
+        if (TextUtils.isEmpty(password)) {
+            mPassword.requestFocus();
+            mPassword.setError("Required.");
+            valid = false;
+        } else if(mPassword.length() < 6) {
+            mPassword.requestFocus();
+            mPassword.setError("Password length should be higher then 6");
+            valid = false;
+        } else {
+            mPassword.setError(null);
+        }
+
         String email = mUsername.getText().toString();
         if (TextUtils.isEmpty(email)) {
+            mUsername.requestFocus();
             mUsername.setError("Required.");
             valid = false;
         } else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            mUsername.requestFocus();
             mUsername.setError("Please enter a valid email address.");
             valid = false;
         } else {
             mUsername.setError(null);
         }
 
-        String password = mPassword.getText().toString();
-        if (TextUtils.isEmpty(password)) {
-            mPassword.setError("Required.");
-            valid = false;
-        } else if(mPassword.length() < 6) {
-            mPassword.setError("Password length should be higher then 6");
-            valid = false;
-        } else {
-            mPassword.setError(null);
-        }
 
         return valid;
     }

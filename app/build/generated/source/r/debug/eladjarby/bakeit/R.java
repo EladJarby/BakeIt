@@ -22,6 +22,8 @@ public final class R {
         public static final int appear=0x7f05000a;
         public static final int disappear=0x7f05000b;
         public static final int pulse=0x7f05000c;
+        public static final int slideleft=0x7f05000d;
+        public static final int slideright=0x7f05000e;
     }
     public static final class attr {
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -3269,6 +3271,7 @@ containing a value of this type.
         public static final int app_name=0x7f06004c;
         public static final int category=0x7f06004d;
         public static final int categoryicon=0x7f06004e;
+        public static final int city=0x7f06004f;
         public static final int com_facebook_device_auth_instructions=0x7f060013;
         public static final int com_facebook_image_download_unknown_error=0x7f060014;
         public static final int com_facebook_internet_permission_error_message=0x7f060015;
@@ -3309,26 +3312,30 @@ containing a value of this type.
         public static final int common_open_on_phone=0x7f060038;
         public static final int common_signin_button_text=0x7f060039;
         public static final int common_signin_button_text_long=0x7f06003a;
-        public static final int default_web_client_id=0x7f06004f;
-        public static final int facebook_app_id=0x7f060050;
-        public static final int fb_login_protocol_scheme=0x7f060051;
-        public static final int firebase_database_url=0x7f060052;
-        public static final int gcm_defaultSenderId=0x7f060053;
-        public static final int google_api_key=0x7f060054;
-        public static final int google_app_id=0x7f060055;
-        public static final int google_crash_reporting_api_key=0x7f060056;
-        public static final int google_geo_key=0x7f060057;
-        public static final int google_storage_bucket=0x7f060058;
-        public static final int hello_blank_fragment=0x7f060059;
-        public static final int likeimage=0x7f06005a;
+        public static final int default_web_client_id=0x7f060050;
+        public static final int email=0x7f060051;
+        public static final int facebook_app_id=0x7f060052;
+        public static final int fb_login_protocol_scheme=0x7f060053;
+        public static final int firebase_database_url=0x7f060054;
+        public static final int first_name=0x7f060055;
+        public static final int gcm_defaultSenderId=0x7f060056;
+        public static final int google_api_key=0x7f060057;
+        public static final int google_app_id=0x7f060058;
+        public static final int google_crash_reporting_api_key=0x7f060059;
+        public static final int google_geo_key=0x7f06005a;
+        public static final int google_storage_bucket=0x7f06005b;
+        public static final int hello_blank_fragment=0x7f06005c;
+        public static final int last_name=0x7f06005d;
+        public static final int likeimage=0x7f06005e;
         public static final int messenger_send_button_text=0x7f06003b;
+        public static final int password=0x7f06005f;
         public static final int place_autocomplete_clear_button=0x7f06003c;
         public static final int place_autocomplete_search_hint=0x7f06003d;
-        public static final int recipeImage=0x7f06005b;
+        public static final int recipeImage=0x7f060060;
         public static final int search_menu_title=0x7f06003e;
         public static final int status_bar_notification_info_overflow=0x7f06003f;
-        public static final int strowarrow=0x7f06005c;
-        public static final int strowauthor=0x7f06005d;
+        public static final int strowarrow=0x7f060061;
+        public static final int strowauthor=0x7f060062;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f0800a0;
@@ -3336,8 +3343,6 @@ containing a value of this type.
         public static final int Animation_AppCompat_Dialog=0x7f0800a2;
         public static final int Animation_AppCompat_DropDownUp=0x7f0800a3;
         public static final int AnimationPopup=0x7f0800a4;
-        /**  Customize your theme here. 
-         */
         public static final int AppTheme=0x7f0800a5;
         public static final int Base_AlertDialog_AppCompat=0x7f0800a6;
         public static final int Base_AlertDialog_AppCompat_Light=0x7f0800a7;

@@ -12,4 +12,9 @@
     <string name="likeimage">likeImage</string>
     <string name="strowarrow">strowArrow</string>
     <string name="strowauthor">strowAuthor</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="city">City</string>
 </resources>

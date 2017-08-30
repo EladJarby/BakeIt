@@ -1,6 +1,8 @@
 package eladjarby.bakeit.fragments;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -14,10 +16,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.URLUtil;
 import android.widget.ArrayAdapter;
@@ -105,7 +111,29 @@ public class CreateEditFragment extends Fragment {
         Button saveButton = (Button) contentView.findViewById(R.id.saveButton);
         recipeTitle = (EditText) contentView.findViewById(R.id.recipeName);
         recipeIngredients = (EditText) contentView.findViewById(R.id.recipeIngredients);
-        ImageView recipeAddIngredient = (ImageView) contentView.findViewById(R.id.recipeAddIngredient);
+        final ImageView recipeAddIngredient = (ImageView) contentView.findViewById(R.id.recipeAddIngredient);
+        final Animation slideLeft = AnimationUtils.loadAnimation(getActivity(), R.anim.slideleft);
+        final Animation slideRight = AnimationUtils.loadAnimation(getActivity(), R.anim.slideright);
+        recipeIngredients.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(ingredientsList.size() == 0 && recipeAddIngredient.getVisibility() == View.GONE) {
+                    if(s.length() == 1) {
+                        recipeAddIngredient.setVisibility(View.VISIBLE);
+                        recipeAddIngredient.startAnimation(slideLeft);
+                    } else if(s.length() == 0) {
+                        recipeAddIngredient.setVisibility(View.GONE);
+                        recipeAddIngredient.startAnimation(slideRight);
+                    }
+                }
+            }
+        });
         ingredientsListLV = (ListView) contentView.findViewById(R.id.recipeIngredientsList);
         // Set a custom adapter fron ingredients list view.
         ingredientsListLV.setAdapter(adapter);
@@ -199,6 +227,9 @@ public class CreateEditFragment extends Fragment {
                 // Set the title to edit recipe.
                 menuTitle.setText("Edit recipe");
                 getRecipeData(Model.instance.getRecipe(recipeId));
+                if(ingredientsList.size() != 0) {
+                    recipeAddIngredient.setVisibility(View.VISIBLE);
+                }
                 recipeImage.setVisibility(View.VISIBLE);
                 saveButton.setText("Edit recipe");
                 // Catch click on save button to edit existed recipe.
@@ -315,37 +346,45 @@ public class CreateEditFragment extends Fragment {
     private boolean validateForm() {
         boolean valid = true;
 
-        String recipeName = recipeTitle.getText().toString();
-        if (TextUtils.isEmpty(recipeName)) {
-            recipeTitle.setError("Required.");
+        String instructions = recipeInstructions.getText().toString();
+        if (TextUtils.isEmpty(instructions)) {
+            recipeInstructions.requestFocus();
+            recipeInstructions.setError("Required.");
             valid = false;
         } else {
-            recipeTitle.setError(null);
-        }
-
-        String ingredients = recipeIngredients.getText().toString();
-        if (ingredientsList.size() == 0) {
-            recipeIngredients.setError("Required at least 1.");
-            valid = false;
-        } else {
-            recipeIngredients.setError(null);
+            recipeInstructions.setError(null);
         }
 
         String time = recipeTime.getText().toString();
         if (TextUtils.isEmpty(time)) {
+            recipeTime.requestFocus();
             recipeTime.setError("Required.");
             valid = false;
         } else {
             recipeTime.setError(null);
         }
 
-        String instructions = recipeInstructions.getText().toString();
-        if (TextUtils.isEmpty(instructions)) {
-            recipeInstructions.setError("Required.");
+        if (ingredientsList.size() == 0) {
+            recipeIngredients.requestFocus();
+            recipeIngredients.setError("Required at least 1.");
             valid = false;
         } else {
-            recipeInstructions.setError(null);
+            recipeIngredients.setError(null);
         }
+
+        String recipeName = recipeTitle.getText().toString();
+        if (TextUtils.isEmpty(recipeName)) {
+            recipeTitle.requestFocus();
+            recipeTitle.setError("Required.");
+            valid = false;
+        } else {
+            recipeTitle.setError(null);
+        }
+
+
+
+
+
 
         return valid;
     }

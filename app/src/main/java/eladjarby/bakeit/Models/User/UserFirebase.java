@@ -2,6 +2,7 @@ package eladjarby.bakeit.Models.User;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -61,6 +62,28 @@ public class UserFirebase {
                         }
                     }
                 });
+    }
+
+    private void sendEmailVerification(RegisterActivity registerActivity) {
+        // Send verification email
+        // [START send_email_verification]
+        final FirebaseUser user = mAuth.getCurrentUser();
+        user.sendEmailVerification()
+                .addOnCompleteListener(registerActivity, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        // [START_EXCLUDE]
+                        // Re-enable button
+
+                        if (task.isSuccessful()) {
+                            Log.d("TAG",user.getEmail());
+                        } else {
+                            Log.d("TAG", "sendEmailVerification", task.getException());
+                        }
+                        // [END_EXCLUDE]
+                    }
+                });
+        // [END send_email_verification]
     }
 
     // Logout current user.

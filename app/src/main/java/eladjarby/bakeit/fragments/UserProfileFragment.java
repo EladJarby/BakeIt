@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,8 @@ public class UserProfileFragment extends Fragment {
     private Bitmap imageBitmap;
     private myProgressDialog mProgressDialog;
     private EditText profileCity;
+    private EditText profileFirstName;
+    private EditText profileLastName;
 
     public UserProfileFragment() {}
 
@@ -115,6 +118,9 @@ public class UserProfileFragment extends Fragment {
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!validateForm()) {
+                    return;
+                }
                 // Close keyboard.
                 InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
@@ -196,8 +202,8 @@ public class UserProfileFragment extends Fragment {
 
     // Get user details to fill the input fields and images.
     private void getUserDetails() {
-        EditText profileFirstName = (EditText) contentView.findViewById(R.id.profile_firstName);
-        EditText profileLastName = (EditText) contentView.findViewById(R.id.profile_lastName);
+        profileFirstName = (EditText) contentView.findViewById(R.id.profile_firstName);
+        profileLastName = (EditText) contentView.findViewById(R.id.profile_lastName);
         profileCity = (EditText) contentView.findViewById(R.id.profile_city);
         profileFirstName.setText(user.getUserFirstName());
         profileLastName.setText(user.getUserLastName());
@@ -207,6 +213,40 @@ public class UserProfileFragment extends Fragment {
         } else {
             ((ImageView) contentView.findViewById(R.id.recipePhoto)).setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.bakeitlogo));
         }
+    }
+
+    // Validate the update form for each input.
+    private boolean validateForm() {
+        boolean valid = true;
+
+        String city = profileCity.getText().toString();
+        if (TextUtils.isEmpty(city)) {
+            profileCity.requestFocus();
+            profileCity.setError("Required.");
+            valid = false;
+        }else {
+            profileCity.setError(null);
+        }
+
+        String lastName = profileLastName.getText().toString();
+        if (TextUtils.isEmpty(lastName)) {
+            profileLastName.requestFocus();
+            profileLastName.setError("Required.");
+            valid = false;
+        }else {
+            profileLastName.setError(null);
+        }
+
+        String firstName = profileFirstName.getText().toString();
+        if (TextUtils.isEmpty(firstName)) {
+            profileFirstName.requestFocus();
+            profileFirstName.setError("Required.");
+            valid = false;
+        }else {
+            profileFirstName.setError(null);
+        }
+
+        return valid;
     }
 
     static final int REQUEST_IMAGE_CAPTURE = 1;

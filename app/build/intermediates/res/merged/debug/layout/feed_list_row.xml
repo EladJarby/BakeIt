@@ -44,26 +44,6 @@
                 android:textSize="20sp" />
         </LinearLayout>
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="2dp"-->
-            <!--android:orientation="horizontal">-->
-
-            <!--<ImageView-->
-                <!--android:contentDescription="@string/categoryicon"-->
-                <!--android:layout_width="20dp"-->
-                <!--android:layout_height="20dp"-->
-                <!--android:src="@android:drawable/ic_menu_my_calendar" />-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/strow_category"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:textColor="#000000"-->
-                <!--android:textStyle="bold"-->
-                <!--android:textSize="15sp" />-->
-        <!--</LinearLayout>-->
         <TextView
             android:id="@+id/strow_date"
             android:layout_width="wrap_content"
@@ -79,7 +59,7 @@
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="21dp"
+        android:layout_marginEnd="15dp"
         android:padding="4sp"
         android:focusable="false"
         android:src="@drawable/ic_expand_button" />
