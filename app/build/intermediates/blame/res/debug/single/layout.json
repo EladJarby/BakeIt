@@ -208,6 +208,10 @@
         "source": "C:\\Users\\EladJ\\.android\\build-cache\\899605adf694fcabfddbbe602708fb7060be7134\\output\\res\\layout\\abc_action_mode_close_item_material.xml"
     },
     {
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_forget_password.xml",
+        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\src\\main\\res\\layout\\activity_forget_password.xml"
+    },
+    {
         "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_create_edit.xml",
         "source": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\src\\main\\res\\layout\\fragment_create_edit.xml"
     },

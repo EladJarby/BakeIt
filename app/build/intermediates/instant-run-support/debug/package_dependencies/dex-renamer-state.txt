@@ -1,4 +1,4 @@
-#Sun Aug 27 21:44:39 IDT 2017
+#Thu Aug 31 17:29:30 IDT 2017
 file.9=C\:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\support-annotations-25.3.1_81901cee914e836a4893f620ade77bfaaab3b8f8\\classes.dex
 base.10=C\:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\core-3.3.0_b8ffc079951193ff44b167f5f56b0965f3650bcc
 file.8=C\:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_9f1f8ccb19a6fd090fa793c103b0e1fc11ce73b9\\classes.dex

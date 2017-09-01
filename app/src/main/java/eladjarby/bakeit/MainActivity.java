@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -64,7 +65,6 @@ UserProfileFragment.OnFragmentInteractionListener{
 
         citiesSet = new HashSet<String>();
         citiesList = new ArrayList<String>();
-        new GetCities().execute();
         Model.instance.syncUser();
 
         FeedFragment feedFragment = FeedFragment.newInstance();
@@ -106,6 +106,9 @@ UserProfileFragment.OnFragmentInteractionListener{
         getFragmentManager().beginTransaction()
                 .add(R.id.main_fragment_container, userProfileFragment).addToBackStack(null)
                 .commit();
+        if(citiesSet.size() == 0) {
+            new GetCities().execute();
+        }
     }
 
     @Override
@@ -122,6 +125,7 @@ UserProfileFragment.OnFragmentInteractionListener{
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
                 getFragmentManager().popBackStack();
+                closeKeyboard();
                 showMenu();
                 break;
         }
@@ -137,6 +141,12 @@ UserProfileFragment.OnFragmentInteractionListener{
         showMenu();
     }
 
+    // Close keyboard.
+    private void closeKeyboard() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+    }
+
     public void showMenu() {
         ActionBar actionBar = ((AppCompatActivity) this).getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
@@ -150,7 +160,7 @@ UserProfileFragment.OnFragmentInteractionListener{
         menuProfile.setVisibility(View.VISIBLE);
     }
 
-    private class GetCities extends AsyncTask<Void, Void, Void> {
+    public class GetCities extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {

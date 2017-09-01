@@ -79,6 +79,7 @@ public class RecipeFirebase {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                callback.onCancel();
             }
         });
     }
@@ -114,9 +115,7 @@ public class RecipeFirebase {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
+            public void onCancelled(DatabaseError databaseError) {}
         });
     }
 
@@ -143,9 +142,7 @@ public class RecipeFirebase {
             }
 
             @Override
-            public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
-
-            }
+            public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {}
         });
     }
 

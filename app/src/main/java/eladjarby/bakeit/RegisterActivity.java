@@ -129,7 +129,7 @@ public class RegisterActivity extends Activity {
 
                             @Override
                             public void fail() {
-
+                                Log.d("TAG","fail to save image.");
                             }
                         });
                     } else {

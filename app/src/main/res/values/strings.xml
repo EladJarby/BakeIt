@@ -17,4 +17,8 @@
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
     <string name="city">City</string>
+    <string name="forget_password">Forget password?</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="reset">Reset</string>
 </resources>

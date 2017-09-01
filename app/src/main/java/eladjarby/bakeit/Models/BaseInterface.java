@@ -27,6 +27,11 @@ public interface BaseInterface {
         void onFailure(String errorMessage);
     }
 
+    interface ForgetPasswordCallBack {
+        void onComplete(String successMessage);
+        void onFailure(String errorMessage);
+    }
+
     interface GetRecipeCallback {
         void onComplete();
         void onCancel();

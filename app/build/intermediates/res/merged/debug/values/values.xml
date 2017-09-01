@@ -633,6 +633,7 @@
     <string name="fb_login_protocol_scheme">fb295848057509630</string>
     <string name="firebase_database_url" translatable="false">https://bakeit-f8116.firebaseio.com</string>
     <string name="first_name">First name</string>
+    <string name="forget_password">Forget password?</string>
     <string name="gcm_defaultSenderId" translatable="false">948068803265</string>
     <string name="google_api_key" translatable="false">AIzaSyA5_1_1vrZ0qLdE2XoYHJAoatbrtKIv4Eo</string>
     <string name="google_app_id" translatable="false">1:948068803265:android:e4acffec3557ea2b</string>
@@ -642,11 +643,14 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="last_name">Last name</string>
     <string name="likeimage">likeImage</string>
+    <string name="login">Login</string>
     <string name="messenger_send_button_text">Send</string>
     <string name="password">Password</string>
     <string name="place_autocomplete_clear_button">Clear search</string>
     <string name="place_autocomplete_search_hint">Search</string>
     <string name="recipeImage">recipeImage</string>
+    <string name="register">Register</string>
+    <string name="reset">Reset</string>
     <string name="search_menu_title">Search</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="strowarrow">strowArrow</string>

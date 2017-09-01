@@ -104,11 +104,12 @@ public class Model {
         RecipeFirebase.removeRecipe(recipe, new BaseInterface.GetRecipeCallback() {
             @Override
             public void onComplete() {
+                Log.d("TAG","Recipe removed");
             }
 
             @Override
             public void onCancel() {
-
+                Log.d("TAG","Recipe remove canceled.");
             }
         });
     }
@@ -222,7 +223,7 @@ public class Model {
 
             @Override
             public void onCancel() {
-
+                Log.d("TAG","changeLike canceled.");
             }
         });
     }

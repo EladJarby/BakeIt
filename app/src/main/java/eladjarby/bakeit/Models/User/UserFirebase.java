@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import eladjarby.bakeit.ForgetPasswordActivity;
 import eladjarby.bakeit.LoginActivity;
 import eladjarby.bakeit.Models.BaseInterface;
 import eladjarby.bakeit.RegisterActivity;
@@ -64,26 +65,34 @@ public class UserFirebase {
                 });
     }
 
+    public static void sendPasswordResetEmail(String email, final BaseInterface.ForgetPasswordCallBack callback) {
+        mAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            callback.onComplete("We have sent you instructions to reset your password!");
+                        } else {
+                            callback.onFailure("Failed to send reset email!");
+                        }
+                    }
+                });
+    }
+
     private void sendEmailVerification(RegisterActivity registerActivity) {
-        // Send verification email
-        // [START send_email_verification]
         final FirebaseUser user = mAuth.getCurrentUser();
         user.sendEmailVerification()
                 .addOnCompleteListener(registerActivity, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        // [START_EXCLUDE]
-                        // Re-enable button
 
                         if (task.isSuccessful()) {
                             Log.d("TAG",user.getEmail());
                         } else {
                             Log.d("TAG", "sendEmailVerification", task.getException());
                         }
-                        // [END_EXCLUDE]
                     }
                 });
-        // [END send_email_verification]
     }
 
     // Logout current user.
@@ -135,7 +144,7 @@ public class UserFirebase {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                callback.onCancel();
             }
         });
     }

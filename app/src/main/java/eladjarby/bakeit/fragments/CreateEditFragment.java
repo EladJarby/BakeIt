@@ -19,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +72,8 @@ public class CreateEditFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private EditText recipeTitle,recipeIngredients,recipeTime,recipeInstructions;
     private ListView ingredientsListLV;
+    private ImageView recipeAddIngredient;
+    private Animation slideRight;
 
     public CreateEditFragment() {}
 
@@ -111,20 +114,24 @@ public class CreateEditFragment extends Fragment {
         Button saveButton = (Button) contentView.findViewById(R.id.saveButton);
         recipeTitle = (EditText) contentView.findViewById(R.id.recipeName);
         recipeIngredients = (EditText) contentView.findViewById(R.id.recipeIngredients);
-        final ImageView recipeAddIngredient = (ImageView) contentView.findViewById(R.id.recipeAddIngredient);
+        recipeAddIngredient = (ImageView) contentView.findViewById(R.id.recipeAddIngredient);
         final Animation slideLeft = AnimationUtils.loadAnimation(getActivity(), R.anim.slideleft);
-        final Animation slideRight = AnimationUtils.loadAnimation(getActivity(), R.anim.slideright);
+        slideRight = AnimationUtils.loadAnimation(getActivity(), R.anim.slideright);
         recipeIngredients.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                Log.d("TAG","bla");
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Log.d("TAG","bla");
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(ingredientsList.size() == 0 && recipeAddIngredient.getVisibility() == View.GONE) {
-                    if(s.length() == 1) {
+                if(ingredientsList.size() == 0 && fragMode.equals("Create")) {
+                    if(s.length() == 1 && recipeAddIngredient.getVisibility() == View.GONE) {
                         recipeAddIngredient.setVisibility(View.VISIBLE);
                         recipeAddIngredient.startAnimation(slideLeft);
                     } else if(s.length() == 0) {
@@ -258,6 +265,7 @@ public class CreateEditFragment extends Fragment {
 
                                 @Override
                                 public void fail() {
+                                    Log.d("TAG","fail to save image.");
                                 }
                             });
                         } else {
@@ -380,12 +388,6 @@ public class CreateEditFragment extends Fragment {
         } else {
             recipeTitle.setError(null);
         }
-
-
-
-
-
-
         return valid;
     }
 
@@ -404,6 +406,7 @@ public class CreateEditFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        closeKeyboard();
     }
 
     public interface OnFragmentInteractionListener {}
@@ -540,6 +543,10 @@ public class CreateEditFragment extends Fragment {
                         ingredientsList.remove(pos);
                         // Notify about change.
                         adapter.notifyDataSetChanged();
+                        if(ingredientsList.size() == 0 && recipeIngredients.getText().length() == 0 && fragMode.equals("Create")) {
+                            recipeAddIngredient.setVisibility(View.GONE);
+                            recipeAddIngredient.startAnimation(slideRight);
+                        }
                         // Set new height after removing ingredient.
                         setListViewHeightBasedOnChildren(ingredientsListLV);
                     }

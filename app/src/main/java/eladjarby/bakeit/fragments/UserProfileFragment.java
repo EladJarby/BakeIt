@@ -12,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -140,6 +141,7 @@ public class UserProfileFragment extends Fragment {
 
                         @Override
                         public void fail() {
+                            Log.d("TAG","fail to save image.");
                         }
                     });
                 } else {

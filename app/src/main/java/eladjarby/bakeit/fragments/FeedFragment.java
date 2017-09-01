@@ -45,6 +45,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import eladjarby.bakeit.MainActivity;
 import eladjarby.bakeit.Models.BaseInterface;
 import eladjarby.bakeit.Models.Model;
 import eladjarby.bakeit.Models.Recipe.Recipe;
@@ -345,6 +346,7 @@ public class FeedFragment extends Fragment {
 
                             @Override
                             public void onFail() {
+                                Log.d("TAG","fail to get user.");
                             }
                         });
                     }
@@ -379,6 +381,7 @@ public class FeedFragment extends Fragment {
 
                     @Override
                     public void onFail() {
+                        Log.d("TAG","fail to get image.");
                     }
                 });
             }
@@ -463,11 +466,12 @@ public class FeedFragment extends Fragment {
                     Model.instance.removeRecipe(recipeList.get(positionList).getID(), new BaseInterface.GetRecipeCallback() {
                         @Override
                         public void onComplete() {
+                            Log.d("TAG","recipe removed.");
                         }
 
                         @Override
                         public void onCancel() {
-
+                            Log.d("TAG","failed to remove recipe.");
                         }
                     });
                 } else if(position == 0) {

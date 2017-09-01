@@ -45,6 +45,7 @@ public class LoginActivity extends Activity {
 
         mUsername = (EditText) findViewById(R.id.login_user);
         mPassword = (EditText) findViewById(R.id.login_password);
+        TextView forgetBtn = (TextView) findViewById(R.id.login_forgetBtn);
         final Button loginBtn = (Button) findViewById(R.id.login_btn);
         final TextView registerTV = (TextView) findViewById(R.id.login_registerBtn);
 
@@ -61,6 +62,16 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this , RegisterActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        // Catch click on forget button and start activity to get new password by enter an email.
+        forgetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this , ForgetPasswordActivity.class);
                 startActivity(intent);
                 finish();
             }
