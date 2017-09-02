@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_person_white_24dp.png",
-        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_person_white_24dp.png"
-    },
-    {
         "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_favorite_red_24dp.png",
         "source": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_favorite_red_24dp.png"
+    },
+    {
+        "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_person_white_24dp.png",
+        "source": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_person_white_24dp.png"
     },
     {
         "merged": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_plus_green_24dp.png",
