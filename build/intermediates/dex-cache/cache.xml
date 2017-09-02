@@ -237,6 +237,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\EladJ\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.8.1\2a8e0aa38a2e21cb39e2f5a7d6704cbdc941da0\gson-2.8.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="02a8e0aa38a2e21cb39e2f5a7d6704cbdc941da0">
+        <dex dex="C:\Users\EladJ\Desktop\BakeIt\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.8.1_cf79a3dc62b629ac6f30ef27b54bf789c0ab2f1e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\EladJ\.android\build-cache\b995b516ce747395e1f520a7e03183284715e2c0\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"

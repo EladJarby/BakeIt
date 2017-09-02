@@ -17,7 +17,7 @@ public class Recipe {
     private Integer recipeTime;
     private String recipeImage;
     private Integer recipeLikes;
-    private HashMap<String,Boolean> recipeLikesList = new HashMap<>();
+    private HashMap<String,Boolean> recipeLikesList;
     private String recipeDate;
     private long recipeLastUpdateDate = 0;
     private Integer recipeIsRemoved = 0;
@@ -27,7 +27,7 @@ public class Recipe {
     }
 
     // Constructor
-    public Recipe(String ID, String recipeAuthorId,String recipeAuthorName, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes, String recipeDate, Integer recipeIsRemoved) {
+    public Recipe(String ID, String recipeAuthorId,String recipeAuthorName, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes,HashMap<String,Boolean> recipeLikesList, String recipeDate, Integer recipeIsRemoved) {
         this.ID = ID;
         this.recipeAuthorId = recipeAuthorId;
         this.recipeAuthorName = recipeAuthorName;
@@ -38,12 +38,13 @@ public class Recipe {
         this.recipeTime = recipeTime;
         this.recipeImage = recipeImage;
         this.recipeLikes = recipeLikes;
+        this.recipeLikesList = recipeLikesList;
         this.recipeDate = recipeDate;
         this.recipeIsRemoved = recipeIsRemoved;
     }
 
     // Constructor for sql lite.
-    public Recipe(String ID, String recipeAuthorId,String recipeAuthorName, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes, String recipeDate, long recipeLastUpdateDate, Integer recipeIsRemoved) {
+    public Recipe(String ID, String recipeAuthorId,String recipeAuthorName, String recipeTitle, String recipeCategory, String recipeInstructions, String recipeIngredients, Integer recipeTime, String recipeImage, Integer recipeLikes,HashMap<String,Boolean> recipeLikesList, String recipeDate, long recipeLastUpdateDate, Integer recipeIsRemoved) {
         this.ID = ID;
         this.recipeAuthorId = recipeAuthorId;
         this.recipeAuthorName = recipeAuthorName;
@@ -54,6 +55,7 @@ public class Recipe {
         this.recipeTime = recipeTime;
         this.recipeImage = recipeImage;
         this.recipeLikes = recipeLikes;
+        this.recipeLikesList = recipeLikesList;
         this.recipeDate = recipeDate;
         this.recipeLastUpdateDate = recipeLastUpdateDate;
         this.recipeIsRemoved = recipeIsRemoved;

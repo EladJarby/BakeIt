@@ -4,8 +4,15 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+
+import eladjarby.bakeit.Models.Model;
 
 /**
  * Created by EladJ on 14/7/2017.
@@ -23,6 +30,7 @@ public class RecipeSql {
     private static final String RECIPE_TIME = "recipeTime";
     private static final String RECIPE_IMAGE = "recipeImage";
     private static final String RECIPE_LIKES = "recipeLikes";
+    private static final String RECIPE_LIKES_LIST = "recipeLikesList";
     private static final String RECIPE_DATE = "recipeDate";
     private static final String RECIPE_LAST_UPDATE_DATE = "recipeLastUpdateDate";
     private static final String RECIPE_IS_REMOVED = "recipeIsRemoved";
@@ -40,6 +48,7 @@ public class RecipeSql {
                 RECIPE_TIME + " NUMBER, " +
                 RECIPE_IMAGE + " TEXT, " +
                 RECIPE_LIKES + " NUMBER, " +
+                RECIPE_LIKES_LIST + " TEXT, " +
                 RECIPE_DATE + " DATE, " +
                 RECIPE_LAST_UPDATE_DATE + " NUMBER, " +
                 RECIPE_IS_REMOVED + " NUMBER );");
@@ -102,6 +111,7 @@ public class RecipeSql {
         values.put(RECIPE_TIME,recipe.getRecipeTime());
         values.put(RECIPE_IMAGE,recipe.getRecipeImage());
         values.put(RECIPE_LIKES,recipe.getRecipeLikes());
+        values.put(RECIPE_LIKES_LIST,objToString(recipe.getRecipeLikesList()));
         values.put(RECIPE_DATE,recipe.getRecipeDate());
         values.put(RECIPE_LAST_UPDATE_DATE,recipe.getRecipeLastUpdateDate());
         values.put(RECIPE_IS_REMOVED,recipe.getRecipeIsRemoved());
@@ -120,6 +130,7 @@ public class RecipeSql {
         int recipeTimeIndex = cursor.getColumnIndex(RECIPE_TIME);
         int recipeImageIndex = cursor.getColumnIndex(RECIPE_IMAGE);
         int recipeLikesIndex = cursor.getColumnIndex(RECIPE_LIKES);
+        int recipeLikesListIndex = cursor.getColumnIndex(RECIPE_LIKES_LIST);
         int recipeDateIndex = cursor.getColumnIndex(RECIPE_DATE);
         int recipeLastUpdateIndex = cursor.getColumnIndex(RECIPE_LAST_UPDATE_DATE);
         int recipeIsRemoved = cursor.getColumnIndex(RECIPE_IS_REMOVED);
@@ -134,9 +145,21 @@ public class RecipeSql {
                 Integer.parseInt(cursor.getString(recipeTimeIndex)),
                 cursor.getString(recipeImageIndex),
                 Integer.parseInt(cursor.getString(recipeLikesIndex)),
+                likesListobjToString(cursor.getString(recipeLikesListIndex)),
                 cursor.getString(recipeDateIndex),
                 cursor.getLong(recipeLastUpdateIndex),
                 Integer.parseInt(cursor.getString(recipeIsRemoved)));
         return recipe;
+    }
+
+    private static String objToString(HashMap<String, Boolean> likesList) {
+        Gson objGson= new Gson();
+        return objGson.toJson(likesList);
+    }
+
+    private static HashMap<String, Boolean> likesListobjToString(String likesListString) {
+        Gson gson= new Gson();
+        Type type = new TypeToken<HashMap<String, Boolean>>() {}.getType();
+        return gson.fromJson(likesListString,type);
     }
 }

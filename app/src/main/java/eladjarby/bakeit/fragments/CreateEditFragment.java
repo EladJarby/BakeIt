@@ -44,6 +44,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 import eladjarby.bakeit.Dialogs.myProgressDialog;
@@ -309,6 +310,7 @@ public class CreateEditFragment extends Fragment {
     private Recipe createRecipe() {
         String recipeId = null;
         String recipeImage = null;
+        HashMap<String, Boolean> recipeLikesList = null;
         int recipeLikes = 0;
         String recipeIngredients = "";
         String recipeTitle = ((EditText) contentView.findViewById(R.id.recipeName)).getText().toString();
@@ -340,6 +342,7 @@ public class CreateEditFragment extends Fragment {
                 Recipe recipe = Model.instance.getRecipe(recipeId);
                 recipeImage = recipe.getRecipeImage();
                 recipeLikes = recipe.getRecipeLikes();
+                recipeLikesList = recipe.getRecipeLikesList();
                 break;
         }
         int recipeIsRemoved = 0;
@@ -347,7 +350,7 @@ public class CreateEditFragment extends Fragment {
         String userFullName = Model.instance.getCurrentUser().getUserFirstName() + " " + Model.instance.getCurrentUser().getUserLastName();
         // Get current time on format: d MMM yyyy at H:mm , for example: 28 Aug 2017 at 21:30.
         String currentTime = new SimpleDateFormat("d MMM yyyy", Locale.ENGLISH).format(new Date()) + " at " + new SimpleDateFormat("H:mm").format(new Date());
-        return new Recipe(recipeId,Model.instance.getCurrentUserId(), userFullName ,recipeTitle,recipeCategory,recipeInstructions,recipeIngredients,recipeTime,recipeImage,recipeLikes,currentTime,recipeIsRemoved);
+        return new Recipe(recipeId,Model.instance.getCurrentUserId(), userFullName ,recipeTitle,recipeCategory,recipeInstructions,recipeIngredients,recipeTime,recipeImage,recipeLikes,recipeLikesList,currentTime,recipeIsRemoved);
     }
 
     // Validate form function , to check all inputs.

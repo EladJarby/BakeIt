@@ -120,7 +120,7 @@ public class RecipeFirebase {
     }
 
     // Change like list in firebase for each recipe.
-    public static void changeLike(Recipe recipe, final BaseInterface.GetLikesCallback callback) {
+    public static void changeLike(final Recipe recipe, final BaseInterface.GetLikesCallback callback) {
         myRef.child(recipe.getID()).runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
@@ -128,7 +128,9 @@ public class RecipeFirebase {
                 if(newRecipe == null) {
                     return Transaction.success(mutableData);
                 }
-
+                if(newRecipe.getRecipeLikesList() == null) {
+                    newRecipe.setRecipeLikesList(new HashMap<String, Boolean>());
+                }
                 if(newRecipe.getRecipeLikesList().containsKey(Model.instance.getCurrentUserId())) {
                     newRecipe.setRecipeLikes(newRecipe.getRecipeLikes()-1);
                     newRecipe.getRecipeLikesList().remove(Model.instance.getCurrentUserId());

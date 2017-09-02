@@ -114,6 +114,10 @@ public class LoginActivity extends Activity {
         if (TextUtils.isEmpty(email)) {
             mUsername.setError("Required.");
             valid = false;
+        } else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            mUsername.requestFocus();
+            mUsername.setError("Please enter a valid email address.");
+            valid = false;
         } else {
             mUsername.setError(null);
         }
