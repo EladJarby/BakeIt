@@ -22,13 +22,23 @@
             android:paddingLeft="35dp"
             android:paddingRight="35dp">
 
-            <ImageView
-                android:layout_marginTop="10dp"
-                android:id="@+id/profile_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:src="@drawable/avatar" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+                <ImageView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/profile_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/avatar" />
+                <ProgressBar
+                    android:id="@+id/profileProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:visibility="gone" />
+            </FrameLayout>
 
             <EditText
                 android:id="@+id/profile_firstName"

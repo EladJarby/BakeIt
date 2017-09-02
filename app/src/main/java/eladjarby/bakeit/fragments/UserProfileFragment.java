@@ -23,6 +23,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import eladjarby.bakeit.Dialogs.myProgressDialog;
@@ -210,11 +211,21 @@ public class UserProfileFragment extends Fragment {
         profileFirstName.setText(user.getUserFirstName());
         profileLastName.setText(user.getUserLastName());
         profileCity.setText(user.getUserTown());
-        if(user.getUserImage() != null && !user.getUserImage().isEmpty() && !user.getUserImage().equals("")) {
-            ((ImageView) contentView.findViewById(R.id.profile_image)).setImageBitmap(ModelFiles.loadImageFromFile(URLUtil.guessFileName(user.getUserImage(), null, null)));
-        } else {
-            ((ImageView) contentView.findViewById(R.id.recipePhoto)).setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.bakeitlogo));
-        }
+        final ProgressBar profileProgressBar = (ProgressBar) contentView.findViewById(R.id.profileProgressBar);
+        profileProgressBar.setVisibility(View.VISIBLE);
+        Model.instance.getImage(user.getUserImage(), new BaseInterface.GetImageListener() {
+            @Override
+            public void onSuccess(Bitmap image) {
+                profileProgressBar.setVisibility(View.GONE);
+                ((ImageView)contentView.findViewById(R.id.profile_image)).setImageBitmap(image);
+            }
+
+            @Override
+            public void onFail() {
+                profileProgressBar.setVisibility(View.GONE);
+                Log.d("TAG","fail to get image.");
+            }
+        });
     }
 
     // Validate the update form for each input.

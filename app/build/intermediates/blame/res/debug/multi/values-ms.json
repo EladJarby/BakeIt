@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\EladJ\\Desktop\\BakeIt\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ms\\values-ms.xml",
+        "outputFile": "C:\\Users\\EladJ\\Desktop\\BakeIt2\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ms\\values-ms.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 266
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 400
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -49,7 +49,7 @@
                     "endOffset": 540
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -68,7 +68,7 @@
                     "endOffset": 652
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -87,7 +87,7 @@
                     "endOffset": 736
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -106,7 +106,7 @@
                     "endOffset": 821
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -125,7 +125,7 @@
                     "endOffset": 900
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -144,7 +144,7 @@
                     "endOffset": 988
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
@@ -163,7 +163,7 @@
                     "endOffset": 1080
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -182,7 +182,7 @@
                     "endOffset": 1196
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
@@ -201,7 +201,7 @@
                     "endOffset": 1309
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
@@ -220,7 +220,7 @@
                     "endOffset": 1403
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
@@ -239,7 +239,7 @@
                     "endOffset": 1497
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
@@ -258,7 +258,7 @@
                     "endOffset": 1603
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
@@ -277,7 +277,7 @@
                     "endOffset": 1727
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
@@ -296,7 +296,7 @@
                     "endOffset": 1809
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
@@ -315,7 +315,7 @@
                     "endOffset": 1892
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
@@ -334,7 +334,7 @@
                     "endOffset": 2092
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
@@ -353,7 +353,7 @@
                     "endOffset": 2188
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
@@ -372,7 +372,7 @@
                     "endOffset": 2290
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 21,
                         "startColumn": 4,
@@ -391,7 +391,7 @@
                     "endOffset": 2407
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 22,
                         "startColumn": 4,
@@ -410,7 +410,7 @@
                     "endOffset": 2513
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 23,
                         "startColumn": 4,
@@ -429,7 +429,7 @@
                     "endOffset": 2672
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 24,
                         "startColumn": 4,
@@ -448,7 +448,7 @@
                     "endOffset": 2780
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\cb79d6df18051b22cc9361330b0a67862dc43d28\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 0,
@@ -467,7 +467,7 @@
                     "endOffset": 2985
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\cb79d6df18051b22cc9361330b0a67862dc43d28\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 0,
@@ -486,7 +486,7 @@
                     "endOffset": 3117
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\cb79d6df18051b22cc9361330b0a67862dc43d28\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 0,
@@ -505,7 +505,7 @@
                     "endOffset": 3225
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\cb79d6df18051b22cc9361330b0a67862dc43d28\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 0,
@@ -524,7 +524,7 @@
                     "endOffset": 3456
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\cb79d6df18051b22cc9361330b0a67862dc43d28\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 0,
@@ -543,7 +543,7 @@
                     "endOffset": 3590
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\cb79d6df18051b22cc9361330b0a67862dc43d28\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 0,
@@ -562,7 +562,7 @@
                     "endOffset": 3726
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\cb79d6df18051b22cc9361330b0a67862dc43d28\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 0,
@@ -581,7 +581,7 @@
                     "endOffset": 3931
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\e5233b24922426d3bb7a6799477a5cd2ac045de1\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\3a6b7437b776c0351941d257d1d475f8849778e7\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 0,
@@ -600,7 +600,7 @@
                     "endOffset": 4175
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\cb79d6df18051b22cc9361330b0a67862dc43d28\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 0,
@@ -619,7 +619,7 @@
                     "endOffset": 4286
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\cb79d6df18051b22cc9361330b0a67862dc43d28\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 0,
@@ -638,7 +638,7 @@
                     "endOffset": 4492
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\cb79d6df18051b22cc9361330b0a67862dc43d28\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 0,
@@ -657,7 +657,7 @@
                     "endOffset": 4629
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\cb79d6df18051b22cc9361330b0a67862dc43d28\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 0,
@@ -676,7 +676,7 @@
                     "endOffset": 4859
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\cb79d6df18051b22cc9361330b0a67862dc43d28\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 0,
@@ -695,7 +695,7 @@
                     "endOffset": 5064
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\cb79d6df18051b22cc9361330b0a67862dc43d28\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 0,
@@ -714,7 +714,7 @@
                     "endOffset": 5161
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\cb79d6df18051b22cc9361330b0a67862dc43d28\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 0,
@@ -733,7 +733,7 @@
                     "endOffset": 5255
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\cb79d6df18051b22cc9361330b0a67862dc43d28\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 0,
@@ -752,7 +752,7 @@
                     "endOffset": 5367
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\6cae37ad27ddaeec9d66ec8ba8e4eaa38e7db7af\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\cb79d6df18051b22cc9361330b0a67862dc43d28\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 0,
@@ -771,7 +771,7 @@
                     "endOffset": 5429
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\5bbb16bfe987bc8eb07ad820c32e283210faa2cd\\output\\res\\values-ms\\values-ms.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\c11c82fc108fc95ed1ab06a1bed9ac3e7cf4daef\\output\\res\\values-ms\\values-ms.xml",
                     "position": {
                         "startLine": 25,
                         "startColumn": 4,
@@ -790,7 +790,7 @@
                     "endOffset": 5536
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\e5d425229799455abfe429a865739e36026268b2\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\1eab820d7a19ea7014dc6d9741e9df5208d0adac\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 0,
@@ -809,7 +809,7 @@
                     "endOffset": 5630
                 },
                 "from": {
-                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\e5d425229799455abfe429a865739e36026268b2\\output\\res\\values-ms\\values.xml",
+                    "file": "C:\\Users\\EladJ\\.android\\build-cache\\1eab820d7a19ea7014dc6d9741e9df5208d0adac\\output\\res\\values-ms\\values.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 0,
