@@ -102,12 +102,10 @@ UserProfileFragment.OnFragmentInteractionListener{
 
     @Override
     public void userProfile() {
-        UserProfileFragment userProfileFragment = UserProfileFragment.newInstance();
-        getFragmentManager().beginTransaction()
-                .add(R.id.main_fragment_container, userProfileFragment).addToBackStack(null)
-                .commit();
         if(citiesSet.size() == 0) {
             new GetCities().execute();
+        } else {
+            executeUserProfileFragment();
         }
     }
 
@@ -230,6 +228,7 @@ UserProfileFragment.OnFragmentInteractionListener{
             super.onPostExecute(result);
             // Dismiss the progress dialog
             if (pDialog.isShowing()) {
+                executeUserProfileFragment();
                 pDialog.dismiss();
             }
         }
@@ -237,6 +236,13 @@ UserProfileFragment.OnFragmentInteractionListener{
 
     public List<String> getCitiesList() {
         return citiesList;
+    }
+
+    private void executeUserProfileFragment() {
+        UserProfileFragment userProfileFragment = UserProfileFragment.newInstance();
+        getFragmentManager().beginTransaction()
+                .add(R.id.main_fragment_container, userProfileFragment).addToBackStack(null)
+                .commit();
     }
 
 }
