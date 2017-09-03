@@ -131,6 +131,7 @@ public class FeedFragment extends Fragment {
 
         ImageView menuAdd = (ImageView) getActivity().findViewById(R.id.menu_add);
         ImageView menuProfile = (ImageView) getActivity().findViewById(R.id.menu_profile);
+
         TextView menuTitleBakeIt = (TextView) getActivity().findViewById(R.id.menu_title_bakeit);
         menuTitleBakeIt.setVisibility(View.VISIBLE);
 

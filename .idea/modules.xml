@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BakeIt.iml" filepath="$PROJECT_DIR$/BakeIt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BakeIt.iml" filepath="$PROJECT_DIR$/BakeIt.iml" />
       <module fileurl="file://$PROJECT_DIR$/BakeIt2.iml" filepath="$PROJECT_DIR$/BakeIt2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

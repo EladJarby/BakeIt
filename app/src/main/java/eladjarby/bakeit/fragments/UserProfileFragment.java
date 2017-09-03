@@ -40,7 +40,7 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 public class UserProfileFragment extends Fragment {
     private static final String JPEG = ".jpeg";
     View contentView;
-    User user;
+    User currentUser;
     private OnFragmentInteractionListener mListener;
     private Bitmap imageBitmap;
     private myProgressDialog mProgressDialog;
@@ -88,9 +88,19 @@ public class UserProfileFragment extends Fragment {
         menuTitle.setText("User Details");
 
         // Get logged in current user
-        user = Model.instance.getCurrentUser();
+        UserFirebase.getUser(UserFirebase.getCurrentUserId(), new BaseInterface.GetUserCallback() {
+            @Override
+            public void onComplete(User user) {
+                currentUser = user;
+                getUserDetails();
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d("TAG","Cannot retrive user data");
+            }
+        });
         // Get all user details to set input fields.
-        getUserDetails();
 
         Button updateBtn = (Button) contentView.findViewById(R.id.profile_update_btn);
         ImageView profileImage = (ImageView) contentView.findViewById(R.id.profile_image);
@@ -196,9 +206,9 @@ public class UserProfileFragment extends Fragment {
         String userFirstName = ((EditText) contentView.findViewById(R.id.profile_firstName)).getText().toString();
         String userLastName = ((EditText) contentView.findViewById(R.id.profile_lastName)).getText().toString();
         String userCity = ((EditText) contentView.findViewById(R.id.profile_city)).getText().toString();
-        userId = user.getID();
-        userEmail = user.getUserEmail();
-        userImage = user.getUserImage();
+        userId = currentUser.getID();
+        userEmail = currentUser.getUserEmail();
+        userImage = currentUser.getUserImage();
         return new User(userId,userEmail,userCity,userImage,userFirstName,userLastName);
 
     }
@@ -208,12 +218,12 @@ public class UserProfileFragment extends Fragment {
         profileFirstName = (EditText) contentView.findViewById(R.id.profile_firstName);
         profileLastName = (EditText) contentView.findViewById(R.id.profile_lastName);
         profileCity = (EditText) contentView.findViewById(R.id.profile_city);
-        profileFirstName.setText(user.getUserFirstName());
-        profileLastName.setText(user.getUserLastName());
-        profileCity.setText(user.getUserTown());
+        profileFirstName.setText(currentUser.getUserFirstName());
+        profileLastName.setText(currentUser.getUserLastName());
+        profileCity.setText(currentUser.getUserTown());
         final ProgressBar profileProgressBar = (ProgressBar) contentView.findViewById(R.id.profileProgressBar);
         profileProgressBar.setVisibility(View.VISIBLE);
-        Model.instance.getImage(user.getUserImage(), new BaseInterface.GetImageListener() {
+        Model.instance.getImage(currentUser.getUserImage(), new BaseInterface.GetImageListener() {
             @Override
             public void onSuccess(Bitmap image) {
                 profileProgressBar.setVisibility(View.GONE);
